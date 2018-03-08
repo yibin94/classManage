@@ -12,7 +12,8 @@
 // +----------------------------------------------------------------------
 namespace plugins\wechat;
 use cmf\lib\Plugin;
-use app\wechat\api\TpWechat\TpWechat;
+//use app\wechat\api\TpWechat\TpWechat;
+use plugins\wechat\api\TpWechat\TpWechat;
 class WechatPlugin extends Plugin{
     public $info = array(
         'name'=>'Wechat',

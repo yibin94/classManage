@@ -41,7 +41,7 @@
  *  		);
  *   $result = $weObj->createMenu($newmenu);
  */
-namespace plugins\Wechat\Api\Wechat;
+namespace plugins\wechat\api\Wechat;
 class Wechat
 {
 	const MSGTYPE_TEXT = 'text';

@@ -10,8 +10,8 @@
 // +----------------------------------------------------------------------
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
-namespace plugins\Wechat\Api\TpWechat;
-use plugins\Wechat\Api\Wechat\Wechat;
+namespace plugins\wechat\api\TpWechat;
+use plugins\wechat\api\Wechat\Wechat;
 class TpWechat extends Wechat{
     /**
      * log overwrite
