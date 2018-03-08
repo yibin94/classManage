@@ -19,7 +19,7 @@ class WechatPlugin extends Plugin{
         'title'=>'微信公众号',
         'description'=>'微信公众号接入',
         'status'=>1,
-        'author'=>'Polo',
+        'author'=>'yibin',
         'version'=>'1.0'
     );
 	
