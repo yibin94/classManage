@@ -28,7 +28,7 @@ class WechatPlugin extends Plugin{
 
     // 插件安装
     public function install(){//安装方法必须实现
-        $db_prefix = C('DB_PREFIX');
+        $db_prefix = config('DB_PREFIX');//C('DB_PREFIX');
         $sql1=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
@@ -81,7 +81,7 @@ INSERT;
 
     // 插件卸载
     public function uninstall(){//卸载方法必须实现
-        $db_prefix = C('DB_PREFIX');
+        $db_prefix = config('DB_PREFIX');//C('DB_PREFIX');
         D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
         D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         return true;//卸载成功返回true，失败false
