@@ -11,11 +11,11 @@
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
 namespace wechat\controller;
-use cmf\controller;
+use think\Controller;
 
 //use Think\Controller;
 
-class WechatController extends controller{
+class WechatController extends Controller{
     /**
      * [index 微信公众号对接]
      * 
