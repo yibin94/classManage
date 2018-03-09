@@ -294,7 +294,7 @@ class Wechat
         		return false;
         	else
         		die('no access');
-        }
+        }die(3);
         return true;
     }
 
