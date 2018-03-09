@@ -94,7 +94,7 @@ INSERT;
     public function wechat($param){
         $config=$this->getConfig();
         switch ($param/*['type']*/) {
-            case 'connect':
+            case null://'connect':
                 $options = array(
                     			'token'=>$config['Token'], //填写你设定的key
                     			'encodingaeskey'=>$config['EncodingAESKey'], //填写加密用的EncodingAESKey
