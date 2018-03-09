@@ -28,7 +28,7 @@ class WechatPlugin extends Plugin{
 
     // 插件安装
     public function install(){//安装方法必须实现
-        $db_prefix = config('DB_PREFIX');//C('DB_PREFIX');
+        $db_prefix = config('database.prefix');//C('DB_PREFIX');
         $sql1=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
@@ -71,19 +71,20 @@ INSERT INTO `{$db_prefix}plugin_wechat_autoreply` VALUES
 ('7', '热门文章', '/^(热门|remen|rm)$/i', 'replyHot', '1'),
 ('8', '热门分类列表', '/^rm(.+)$/i', 'replyHotList', '1');
 INSERT;
-        D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
-        D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
-        D()->execute($sql1);
-        D()->execute($sql2);
-        D()->execute($sql3);
+        //D()->     
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
+        Db::execute($sql1);
+        Db::execute($sql2);
+        Db::execute($sql3);
         return true;//安装成功返回true，失败false
     }
 
     // 插件卸载
     public function uninstall(){//卸载方法必须实现
-        $db_prefix = config('DB_PREFIX');//C('DB_PREFIX');
-        D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
-        D()->execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
+        $db_prefix = config('database.prefix');//C('DB_PREFIX');
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         return true;//卸载成功返回true，失败false
     }
     
@@ -108,15 +109,15 @@ INSERT;
                     /* 收到用户主动回复消息处理 */
                     $content = $weObj->getRev()->getRevContent(); //获取消息内容
                     /* 将消息内容与已有关键字进行匹配,对相应关键字进行相关响应 */
-                    $reply = D('plugins://Wechat/PluginWechat')->reply($openid,$content,$weObj,$config);
+                    $reply = model('plugins://Wechat/PluginWechat')->reply($openid,$content,$weObj,$config);
             		exit;
             		break;
                 case TpWechat::MSGTYPE_LOCATION:
                     /* 收到用户主动回复地理位置 */
                 	$location = $weObj->getRev()->getRevGeo();
-                	$judge = M('PluginWechatUser')->where(array('openid'=>$openid))->find();
+                	$judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
                 	if($judge){
-                		M('PluginWechatUser')->where(array('id' => $judge['id']))->setField(array('latitude'=>$location['x'],'longitude'=>$location['y'],'labelname'=>$location['label']));
+                		model('PluginWechatUser')->where(array('id' => $judge['id']))->setField(array('latitude'=>$location['x'],'longitude'=>$location['y'],'labelname'=>$location['label']));
                 	}else{
                 		if($config['IsAuth'] == 0){
                 			$user_data = array(
@@ -133,7 +134,7 @@ INSERT;
                 			$user_data['longitude'] = $location['y'];
                 			$user_data['labelname'] = $location['label'];
                 		}
-                		M('PluginWechatUser')->add($user_data);
+                		model('PluginWechatUser')->add($user_data);
                 	}
                     $weObj->text("您的最新位置已经更新,查询周边信息可回复'找xxx',比如'找ATM','找银行','找酒店','找厕所'等等,下次查询前记得先发位置再查询哟O(∩_∩)O~")->reply();
                     break;
@@ -155,19 +156,19 @@ INSERT;
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
-           		            $judge = M('PluginWechatUser')->where(array('openid'=>$openid))->find();
+           		            $judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
            		            if($judge){
-           		                M('PluginWechatUser')->where(array('id' => $judge['id']))->save($user_data);
+           		                model('PluginWechatUser')->where(array('id' => $judge['id']))->save($user_data);
            		            }else{
-           		                M('PluginWechatUser')->add($user_data);
+           		                model('PluginWechatUser')->add($user_data);
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
            		            break;
        		            case TpWechat::EVENT_UNSUBSCRIBE:
-       		                $judge = M('PluginWechatUser')->where(array('openid'=>$openid))->find();
+       		                $judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
        		                if($judge){
-       		                    M('PluginWechatUser')->where(array('id' => $judge['id']))->setField(array('subscribe'=>0));
+       		                    model('PluginWechatUser')->where(array('id' => $judge['id']))->setField(array('subscribe'=>0));
        		                }
        		                break;
        		            case TpWechat::EVENT_LOCATION:
