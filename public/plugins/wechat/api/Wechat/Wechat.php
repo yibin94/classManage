@@ -226,7 +226,7 @@ class Wechat
 	 * For weixin server validation
 	 */
 	private function checkSignature($str='')
-	{var_dump($_GET["signature"]);var_dump($_GET["msg_signature"]);
+	{
         $signature = isset($_GET["signature"])?$_GET["signature"]:'';
 	    $signature = isset($_GET["msg_signature"])?$_GET["msg_signature"]:$signature; //如果存在加密验证则用加密验证段
         $timestamp = isset($_GET["timestamp"])?$_GET["timestamp"]:'';
@@ -237,7 +237,6 @@ class Wechat
 		sort($tmpArr, SORT_STRING);
 		$tmpStr = implode( $tmpArr );
 		$tmpStr = sha1( $tmpStr );
-var_dump($tmpStr);var_dump($signature);die; 
 		if( $tmpStr == $signature ){
 			return true;
 		}else{
@@ -250,9 +249,9 @@ var_dump($tmpStr);var_dump($signature);die;
 	 * @param bool $return 是否返回
 	 */
 	public function valid($return=false)
-    {
+    {var_dump($_GET["echostr"]);
         $encryptStr="";
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {echo 1;die;
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $postStr = file_get_contents("php://input");
             $array = (array)simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $this->encrypt_type = isset($_GET["encrypt_type"]) ? $_GET["encrypt_type"]: '';
@@ -274,7 +273,7 @@ var_dump($tmpStr);var_dump($signature);die;
             } else {
                 $this->postxml = $postStr;
             }
-        } elseif (isset($_GET["echostr"])) {echo 2;die;
+        } elseif (isset($_GET["echostr"])) {
         	$echoStr = $_GET["echostr"];
         	if ($return) {
         		if ($this->checkSignature())
