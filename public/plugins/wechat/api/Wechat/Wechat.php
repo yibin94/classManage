@@ -226,7 +226,7 @@ class Wechat
 	 * For weixin server validation
 	 */
 	private function checkSignature($str='')
-	{
+	{var_dump($_GET["signature"]);var_dump($_GET["msg_signature"]);
         $signature = isset($_GET["signature"])?$_GET["signature"]:'';
 	    $signature = isset($_GET["msg_signature"])?$_GET["msg_signature"]:$signature; //如果存在加密验证则用加密验证段
         $timestamp = isset($_GET["timestamp"])?$_GET["timestamp"]:'';
