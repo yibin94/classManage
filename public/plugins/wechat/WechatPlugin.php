@@ -105,7 +105,7 @@ INSERT;
                 $weObj->valid();
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
-                $type = $weObj->getRev()->getRevType();
+                $type = $weObj->getRev()->getRevType();echo $type;die;
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
                     /* 收到用户主动回复消息处理 */
