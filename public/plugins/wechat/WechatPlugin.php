@@ -93,8 +93,8 @@ INSERT;
     //实现的wechat钩子方法
     public function wechat($param){
         $config=$this->getConfig();
-        switch ($param/*['type']*/) {
-            case null://'connect':
+        switch ($param['type']) {
+            case 'connect':
                 $options = array(
                     			'token'=>$config['Token'], //填写你设定的key
                     			'encodingaeskey'=>$config['EncodingAESKey'], //填写加密用的EncodingAESKey
@@ -102,7 +102,7 @@ INSERT;
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
                 $weObj = new TpWechat($options);
-                $weObj->valid();die(333);
+                $weObj->valid();
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
