@@ -28,6 +28,7 @@ class WechatController extends Controller{
         //hook('wechat',array('type'=>'connect'));Cannot pass parameter 2 by reference
 		//hook('wechat','connect');
 		//hook('wechat',array('connect'));
-		hook('wechat');var_dump($_GET["echostr"]);var_dump($_GET["signature"]);var_dump($_GET["timestamp"]);var_dump($_GET["nonce"]);die;
+		var_dump($_GET["echostr"]);var_dump($_GET["signature"]);var_dump($_GET["timestamp"]);var_dump($_GET["nonce"]);die;
+		hook('wechat');
     }
 }
