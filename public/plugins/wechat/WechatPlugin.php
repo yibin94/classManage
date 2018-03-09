@@ -93,7 +93,7 @@ INSERT;
     //实现的wechat钩子方法
     public function wechat($param){
         $config=$this->getConfig();
-        switch ($param['type']) {
+        switch ($param/*['type']*/) {
             case 'connect':
                 $options = array(
                     			'token'=>$config['Token'], //填写你设定的key

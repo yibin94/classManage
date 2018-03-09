@@ -25,6 +25,7 @@ class WechatController extends Controller{
      * @copyright Show More
      */
     public function index(){
-        hook('wechat',array('type'=>'connect'));
+        //hook('wechat',array('type'=>'connect'));Cannot pass parameter 2 by reference
+		hook('wechat','connect');
     }
 }
