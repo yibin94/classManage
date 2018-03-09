@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
-namespace wechat\controller;
+namespace app\wechat\controller;
 use think\Controller;
 
 //use Think\Controller;
