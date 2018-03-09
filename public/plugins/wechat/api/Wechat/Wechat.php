@@ -249,7 +249,7 @@ class Wechat
 	 * @param bool $return 是否返回
 	 */
 	public function valid($return=false)
-    {var_dump($_GET["echostr"]);
+    {
         $encryptStr="";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $postStr = file_get_contents("php://input");
@@ -288,12 +288,12 @@ class Wechat
         	}
         }
 
-        if (!$this->checkSignature($encryptStr)) {echo 3;die;
+        if (!$this->checkSignature($encryptStr)) {
         	if ($return)
         		return false;
         	else
         		die('no access');
-        }echo 4;die;
+        }
         return true;
     }
 
