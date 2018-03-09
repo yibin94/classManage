@@ -250,9 +250,9 @@ class Wechat
 	 * @param bool $return 是否返回
 	 */
 	public function valid($return=false)
-    {echo 233;
+    {
         $encryptStr="";
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {die(0);
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {echo 1;die;
             $postStr = file_get_contents("php://input");
             $array = (array)simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $this->encrypt_type = isset($_GET["encrypt_type"]) ? $_GET["encrypt_type"]: '';
@@ -274,7 +274,7 @@ class Wechat
             } else {
                 $this->postxml = $postStr;
             }
-        } elseif (isset($_GET["echostr"])) {die(1);
+        } elseif (isset($_GET["echostr"])) {echo 2;die;
         	$echoStr = $_GET["echostr"];
         	if ($return) {
         		if ($this->checkSignature())
@@ -289,12 +289,12 @@ class Wechat
         	}
         }
 
-        if (!$this->checkSignature($encryptStr)) {die(2);
+        if (!$this->checkSignature($encryptStr)) {echo 3;die;
         	if ($return)
         		return false;
         	else
         		die('no access');
-        }die(3);
+        }echo 4;die;
         return true;
     }
 
