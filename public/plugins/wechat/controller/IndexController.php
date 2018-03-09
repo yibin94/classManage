@@ -10,9 +10,10 @@
 // +----------------------------------------------------------------------
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
-namespace plugins\Wechat\Controller; //Demo插件英文名，改成你的插件英文就行了
-use Api\Controller\PluginController;//插件控制器基类
-class IndexController extends PluginController{
+namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
+//use Api\Controller\PluginController;//插件控制器基类
+use cmf\controller\PluginBaseController;
+class IndexController extends PluginBaseController{
     function index(){
 		return false;
 	}
