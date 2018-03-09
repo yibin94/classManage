@@ -250,7 +250,7 @@ class Wechat
 	 * @param bool $return 是否返回
 	 */
 	public function valid($return=false)
-    {die(233);
+    {echo 233;
         $encryptStr="";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {die(0);
             $postStr = file_get_contents("php://input");
