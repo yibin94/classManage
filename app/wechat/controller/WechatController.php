@@ -10,10 +10,12 @@
 // +----------------------------------------------------------------------
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
-namespace wechat\Controller;
-use Think\Controller;
+namespace wechat\controller;
+use cmf\controller;
 
-class WechatController extends Controller{
+//use Think\Controller;
+
+class WechatController extends controller{
     /**
      * [index 微信公众号对接]
      * 
