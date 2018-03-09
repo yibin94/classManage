@@ -232,12 +232,12 @@ class Wechat
         $timestamp = isset($_GET["timestamp"])?$_GET["timestamp"]:'';
         $nonce = isset($_GET["nonce"])?$_GET["nonce"]:'';
 
-		$token = $this->token;var_dump(array($token, $timestamp, $nonce,$str));var_dump(array($token, $timestamp, $nonce));die; 
+		$token = $this->token;
 		$tmpArr = array($token, $timestamp, $nonce,$str);
 		sort($tmpArr, SORT_STRING);
 		$tmpStr = implode( $tmpArr );
 		$tmpStr = sha1( $tmpStr );
-
+var_dump($tmpStr);var_dump($signature);die; 
 		if( $tmpStr == $signature ){
 			return true;
 		}else{
