@@ -100,7 +100,7 @@ INSERT;
                     			'encodingaeskey'=>$config['EncodingAESKey'], //填写加密用的EncodingAESKey
                     			'appid'=>$config['AppID'], //填写高级调用功能的app id
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-                    		);var_dump($options);die;
+                    		);
                 $weObj = new TpWechat($options);
                 $weObj->valid();
                 //用户openid:
