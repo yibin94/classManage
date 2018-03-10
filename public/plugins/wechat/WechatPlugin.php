@@ -102,97 +102,13 @@ INSERT;
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
                 $weObj = new TpWechat($options);
-                $weObj->valid();
-				/*
-	$weObj->text("您的422424424")->reply();	break;		
-   $menu = [
-      	    'button' => [
-      	      0 => [
-      	        'name' => '扫码',
-      	        'sub_button' => [
-     	            0 => [
-      	              'type' => 'scancode_waitmsg',
-      	              'name' => '扫码带提示',
-      	              'key' => 'rselfmenu_0_0',
-      	            ],
-      	            1 => [
-      	              'type' => 'scancode_push',
-     	              'name' => '扫码推事件',
-      	              'key' => 'rselfmenu_0_1',
-      	            ]
-      	        ]
-      	      ],
-      	      1 => [
-     	        'name' => '发图',
-      	        'sub_button' => [
-      	            0 => [
-      	              'type' => 'pic_sysphoto',
-      	              'name' => '系统拍照发图',
-      	              'key' => 'rselfmenu_1_0',
-      	            ],
-      	            1 => [
-     	              'type' => 'pic_photo_or_album',
-      	              'name' => '拍照或者相册发图',
-      	              'key' => 'rselfmenu_1_1',
-      	            ]
-      	        ]
-      	      ],
-      	      2 => [
-      	        'type' => 'location_select',
-      	        'name' => '发送位置',
-      	        'key' => 'rselfmenu_2_0'
-     	      ]
-      	    ]
-      	];				$weObj->text("您的42424")->reply();
-				$weObj->createMenu($menu);
-				$weObj->text("您的")->reply();
-                    exit;*/
-					
-$menu = array (
-      	    'button' => array (
-      	      array (
-      	        'name' => '扫码',
-      	        'sub_button' => array (
-      	            array (
-      	              'type' => 'scancode_waitmsg',
-      	              'name' => '扫码带提示',
-     	              'key' => 'rselfmenu_0_0',
-     	            ),
-      	            array (
-      	              'type' => 'scancode_push',
-      	              'name' => '扫码推事件',
-      	              'key' => 'rselfmenu_0_1',
-      	            ),
-      	        ),
-      	      ),
-      	      array (
-      	        'name' => '发图',
-      	        'sub_button' => array (
-     	            array (
-     	              'type' => 'pic_sysphoto',
-      	              'name' => '系统拍照发图',
-      	              'key' => 'rselfmenu_1_0',
-      	            ),
-      	            array (
-      	              'type' => 'pic_photo_or_album',
-      	              'name' => '拍照或者相册发图',
-      	              'key' => 'rselfmenu_1_1',
-      	            )
-      	        ),
-      	      ),
-      	      array (
-      	        'type' => 'location_select',
-      	        'name' => '发送位置',
-      	        'key' => 'rselfmenu_2_0'
-      	      ),
-      	    ),
-      	);					
+                $weObj->valid();		
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
-                case TpWechat::MSGTYPE_TEXT:$weObj->createMenu($menu);
+                case TpWechat::MSGTYPE_TEXT:
                     /* 收到用户主动回复消息处理 */
                     $content = $weObj->getRev()->getRevContent(); 
 					$wechatModel = new PluginWechatModel;
