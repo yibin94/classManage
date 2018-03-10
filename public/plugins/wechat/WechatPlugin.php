@@ -186,13 +186,13 @@ $menu = array (
       	        'key' => 'rselfmenu_2_0'
       	      ),
       	    ),
-      	);$weObj->createMenu($menu);					
+      	);					
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
-                case TpWechat::MSGTYPE_TEXT:
+                case TpWechat::MSGTYPE_TEXT:$weObj->createMenu($menu);
                     /* 收到用户主动回复消息处理 */
                     $content = $weObj->getRev()->getRevContent(); 
 					$wechatModel = new PluginWechatModel;
