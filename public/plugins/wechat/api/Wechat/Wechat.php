@@ -292,7 +292,7 @@ class Wechat
         	if ($return)
         		return false;
         	else
-        		//die('no access');
+        		;//die('no access');
         }
         return true;
     }
