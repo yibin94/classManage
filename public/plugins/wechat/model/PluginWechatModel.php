@@ -18,7 +18,7 @@ class PluginWechatModel extends Model{//CommonModel{
     }
     public function reply($openid,$content,$weObj,$config){
         //根据content,查询关键字表,调用相应方法进行回复
-        $lists = M('PluginWechatAutoreply')->where(array('status'=>1))->select();
+        $lists = Db::name('PluginWechatAutoreply')->where('status',1)->select();
         foreach($lists as $val){
         	if(preg_match($val['rule'],$content, $matchs)){
         		$this->$val['function']($openid,$weObj,$config,$matchs);
