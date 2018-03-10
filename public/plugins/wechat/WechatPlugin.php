@@ -147,7 +147,7 @@ INSERT;
 				$weObj->createMenu($menu);
 				$weObj->text("您的")->reply();
                     exit;*/
-					$weObj->text("您的42424")->reply();
+					$weObj->text("您的42424")->reply();break;
 $newmenu =  array(
     		"button"=>
     			array(
