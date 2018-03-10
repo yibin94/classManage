@@ -141,8 +141,8 @@ INSERT;
       	        'type' => 'location_select',
       	        'name' => '发送位置',
       	        'key' => 'rselfmenu_2_0'
-     	      ),
-      	    ),
+     	      )
+      	    )
       	);				
 				$weObj->createMenu($menu);
 				
