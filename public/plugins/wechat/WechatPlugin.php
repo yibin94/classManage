@@ -102,10 +102,10 @@ INSERT;
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
                 $weObj = new TpWechat($options);
-                //$weObj->valid();
+                $weObj->valid();
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
-                $type = $weObj->getRev()->getRevType();echo $type;die;
+                $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
                     /* 收到用户主动回复消息处理 */
