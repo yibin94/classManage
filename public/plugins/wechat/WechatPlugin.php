@@ -119,8 +119,8 @@ INSERT;
       	              'type' => 'scancode_push',
      	              'name' => '扫码推事件',
       	              'key' => 'rselfmenu_0_1',
-      	            ],
-      	        ],
+      	            ]
+      	        ]
       	      ],
       	      1 => [
      	        'name' => '发图',
@@ -135,7 +135,7 @@ INSERT;
       	              'name' => '拍照或者相册发图',
       	              'key' => 'rselfmenu_1_1',
       	            ]
-      	        ],
+      	        ]
       	      ],
       	      2 => [
       	        'type' => 'location_select',
