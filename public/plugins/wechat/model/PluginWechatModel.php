@@ -17,7 +17,7 @@ class PluginWechatModel extends Model{//CommonModel{
     public function __construct() {
     }
     public function reply($openid,$content,$weObj,$config){
-		$weObj->text($openid)->reply();exit;
+		$weObj->text(252)->reply();exit;
         //根据content,查询关键字表,调用相应方法进行回复
         $lists = Db::name('PluginWechatAutoreply')->where('status',1)->select();
 		$weObj->text($lists)->reply();exit;
