@@ -108,8 +108,8 @@ INSERT;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
-				    //$weObj->text("help info")->reply();
-           			//break;
+				    $weObj->text($openid)->reply();
+           			break;
                     /* 收到用户主动回复消息处理 */
                     $content = $weObj->getRev()->getRevContent(); 
 					
