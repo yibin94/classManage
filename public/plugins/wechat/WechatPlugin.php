@@ -105,45 +105,45 @@ INSERT;
                 $weObj->valid();
 				
 				
-   $menu = array (
-      	    'button' => array (
-      	      0 => array (
+   $menu = [
+      	    'button' [
+      	      0 => [
       	        'name' => '扫码',
-      	        'sub_button' => array (
-     	            0 => array (
+      	        'sub_button' => [
+     	            0 => [
       	              'type' => 'scancode_waitmsg',
       	              'name' => '扫码带提示',
       	              'key' => 'rselfmenu_0_0',
-      	            ),
-      	            1 => array (
+      	            ],
+      	            1 => [
       	              'type' => 'scancode_push',
      	              'name' => '扫码推事件',
       	              'key' => 'rselfmenu_0_1',
-      	            ),
-      	        ),
-      	      ),
-      	      1 => array (
+      	            ],
+      	        ],
+      	      ],
+      	      1 => [
      	        'name' => '发图',
-      	        'sub_button' => array (
-      	            0 => array (
+      	        'sub_button' => [
+      	            0 => [
       	              'type' => 'pic_sysphoto',
       	              'name' => '系统拍照发图',
       	              'key' => 'rselfmenu_1_0',
-      	            ),
-      	            1 => array (
+      	            ],
+      	            1 => [
      	              'type' => 'pic_photo_or_album',
       	              'name' => '拍照或者相册发图',
       	              'key' => 'rselfmenu_1_1',
-      	            )
-      	        ),
-      	      ),
-      	      2 => array (
+      	            ]
+      	        ],
+      	      ],
+      	      2 => [
       	        'type' => 'location_select',
       	        'name' => '发送位置',
       	        'key' => 'rselfmenu_2_0'
-     	      )
-      	    )
-      	);				
+     	      ]
+      	    ]
+      	];				
 				$weObj->createMenu($menu);
 				
                 //用户openid:
