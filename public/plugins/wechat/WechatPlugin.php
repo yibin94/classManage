@@ -15,7 +15,7 @@ use cmf\lib\Plugin;
 use think\Db;
 //use app\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\api\TpWechat\TpWechat;
-
+use plugins\wechat\model\PluginWechatModel;
 class WechatPlugin extends Plugin{
     public $info = array(
         'name'=>'Wechat',
@@ -115,7 +115,7 @@ INSERT;
 					
 					//获取消息内容
                     /* 将消息内容与已有关键字进行匹配,对相应关键字进行相关响应 */
-                    $reply = model('plugins://wechat/PluginWechat')->reply($openid,$content,$weObj,$config);$weObj->text(233)->reply();
+                    $reply = model('PluginWechat')->reply($openid,$content,$weObj,$config);
             		exit;
             		break;
                 case TpWechat::MSGTYPE_LOCATION:
