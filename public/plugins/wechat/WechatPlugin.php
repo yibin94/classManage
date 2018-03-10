@@ -147,8 +147,8 @@ INSERT;
 				$weObj->createMenu($menu);
 				$weObj->text("您的")->reply();
                     exit;*/
-					$weObj->text("您的42424")->reply();exit;break;
-
+					
+					
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
