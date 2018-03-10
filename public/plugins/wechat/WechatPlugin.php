@@ -111,7 +111,10 @@ INSERT;
 				    //$weObj->text("help info")->reply();
            			//break;
                     /* 收到用户主动回复消息处理 */
-                    $content = $weObj->getRev()->getRevContent(); //获取消息内容
+                    $content = $weObj->getRev()->getRevContent(); 
+					$weObj->text($content)->reply();
+           			break;
+					//获取消息内容
                     /* 将消息内容与已有关键字进行匹配,对相应关键字进行相关响应 */
                     $reply = model('plugins://wechat/PluginWechat')->reply($openid,$content,$weObj,$config);
             		exit;
