@@ -106,7 +106,7 @@ INSERT;
 				
 				
    $menu = [
-      	    'button' [
+      	    'button' => [
       	      0 => [
       	        'name' => '扫码',
       	        'sub_button' => [
