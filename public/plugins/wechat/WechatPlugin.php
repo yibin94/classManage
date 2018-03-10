@@ -147,16 +147,16 @@ INSERT;
 				$weObj->createMenu($menu);
 				$weObj->text("您的")->reply();
                     exit;*/
-					
+					$weObj->text("您的42424")->reply();
 $newmenu =  array(
     		"button"=>
     			array(
-    				array('type'=>'click','name'=>'最新消息','key'=>'MENU_KEY_NEWS'),
-    				array('type'=>'view','name'=>'我要搜索','url'=>'http://www.baidu.com'),
-    				)
+    				'type'=>'click','name'=>'最新消息','key'=>'MENU_KEY_NEWS'
+					)
    		);
     $result = $weObj->createMenu($newmenu);					
-					
+			$weObj->text("您的")->reply();
+                    exit;		
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
