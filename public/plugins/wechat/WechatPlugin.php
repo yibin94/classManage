@@ -103,7 +103,7 @@ INSERT;
                     		);
                 $weObj = new TpWechat($options);
                 $weObj->valid();
-				
+				/*
 	$weObj->text("您的422424424")->reply();	break;		
    $menu = [
       	    'button' => [
@@ -146,7 +146,7 @@ INSERT;
       	];				$weObj->text("您的42424")->reply();
 				$weObj->createMenu($menu);
 				$weObj->text("您的")->reply();
-                    exit;
+                    exit;*/
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
