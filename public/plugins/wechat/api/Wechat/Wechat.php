@@ -1435,7 +1435,7 @@ class Wechat
 	 */
 	public function createMenu($data){
 		if (!$this->access_token && !$this->checkAuth()) return false;
-		$result = $this->http_post(self::API_URL_PREFIX.self::MENU_CREATE_URL.'access_token='.$this->access_token,self::$data/*json_encode($data)*/);
+		$result = $this->http_post(self::API_URL_PREFIX.self::MENU_CREATE_URL.'access_token='.$this->access_token,$data/*self::json_encode($data)*/);
 		if ($result)
 		{
 			$json = json_decode($result,true);
