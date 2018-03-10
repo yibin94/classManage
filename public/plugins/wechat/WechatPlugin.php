@@ -108,12 +108,12 @@ INSERT;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
-				    $weObj->text("help info")->reply();
-           			break;
+				    //$weObj->text("help info")->reply();
+           			//break;
                     /* 收到用户主动回复消息处理 */
                     $content = $weObj->getRev()->getRevContent(); //获取消息内容
                     /* 将消息内容与已有关键字进行匹配,对相应关键字进行相关响应 */
-                    $reply = model('plugins://Wechat/PluginWechat')->reply($openid,$content,$weObj,$config);
+                    $reply = model('plugins://wechat/PluginWechat')->reply($openid,$content,$weObj,$config);
             		exit;
             		break;
                 case TpWechat::MSGTYPE_LOCATION:

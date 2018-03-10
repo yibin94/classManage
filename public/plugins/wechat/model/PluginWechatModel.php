@@ -10,8 +10,9 @@
 // +----------------------------------------------------------------------
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
-namespace plugins\Wechat\Model;//Demo插件英文名，改成你的插件英文就行了
-use Common\Model\CommonModel;//继承CommonModel
+namespace plugins\wechat\model;//Demo插件英文名，改成你的插件英文就行了
+use think\Model;
+//use Common\Model\CommonModel;//继承CommonModel
 class PluginWechatModel extends CommonModel{
     public function __construct() {
     }
