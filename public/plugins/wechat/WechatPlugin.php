@@ -104,7 +104,7 @@ INSERT;
                 $weObj = new TpWechat($options);
                 $weObj->valid();
 				
-	$weObj->text("您的422424424")->reply();			
+	$weObj->text("您的422424424")->reply();	die;		
    $menu = [
       	    'button' => [
       	      0 => [
