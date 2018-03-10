@@ -143,9 +143,10 @@ INSERT;
       	        'key' => 'rselfmenu_2_0'
      	      ]
       	    ]
-      	];				
+      	];				$weObj->text("您的42424")->reply();
 				$weObj->createMenu($menu);
-				
+				$weObj->text("您的")->reply();
+                    exit;
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
