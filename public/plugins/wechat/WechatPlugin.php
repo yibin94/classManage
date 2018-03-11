@@ -158,8 +158,9 @@ INSERT;
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
            		                );
-           		            }else if($config['IsAuth'] == 1){$weObj->text(23)->reply();break;
+           		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
+								$weObj->text(213)->reply();$weObj->text($user_data)->reply();break;
            		            }$weObj->text('2423424')->reply();break;
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
 							$weObj->text('2423424')->reply();break;
