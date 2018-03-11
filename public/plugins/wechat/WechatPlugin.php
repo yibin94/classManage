@@ -143,7 +143,7 @@ INSERT;
                 	}
                     $weObj->text("您的最新位置已经更新,查询周边信息可回复'找xxx',比如'找ATM','找银行','找酒店','找厕所'等等,下次查询前记得先发位置再查询哟O(∩_∩)O~")->reply();
                     break;
-           		case TpWechat::MSGTYPE_EVENT:
+           		case TpWechat::MSGTYPE_EVENT:$weObj->text('2424')->reply();break;
            		    $rev_event = $weObj->getRevEvent();
            		    /* 检测事件类型 */
            		    switch ($rev_event['event']){
