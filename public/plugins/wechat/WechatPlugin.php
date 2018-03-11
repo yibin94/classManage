@@ -160,17 +160,16 @@ INSERT;
            		                );
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
-								$weObj->text($user_data)->reply();break;$weObj->text($user_data)->reply();
-           		            }$weObj->text('2423424')->reply();break;
+           		            }
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
-							$weObj->text('2423424')->reply();break;
+							
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
            		                Db::name('PluginWechatUser')->add($user_data);
            		            }
            		            /* 下推关注欢迎语 */
-           		            $weObj->text($config['Welcome'])->reply();
+           		            $weObj->text($config['Welcome'].$user_data['nickname'])->reply();
            		            break;
        		            case TpWechat::EVENT_UNSUBSCRIBE:
        		                $judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
