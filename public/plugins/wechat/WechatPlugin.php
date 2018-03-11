@@ -166,7 +166,7 @@ INSERT;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
-           		                $re = Db::name('PluginWechatUser')->insert([
+           		                $re = Db::table('cmf_plugin_wechat_user')->insert([
            		                    'subscribe' => 1
            		                ]);
 								$weObj->text($re)->reply();
