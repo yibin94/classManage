@@ -161,8 +161,8 @@ INSERT;
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
 								$user_data['uid'] = 0;
-								$user_data['latitude'] = '';
-								$user_data['longitude'] = '';
+								$user_data['latitude'] = 0;
+								$user_data['longitude'] = 0;
 								$user_data['labelname'] = '';  
            		            }
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
