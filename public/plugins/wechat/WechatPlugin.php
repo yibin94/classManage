@@ -162,7 +162,7 @@ INSERT;
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
-							$weObj->text(2423424)->reply();break;
+							$weObj->text('2423424')->reply();break;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
