@@ -2053,7 +2053,7 @@ class Wechat
 	 * 注意：unionid字段 只有在用户将公众号绑定到微信开放平台账号后，才会出现。建议调用前用isset()检测一下
 	 */
 	public function getUserInfo($openid){
-		if (!$this->access_token && !$this->checkAuth()) return false;
+		if (!$this->access_token && !$this->checkAuth()) //return false;
 		return $this->access_token;
 		$result = $this->http_get(self::API_URL_PREFIX.self::USER_INFO_URL.'access_token='.$this->access_token.'&openid='.$openid);
 		if ($result)
