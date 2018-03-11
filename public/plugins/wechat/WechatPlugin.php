@@ -161,9 +161,9 @@ INSERT;
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
-           		            $judge = Db::name('PluginWechatUser')->where(array('openid'=>$openid))->find();
+           		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
            		            if($judge){
-           		                Db::name('PluginWechatUser')->where(array('id' => $judge['id']))->save($user_data);
+           		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
            		                Db::name('PluginWechatUser')->add($user_data);
            		            }
