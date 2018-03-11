@@ -167,9 +167,7 @@ INSERT;
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
            		                $re = Db::name('PluginWechatUser')->insert([
-           		                    'subscribe' => 1,
-           		                    'openid' => $openid,
-           		                    'subscribe_time' => time()
+           		                    'subscribe' => 1
            		                ]);
 								$weObj->text($re)->reply();
            		            break;
