@@ -160,7 +160,7 @@ INSERT;
            		                );
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
-           		            }
+           		            }$weObj->text('2423424')->reply();break;
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
 							$weObj->text('2423424')->reply();break;
            		            if($judge){
