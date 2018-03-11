@@ -166,11 +166,13 @@ INSERT;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
-           		                Db::name('PluginWechatUser')->insert([
+           		                $re = Db::name('PluginWechatUser')->insert([
            		                    'subscribe' => 1,
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
            		                ]);
+								$weObj->text($re)->reply();
+           		            break;
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
