@@ -165,7 +165,7 @@ INSERT;
 							
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
-           		            }else{$weObj->text($config['Welcome'].$user_data['nickname'])->reply();break;
+           		            }else{$weObj->text($user_data)->reply();break;
            		                Db::name('PluginWechatUser')->insert($user_data);
            		            }
            		            /* 下推关注欢迎语 */
