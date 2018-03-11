@@ -150,7 +150,7 @@ INSERT;
            		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
            		            break;
-           		        case TpWechat::EVENT_SUBSCRIBE:$weObj->text('233')->reply();break;
+           		        case TpWechat::EVENT_SUBSCRIBE:$weObj->text(243)->reply();break;
            		            /* 如果公众号没有认证,则不能拉取用户信息 */
            		            if($config['IsAuth'] == 0){
            		                $user_data = array(
