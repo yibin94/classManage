@@ -12,6 +12,7 @@
 // +----------------------------------------------------------------------
 namespace plugins\wechat\api\TpWechat;
 use plugins\wechat\api\Wechat\Wechat;
+use think\Cache;
 class TpWechat extends Wechat{
     /**
      * log overwrite
@@ -37,7 +38,8 @@ class TpWechat extends Wechat{
      * @return boolean
      */
     protected function setCache($cachename,$value,$expired){
-        return S($cachename,$value,$expired);
+        //return S($cachename,$value,$expired);
+		return Cache::set($cachename,$value,$expired);
     }
     
     /**
@@ -46,7 +48,8 @@ class TpWechat extends Wechat{
      * @return mixed
      */
     protected function getCache($cachename){
-        return S($cachename);
+        //return S($cachename);
+		return Cache::get($cachename);
     }
     
     /**
@@ -55,6 +58,7 @@ class TpWechat extends Wechat{
      * @return boolean
      */
     protected function removeCache($cachename){
-        return S($cachename,null);
+        //return S($cachename,null);
+		return Cache::rm($cachename);
     }
 }
