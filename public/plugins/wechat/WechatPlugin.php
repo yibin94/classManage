@@ -166,11 +166,9 @@ INSERT;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
            		            }else{
-           		                $re = Db::table('cmf_plugin_wechat_user')->insert([
-           		                    'subscribe' => 1
-           		                ]);
-								$weObj->text($re)->reply();
+								$weObj->text(233)->reply();
            		            break;
+           		                Db::name('PluginWechatUser')->insert($user_data);
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
