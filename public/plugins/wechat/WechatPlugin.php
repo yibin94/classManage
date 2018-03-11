@@ -150,7 +150,7 @@ INSERT;
            		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
            		            break;
-           		        case TpWechat::EVENT_SUBSCRIBE:$weObj->text(243)->reply();break;
+           		        case TpWechat::EVENT_SUBSCRIBE:
            		            /* 如果公众号没有认证,则不能拉取用户信息 */
            		            if($config['IsAuth'] == 0){
            		                $user_data = array(
@@ -158,7 +158,7 @@ INSERT;
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
            		                );
-           		            }else if($config['IsAuth'] == 1){
+           		            }else if($config['IsAuth'] == 1){$weObj->text(23)->reply();break;
            		                $user_data = $weObj->getUserInfo($openid);
            		            }$weObj->text('2423424')->reply();break;
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
