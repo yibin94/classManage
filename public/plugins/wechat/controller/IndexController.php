@@ -15,6 +15,7 @@ namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件�
 use cmf\controller\PluginBaseController;
 class IndexController extends PluginBaseController{
     function index(){
-		return false;
+		return $this->fetch("/index");
+		//return false;
 	}
 }
