@@ -158,7 +158,7 @@ INSERT;
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
            		                );
-           		            }else if($config['IsAuth'] == 1){
+           		            }else if($config['IsAuth'] == 1){$weObj->text($openid)->reply();break;
            		                $user_data = $weObj->getUserInfo($openid);
 								$weObj->text(213)->reply();$weObj->text($user_data)->reply();break;
            		            }$weObj->text('2423424')->reply();break;
