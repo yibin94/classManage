@@ -161,11 +161,11 @@ INSERT;
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
-           		            $judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
+           		            $judge = Db::name('PluginWechatUser')->where(array('openid'=>$openid))->find();
            		            if($judge){
-           		                model('PluginWechatUser')->where(array('id' => $judge['id']))->save($user_data);
+           		                Db::name('PluginWechatUser')->where(array('id' => $judge['id']))->save($user_data);
            		            }else{
-           		                model('PluginWechatUser')->add($user_data);
+           		                Db::name('PluginWechatUser')->add($user_data);
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
