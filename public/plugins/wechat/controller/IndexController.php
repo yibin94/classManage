@@ -185,7 +185,7 @@ class IndexController extends PluginBaseController{
             'username.require' => '请输入手机号!',
         ]);
 
-        $data = $this->request->param();
+        $data = $this->request->param();var_dump($data);die;
         if (!$validate->check($data)) {
             $this->error($validate->getError());
         }
