@@ -27,7 +27,7 @@
             <div class="tab-content">
                 <notempty name="theme_vars.enable_mobile">
                     <div class="tab-pane {$mobile_tab_active}" id="mobile">
-                        <form class="js-ajax-form" action="{:cmf_plugin_url('Wechat://Index/doRegister)}" method="post">
+                        <form class="js-ajax-form" action="{:cmf_plugin_url('Wechat://Index/doRegister')}" method="post">
 
                             <div class="form-group">
                                 <input type="text" name="mobile" placeholder="手机号" class="form-control"
@@ -42,7 +42,7 @@
                                         <a class="btn btn-success js-get-mobile-code"
                                            style="width: 163px;position: absolute;top:0;right: 0;"
                                            data-wait-msg="[second]秒后才能再次获取" data-mobile-input="#js-mobile-input"
-                                           data-url="{:cmf_plugin_url('Wechat://Index/send)}"
+                                           data-url="{:cmf_plugin_url('Wechat://Index/send')}"
                                            data-init-second-left="60">获取手机验证码</a>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
 
                             <div class="form-group" style="text-align: center;">
                                 <p>
-                                    已有账号? <a href="{:cmf_plugin_url('Wechat://Index/login)}">点击此处登录</a>
+                                    已有账号? <a href="{:cmf_plugin_url('Wechat://Index/login')}">点击此处登录</a>
                                 </p>
                             </div>
                         </form>
