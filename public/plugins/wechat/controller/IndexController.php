@@ -176,7 +176,7 @@ class IndexController extends PluginBaseController{
     }
 	
 	public function send()
-    {
+    {echo '<script>alert('.$this->request->param().');</script>';
         $validate = new Validate([
             'username' => 'require',
         ]);
