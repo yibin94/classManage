@@ -178,11 +178,11 @@ class IndexController extends PluginBaseController{
 	public function send()
     {
         $validate = new Validate([
-            'mobile' => 'require',
+            'username' => 'require',
         ]);
 
         $validate->message([
-            'mobile.require' => '请输入手机号!',
+            'username.require' => '请输入手机号!',
         ]);
 
         $data = $this->request->param();
