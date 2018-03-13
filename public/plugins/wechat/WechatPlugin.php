@@ -73,6 +73,53 @@ INSERT INTO `{$db_prefix}plugin_wechat_autoreply` VALUES
 ('7', '热门文章', '/^(热门|remen|rm)$/i', 'replyHot', '1'),
 ('8', '热门分类列表', '/^rm(.+)$/i', 'replyHotList', '1');
 INSERT;
+
+       $sql4=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL COMMENT '用户名称',
+  `password` varchar(64) NOT NULL COMMENT '用户密码',
+  `mobile` varchar(20) NOT NULL COMMENT '用户手机号码用于找回密码',
+  `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号用户表';
+SQL;
+      
+	  $sql5=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_games` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL COMMENT '游戏名称',
+  `url` varchar(30) NOT NULL COMMENT '游戏地址',
+  `clicks` varchar(20) NOT NULL DEFAULT 0 COMMENT '游戏被点击（被玩）次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号游戏表';
+SQL;
+     $sql6=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_user_games` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` varchar(11) NOT NULL COMMENT '玩家id',
+  `gameId` varchar(11) NOT NULL COMMENT '游戏id',
+  `score` varchar(20) NOT NULL DEFAULT 0 COMMENT '分数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号玩家和游戏表';
+SQL;
+     $sql7=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_courseware` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL COMMENT '课件名字',
+  `url` varchar(30) NOT NULL COMMENT '课件地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号课件表';
+SQL;
+     $sql8=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_signin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
+  `signInTime` int(10) NOT NULL DEFAULT 0 COMMENT '签到时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号签到表';
+SQL;
+
         //D()->     
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");

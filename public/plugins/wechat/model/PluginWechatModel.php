@@ -267,4 +267,53 @@ class PluginWechatModel extends Model{//CommonModel{
         }
         $weObj->news($article)->reply();
     }
+	
+	public function registerMobile($user)
+    {
+        $result = Db::name("PluginWechatUser")->where('mobile', $user['mobile'])->find();
+
+        if (empty($result)) {
+            $data   = [
+                'username'      => '',
+                'password'      => cmf_password($user['password']),
+                'mobile'          => $user['mobile']
+            ];
+            $userId = Db::name("PluginWechatUser")->insertGetId($data);
+            return 0;
+        }
+        return 1;
+    }
+
+        /**
+     * 通过手机重置密码
+     * @param $mobile
+     * @param $password
+     * @return int
+     */
+    public function mobilePasswordReset($mobile, $password)
+    {
+        $userQuery = Db::name("user");
+        $result    = $userQuery->where('mobile', $mobile)->find();
+        if (!empty($result)) {
+            $data = [
+                'user_pass' => cmf_password($password),
+            ];
+            $userQuery->where('mobile', $mobile)->update($data);
+            return 0;
+        }
+        return 1;
+    }
+
+    /**
+     * 绑定用户手机号
+     */
+    public function bindingMobile($user)
+    {
+        $userId = cmf_get_current_user_id();
+        $data ['mobile'] = $user['username'];
+        Db::name("user")->where('id', $userId)->update($data);
+        $userInfo = Db::name("user")->where('id', $userId)->find();
+        cmf_update_current_user($userInfo);
+        return 0;
+    }	
 }
