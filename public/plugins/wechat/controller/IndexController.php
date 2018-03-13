@@ -176,7 +176,7 @@ class IndexController extends PluginBaseController{
     }
 	
 	public function send()
-    {echo '<script>alert('.$this->request->param().');</script>';
+    {
         $validate = new Validate([
             'username' => 'require',
         ]);
@@ -185,14 +185,14 @@ class IndexController extends PluginBaseController{
             'username.require' => '请输入手机号!',
         ]);
 
-        $data = $this->request->param();echo '<script>alert('.$data['username'].');</script>';echo '<script>alert('.$data['mobile'].');</script>';die;
+        $data = $this->request->param();
         if (!$validate->check($data)) {
             $this->error($validate->getError());
         }
 
         $accountType = '';
 
-        if (preg_match('/(^(13\d|15[^4\D]|17[013678]|18\d)\d{8})$/', $data['mobile'])) {
+        if (preg_match('/(^(13\d|15[^4\D]|17[013678]|18\d)\d{8})$/', $data['username'])) {
             $accountType = 'mobile';
         } else {
             $this->error("请输入正确的手机格式!");
@@ -200,14 +200,14 @@ class IndexController extends PluginBaseController{
 
         //TODO 限制 每个ip 的发送次数
 
-        $code = cmf_get_verification_code($data['mobile']);
+        $code = cmf_get_verification_code($data['username']);
         if (empty($code)) {
             $this->error("验证码发送过多,请明天再试!");
         }
 
         if ($accountType == 'mobile') {
 
-            $param  = ['mobile' => $data['mobile'], 'code' => $code];
+            $param  = ['mobile' => $data['username'], 'code' => $code];
             $result = hook_one("send_mobile_verification_code", $param);
 
             if ($result !== false && !empty($result['error'])) {
@@ -218,7 +218,7 @@ class IndexController extends PluginBaseController{
                 $this->error('未安装验证码发送插件,请联系管理员!');
             }
 
-            cmf_verification_code_log($data['mobile'], $code);
+            cmf_verification_code_log($data['username'], $code);
 
             if (!empty($result['message'])) {
                 $this->success($result['message']);
