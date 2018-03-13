@@ -176,7 +176,7 @@ class IndexController extends PluginBaseController{
     }
 	
 	public function send()
-    {echo "<script>alert(233);</script>";die;
+    {
         $validate = new Validate([
             'mobile' => 'require',
         ]);
