@@ -18,7 +18,7 @@ use think\Db;
 
 class IndexController extends PluginBaseController{
     function index(){
-		return $this->fetch("/index");
+		return $this->fetch("index/index");
 		//return false;
 	}
 		
@@ -27,7 +27,7 @@ class IndexController extends PluginBaseController{
      */
     public function register()
     {
-        return $this->fetch("/register");
+        return $this->fetch("index/register");
     }
 
     /**
@@ -104,7 +104,7 @@ class IndexController extends PluginBaseController{
         if (!empty($user_id)) {//已经登录
             redirect(url("admin/Index/index"));
         } else {
-            return $this->fetch("/login");
+            return $this->fetch("index/login");
         }
     }
 
@@ -220,7 +220,7 @@ class IndexController extends PluginBaseController{
      */
     public function findPassword()
     {
-        return $this->fetch('/find_password');
+        return $this->fetch('index/find_password');
     }
 
     /**
