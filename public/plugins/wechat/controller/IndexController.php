@@ -195,7 +195,7 @@ class IndexController extends PluginBaseController{
         if (preg_match('/(^(13\d|15[^4\D]|17[013678]|18\d)\d{8})$/', $data['username'])) {
             $accountType = 'mobile';
         } else {
-            $this->error("请输入正确的手机格式!");
+            $this->error("请输入正确的手机格式!{:session('a')}");
         }
 
         //TODO 限制 每个ip 的发送次数
