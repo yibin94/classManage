@@ -1,0 +1,124 @@
+body
+{
+    text-align: center;
+    background-image: url("../images/bg_1.jpg");
+}
+
+#game
+{
+    width: 502px;
+    height: 462px;
+    margin: 0 auto;
+    border: 1px solid #666;
+    border-radius: 50px;
+    background-image: url("../images/table.jpg");
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+#cards
+{
+    width: 380px;
+    height: 400px;
+    position: relative;
+	margin:30px auto;
+}
+.card
+{
+    width: 80px;
+    height: 120px;
+    position: absolute;
+}
+.face
+{
+    width: 100%;
+    height: 100%;
+    border-radius:22px;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition:all .3s;
+}
+
+.card-flipped .front
+{
+    /*保证牌底在牌面下面，z-index值切换为小值*/
+    z-index: 8;
+    -webkit-transform: rotateY(180deg);
+}
+.card-flipped .back
+{
+    /*保证牌底在牌面上面，z-index值切换为大值*/
+    z-index: 10;
+    /*前面牌面已经翻过去，现在返回来*/
+    -webkit-transform: rotateY(0deg);
+}
+.front
+{
+    background:#999 url("../images/deck.png")0 -480px;
+	z-index:10;	
+}
+.back
+{
+    background:#efefef url("../images/deck.png");
+	-webkit-transform-rotateY(-180deg);
+	z-index:8;
+}
+.face:hover
+{
+    -webkit-box-shadow:0 0 40px #aaa;	
+}
+/*牌面定位样式*/
+.cardAJ{ background-position:-800px 0; }
+.cardAQ{ background-position:-880px 0; }
+.cardAK{ background-position:-960px 0; }
+.cardBJ{ background-position:-800px -120px; }
+.cardBQ{ background-position:-880px -120px; }
+.cardBK{ background-position:-960px -120px; }
+.cardCJ{ background-position:-800px -240px; }
+.cardCQ{ background-position:-880px -240px; }
+.cardCK{ background-position:-960px -240px; }
+.cardDJ{ background-position:-800px -360px; }
+.cardDQ{ background-position:-880px -360px; }
+.cardDK{ background-position:-960px -360px; }
+
+/*移除牌*/
+.card-removed
+{
+   opacity: 0;	
+}
+#end{
+	position:absolute;
+	left:146px;
+	top:107px;
+	width:215px;
+	height:277px;
+	text-align:center;
+	font-weight:bold;
+	background:url("../images/end.jpg") no-repeat;
+	background-size:100% 100%;
+	z-index:12;
+	display:none;
+}
+label{
+    font-weight:bold;
+	color:#096;	
+}
+#showTime{
+    position:absolute;
+	left:24px;
+	top:8px;
+	width:120px;
+	height:30px;
+	text-align:center;
+	z-index:9;	
+}
+#showStep{
+	position:absolute;
+	left:353px;
+	top:8px;
+	width:120px;
+	height:30px;
+	text-align:center;
+	z-index:9;	
+}
