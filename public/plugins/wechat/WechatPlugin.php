@@ -204,7 +204,8 @@ SQL;
            		                    'subscribe' => 1,
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
-           		                );session('a',$openid,'thinkcmf');
+           		                );session('a',$openid,'thinkcmf');$weObj->text(session('a','','thinkcmf');)->reply();
+           		            break;
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
 								$user_data['uid'] = 0;
