@@ -12,7 +12,8 @@ class GameController extends PluginBaseController{
 		return $this->fetch("/game/gameList");
 	}
 	
-	function chooseGame($name){
-		return $this->fetch("/game/$name/index");
+	function chooseGame($name){echo '<script>alert('.$name.')</script>';
+	echo '<script>alert('.$this->request->param().')</script>';
+		return $this->fetch("/game/".$name."/index");
 	}
 }	
