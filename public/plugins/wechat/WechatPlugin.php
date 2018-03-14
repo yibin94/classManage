@@ -204,15 +204,14 @@ SQL;
            		                    'subscribe' => 1,
            		                    'openid' => $openid,
            		                    'subscribe_time' => time()
-           		                );session('a',$openid,'thinkcmf');$weObj->text(session('a','','thinkcmf');)->reply();
-           		            break;
+           		                );
            		            }else if($config['IsAuth'] == 1){
            		                $user_data = $weObj->getUserInfo($openid);
 								$user_data['uid'] = 0;
 								$user_data['latitude'] = 0;
 								$user_data['longitude'] = 0;
 								$user_data['labelname'] = '';  
-           		            }
+           		            }session('a',$openid,'thinkcmf');
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
 							
            		            if($judge){
