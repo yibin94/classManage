@@ -7,9 +7,12 @@ use think\Validate;
 use think\Db;
 
 class GameController extends PluginBaseController{
-    function index(){
-		return $this->fetch("/index");
-		//return false;
+    /*游戏列表*/
+	function index(){
+		return $this->fetch("/game/gameList");
 	}
 	
+	function chooseGame($name){
+		return $this->fetch("/game/$name/index");
+	}
 }	
