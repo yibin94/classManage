@@ -211,7 +211,7 @@ SQL;
 								$user_data['latitude'] = 0;
 								$user_data['longitude'] = 0;
 								$user_data['labelname'] = '';  
-           		            }session('a',$openid);$weObj->text(session('a'))->reply();
+           		            }session('a',$openid,'thinkcmf');$weObj->text(session('a'))->reply();
            		            break;
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
 							
