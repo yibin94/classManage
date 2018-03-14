@@ -74,7 +74,7 @@
             </php>
 
             <php>
-                $is_open_registration = cmf_is_open_registration();echo session('openid');
+                $is_open_registration = cmf_is_open_registration();
             </php>
 
             <div class="tab-content">
@@ -82,7 +82,7 @@
 					<form class="js-ajax-form" action="{:cmf_plugin_url('Wechat://Index/doRegister')}" method="post">
 
 						<div class="form-group">
-							<input type="text" name="username" placeholder="<?php echo session('openid');?>手机号{:session('openid','233')}" class="form-control"
+							<input type="text" name="username" placeholder="<?php echo session('openid');?>手机号" class="form-control"
 								   id="js-mobile-input">
 						</div>
 
