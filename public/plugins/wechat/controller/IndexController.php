@@ -125,7 +125,7 @@ class IndexController extends PluginBaseController{
         //手机号或用户名
         $name = $this->request->param("username");
         if (empty($name)) {
-            $this->error(lang('USERNAME_REQUIRED'));
+            $this->error('用户名不能为空！');
         }
 		//密码
         $pass = $this->request->param("password");
@@ -215,4 +215,70 @@ class IndexController extends PluginBaseController{
 		}
     }
 
+	/**
+     * 找回密码
+     */
+    public function findPassword()
+    {
+        return $this->fetch('/find_password');
+    }
+
+    /**
+     * 用户密码重置
+     */
+    public function passwordReset()
+    {
+        if ($this->request->isPost()) {
+            $validate = new Validate([
+                'captcha'           => 'require',
+                'verification_code' => 'require',
+                'password'          => 'require|min:6|max:32',
+            ]);
+            $validate->message([
+                'verification_code.require' => '验证码不能为空',
+                'password.require'          => '密码不能为空',
+                'password.max'              => '密码不能超过32个字符',
+                'password.min'              => '密码不能小于6个字符',
+                'captcha.require'           => '验证码不能为空',
+            ]);
+
+            $data = $this->request->post();
+            if (!$validate->check($data)) {
+                $this->error($validate->getError());
+            }
+
+            if (!cmf_captcha_check($data['captcha'])) {
+                $this->error('验证码错误');
+            }
+            $errMsg = cmf_check_verification_code($data['username'], $data['verification_code']);
+            if (!empty($errMsg)) {
+                $this->error($errMsg);
+            }
+
+            $userModel = new PluginWechatModel();
+            if (preg_match('/(^(13\d|15[^4\D]|17[013678]|18\d)\d{8})$/', $data['username'])) {
+                $user['mobile'] = $data['username'];
+                $log            = $userModel->mobilePasswordReset($data['username'], $data['password']);
+            } else {
+                $log = 2;
+            }
+            switch ($log) {
+                case 0:
+                    $this->success('密码重置成功', $this->request->root());
+                    break;
+                case 1:
+                    $this->error("您的账户尚未注册");
+                    break;
+                case 2:
+                    $this->error("您输入的账号格式错误");
+                    break;
+                default :
+                    $this->error('未受理的请求');
+            }
+
+        } else {
+            $this->error("请求错误");
+        }
+    }
+	
 }
