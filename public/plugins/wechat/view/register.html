@@ -82,7 +82,7 @@
 					<form class="js-ajax-form" action="{:cmf_plugin_url('Wechat://Index/doRegister')}" method="post">
 
 						<div class="form-group">
-							<input type="text" name="username" placeholder="手机号" class="form-control"
+							<input type="text" name="username" placeholder="<?php echo session('openid');?>手机号{:session('openid')}" class="form-control"
 								   id="js-mobile-input">
 						</div>
 
