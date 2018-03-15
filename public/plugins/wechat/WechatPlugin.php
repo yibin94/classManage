@@ -152,7 +152,8 @@ SQL;
                 $weObj->valid();		
 					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();$weObj->text(session("openid",'','thinkcmf'))->reply();die;
+                $openid = $weObj->getRev()->getRevFrom();
+				$o = session("openid",'','thinkcmf');$weObj->text($o.'555')->reply();die;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
