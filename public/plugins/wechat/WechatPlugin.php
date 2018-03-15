@@ -138,7 +138,7 @@ SQL;
     }
     
     //实现的wechat钩子方法
-    public function wechat($param){
+    public function wechat($param){session_start();
         $config=$this->getConfig();
         switch ($param['type']) {
             case 'connect':
