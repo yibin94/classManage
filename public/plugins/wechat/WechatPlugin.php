@@ -152,7 +152,7 @@ SQL;
                 $weObj->valid();		
 					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();session('openid',$openid);
+                $openid = $weObj->getRev()->getRevFrom();//session('openid',$openid);
 				$o = session("openid");$weObj->text($o.'555')->reply();die;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
