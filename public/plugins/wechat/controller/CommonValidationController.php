@@ -20,7 +20,7 @@ class CommonValidationController extends PluginBaseController{
     {
 		parent::_initialize();
 		$openid = session('openid','','thinkcmf');
-		$this->assign('openid',$openid);return $this->fetch(cmf_plugin_url('Wechat://Index/login'));
+		$this->assign('openid',$openid);return $this->redirect(cmf_plugin_url('Wechat://Index/login'));
 		return $this->fetch("/index/index");
 		//获取sesion中的用户id，可判断是否登录.
         $userId = session('PLUGIN_WECHAT_USER_ID');
