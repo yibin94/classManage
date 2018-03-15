@@ -22,7 +22,7 @@ class CommonValidationController extends PluginBaseController{
 		//获取sesion中的用户id，可判断是否登录
         $userId = session('PLUGIN_WECHAT_USER_ID');
         if (!$userId) {
-            return $this->redirect("Index/login");
+            return $this->redirect(cmf_plugin_url("Wechat://Index/login"));
         }
     }
 
