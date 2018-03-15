@@ -154,7 +154,7 @@ SQL;
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
-				Session::set('openid',$openid);
+				//Session::set('openid',$openid);
 				$o = Session::get('openid');$weObj->text($o.'555')->reply();die;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
