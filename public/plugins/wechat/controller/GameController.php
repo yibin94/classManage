@@ -1,12 +1,12 @@
 <?php
 
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
-use cmf\controller\PluginBaseController;
+use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 
-class GameController extends PluginBaseController{
+class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
 		return $this->fetch("/game/gameList");
