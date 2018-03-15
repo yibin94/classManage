@@ -138,7 +138,7 @@ SQL;
     }
     
     //实现的wechat钩子方法
-    public function wechat($param){session_start();
+    public function wechat($param){
         $config=$this->getConfig();
         switch ($param['type']) {
             case 'connect':
@@ -152,8 +152,8 @@ SQL;
                 $weObj->valid();		
 					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();
-				$o = session("openid",'','thinkcmf');$weObj->text($o.'555')->reply();die;
+                $openid = $weObj->getRev()->getRevFrom();session('openid',$openid);
+				$o = session("openid");$weObj->text($o.'555')->reply();die;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
