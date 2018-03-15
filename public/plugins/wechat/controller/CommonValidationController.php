@@ -19,9 +19,6 @@ class CommonValidationController extends PluginBaseController{
 	protected function _initialize()
     {
 		parent::_initialize();
-		$openid = session('openid','','thinkcmf');
-		$this->assign('openid',$openid);return $this->redirect(cmf_plugin_url('Wechat://Index/index',['openid'=>$openid]));
-		return $this->fetch("/index/index");
 		//获取sesion中的用户id，可判断是否登录.
         $userId = session('PLUGIN_WECHAT_USER_ID');
         if (!$userId) {//无用户id则跳回登录界面.
