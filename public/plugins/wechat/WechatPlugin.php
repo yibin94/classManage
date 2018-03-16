@@ -153,9 +153,9 @@ SQL;
                     		);
                 $weObj = new TpWechat($options);
                 $weObj->valid();		
-					self::$openid = $openid;
+					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();
+                $openid = $weObj->getRev()->getRevFrom();self::$openid = $openid;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
