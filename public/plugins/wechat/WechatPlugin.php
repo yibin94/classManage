@@ -138,6 +138,8 @@ SQL;
         return true;//卸载成功返回true，失败false
     }
     
+	public static $openid = null;
+	
     //实现的wechat钩子方法
     public function wechat($param){
         $config=$this->getConfig();
@@ -151,10 +153,9 @@ SQL;
                     		);
                 $weObj = new TpWechat($options);
                 $weObj->valid();		
-					
+					self::$openid = $openid;
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();session_id($openid);session_start();
-				session('openid',$openid);die;
+                $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
