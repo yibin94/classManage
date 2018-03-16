@@ -35,7 +35,7 @@ class IndexController extends PluginBaseController{
 			 // 上传失败获取错误信息
 			 echo $file->getError();
 		 }
-		*/
+		*/$this->assign('openid',session('a'));
 		return $this->fetch("index/index");
 		//return false;
 	}
