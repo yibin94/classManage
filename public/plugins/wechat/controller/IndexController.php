@@ -26,9 +26,8 @@ class IndexController extends PluginBaseController{
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
                 $weObj = new TpWechat($options);
-				$callback = '/Index/index.html';
-				$weObj->getOauthRedirect($callback,'','snsapi_userinfo');
-				return $this->fetch($callback);
+				$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
+				return $this->display($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
