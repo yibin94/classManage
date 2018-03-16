@@ -17,7 +17,7 @@ use think\Validate;
 use think\Db;
 
 class IndexController extends PluginBaseController{
-    function index(){
+    function index(){session('p','cccffffc123');
 		return $this->fetch("index/index");
 		//return false;
 	}
