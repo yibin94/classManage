@@ -18,7 +18,7 @@ use think\Db;
 use plugins\wechat\api\TpWechat\TpWechat;
 class IndexController extends PluginBaseController{
     function index(){
-		if(!$userInfo){
+		if(!isset($userInfo)){
 			$config = $this->getPlugin()->getConfig();
 				$options = array(
 										'token'=>$config['Token'], //填写你设定的key
