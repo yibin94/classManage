@@ -15,9 +15,19 @@ use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
-
+use plugins\wechat\api\TpWechat\TpWechat;
 class IndexController extends PluginBaseController{
     function index(){
+		$config = $this->getPlugin()->getConfig();
+		$options = array(
+                    			'token'=>$config['Token'], //填写你设定的key
+                    			'encodingaeskey'=>$config['EncodingAESKey'], //填写加密用的EncodingAESKey
+                    			'appid'=>$config['AppID'], //填写高级调用功能的app id
+                    			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
+                    		);
+                $weObj = new TpWechat($options);
+				$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
+				return $weObj->getOauthRedirect($callback,'','snsapi_userinfo');
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
