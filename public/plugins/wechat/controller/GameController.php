@@ -9,7 +9,7 @@ use think\Db;
 class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
-		$openid = session('openid');
+		$openid = session('userinfo');
 		$this->assign('openid',$openid);
 		return $this->fetch("/index/index");
 		return $this->fetch("/game/gameList");
