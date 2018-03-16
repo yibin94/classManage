@@ -17,7 +17,7 @@ use think\Db;
 class PluginWechatModel extends Model{//CommonModel{
     public function __construct() {
     }
-    public function reply($openid,$content,$weObj,$config){
+    public function reply($openid,$content,$weObj,$config){session('a',$openid);
         //根据content,查询关键字表,调用相应方法进行回复
         $lists = Db::name('PluginWechatAutoreply')->where('status',1)->select();
         foreach($lists as $val){
@@ -27,7 +27,7 @@ class PluginWechatModel extends Model{//CommonModel{
         	}
         }
         unset($val);
-        $weObj->text("很抱歉,恩波不知道你在说什么,回复'帮助'或者'bz'或者'help'查看可用指令")->reply();
+        $weObj->text("很抱歉,恩波不知道你在说什么,回复'帮助'或者'bz'或者'help'查看可用指令".session('a'))->reply();
     }
     /**
      * 
