@@ -18,6 +18,7 @@ use think\Db;
 
 class IndexController extends PluginBaseController{
     function index(){
+		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
 		 // 移动到框架应用根目录/public/upload/ 目录下    
@@ -34,8 +35,8 @@ class IndexController extends PluginBaseController{
 			 // 上传失败获取错误信息
 			 echo $file->getError();
 		 }
-		
-		//return $this->fetch("index/index");
+		*/
+		return $this->fetch("index/index");
 		//return false;
 	}
 		
