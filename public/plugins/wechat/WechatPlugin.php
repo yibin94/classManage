@@ -195,7 +195,7 @@ SQL;
            		    /* 检测事件类型 */
            		    switch ($rev_event['event']){
            		        case TpWechat::EVENT_MENU_CLICK:
-						$callback = 'https://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
+						$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
 						$weObj->getOauthRedirect($callback,'','snsapi_userinfo');
            		            //TODO:CLICK事件
            		            break;
