@@ -154,8 +154,8 @@ SQL;
 					
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
-				//$user_data = $weObj->getUserInfo($openid);
-				//session('userinfo',$user_data);
+				$user_data = $weObj->getUserInfo($openid);
+				session('userinfo',$user_data);
 				$weObj->text(session('userinfo')['openid'])->reply();die;
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
