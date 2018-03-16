@@ -27,7 +27,7 @@ class IndexController extends PluginBaseController{
                     		);
                 $weObj = new TpWechat($options);
 				$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
-				return $this->display($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
+				return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
