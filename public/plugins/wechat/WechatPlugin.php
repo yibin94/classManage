@@ -136,8 +136,6 @@ SQL;
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         return true;//卸载成功返回true，失败false
     }
-    
-	public $openid = null;
 	
     //实现的wechat钩子方法
     public function wechat($param){
@@ -154,7 +152,7 @@ SQL;
                 $weObj->valid();		
 					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();$this->openid = $openid;$weObj->text($this->openid)->reply();
+                $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:

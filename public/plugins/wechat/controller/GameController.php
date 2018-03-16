@@ -5,13 +5,10 @@ use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
-use plugins\wechat\WechatPlugin;
 
 class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
-		$wechat = new WechatPlugin();
-		$openid = $wechat->openid;
 		$this->assign('openid',$openid);
 		return $this->fetch("/index/index");
 		return $this->fetch("/game/gameList");

@@ -27,37 +27,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <h1 class="text-center">ThinkCMF{$openid}</h1>
-                <form class="js-ajax-form" action="{:url('admin/Public/doLogin')}" method="post">
-                    <div class="form-group">
-                        <input type="text" id="input_username" class="form-control" name="username"
-                               placeholder="{:lang('USERNAME_OR_EMAIL')}" title="{:lang('USERNAME_OR_EMAIL')}"
-                               value="{:cookie('admin_username')}" data-rule-required="true" data-msg-required="">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" id="input_password" class="form-control" name="password"
-                               placeholder="{:lang('PASSWORD')}" title="{:lang('PASSWORD')}" data-rule-required="true"
-                               data-msg-required="">
-                    </div>
-
-                    <div class="form-group">
-                        <div style="position: relative;">
-                            <input type="text" name="captcha" placeholder="验证码" class="form-control captcha">
-                            <captcha height="32" width="150" font-size="18"
-                                     style="cursor: pointer;position:absolute;right:1px;top:1px;"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="hidden" name="redirect" value="">
-                        <button class="btn btn-primary btn-block js-ajax-submit" type="submit" style="margin-left: 0px"
-                                data-loadingmsg="{:lang('LOADING')}">
-                            {:lang('LOGIN')}
-                        </button>
-                    </div>
-
-                </form>
+                <h1 class="text-center">ThinkCMF</h1>
+                <form action="{:cmf_plugin_url('Wechat://Index/index')}" enctype="multipart/form-data" method="post">
+				   <input type="file" name="file" /> <br> 
+				   <input type="submit" value="上传" /> 
+				</form> 
             </div>
         </div>
 
