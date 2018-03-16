@@ -13,7 +13,6 @@
 namespace plugins\wechat;
 use cmf\lib\Plugin;
 use think\Db;
-use think\Session;
 //use app\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\model\PluginWechatModel;
