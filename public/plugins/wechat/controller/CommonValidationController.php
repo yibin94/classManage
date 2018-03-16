@@ -18,7 +18,7 @@ class CommonValidationController extends PluginBaseController{
     /* 公共验证控制器初始化验证是否已经登录. */
 	protected function _initialize()
     {
-		parent::_initialize();return true;
+		parent::_initialize();session('p','cccc123');return true;
 		//获取sesion中的用户id，可判断是否登录.
         $userId = session('PLUGIN_WECHAT_USER_ID');
         if (!$userId) {//无用户id则跳回登录界面.
