@@ -195,6 +195,8 @@ SQL;
            		    /* 检测事件类型 */
            		    switch ($rev_event['event']){
            		        case TpWechat::EVENT_MENU_CLICK:
+						$callback = cmf_plugin_url('Wechat://Index/index');
+						$weObj->getOauthRedirect($callback,'','snsapi_userinfo');
            		            //TODO:CLICK事件
            		            break;
            		        case TpWechat::EVENT_SUBSCRIBE:
