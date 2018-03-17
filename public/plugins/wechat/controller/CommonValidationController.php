@@ -31,7 +31,7 @@ class CommonValidationController extends PluginBaseController{
 		$weObj = new TpWechat($options);
 		//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 		$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
-		return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
+		return $weObj->getOauthRedirect($callback,'','snsapi_userinfo');
 		
 		
 		
