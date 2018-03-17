@@ -30,7 +30,7 @@ class CommonValidationController extends PluginBaseController{
 							'appid'=>$config['AppID'], //填写高级调用功能的appid
 							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 					   );
-			$weObj = new TpWechat($options);echo '<script>alert('.request()->controller().')</script>';die;
+			$weObj = new TpWechat($options);echo '<script>alert('.request()->path().')</script>';die;
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->controller().'/index.html';
 			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
