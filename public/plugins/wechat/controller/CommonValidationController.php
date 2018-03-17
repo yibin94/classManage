@@ -18,7 +18,7 @@ use think\Request;
 
 class CommonValidationController extends PluginBaseController{
 	protected static function getWeObj(){
-		$config = $this->getPlugin()->getConfig();
+		$config = self::getPlugin()->getConfig();
 			$options = array(
 							'token'=>$config['Token'], //填写你设定的key
 							'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
