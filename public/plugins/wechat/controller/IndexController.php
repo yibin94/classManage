@@ -18,7 +18,7 @@ use think\Db;
 use plugins\wechat\api\TpWechat\TpWechat;
 
 class IndexController extends CommonValidationController{
-    function index(){
+    function index(){/*
 		$config = $this->getPlugin()->getConfig();
 			$options = array(
 							'token'=>$config['Token'], //填写你设定的key
@@ -26,7 +26,8 @@ class IndexController extends CommonValidationController{
 							'appid'=>$config['AppID'], //填写高级调用功能的appid
 							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 					   );
-			$weObj = new TpWechat($options);
+			$weObj = new TpWechat($options);*/
+			$weObj = TpWechat::$weObj;
 		//$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();

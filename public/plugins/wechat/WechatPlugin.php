@@ -136,7 +136,7 @@ SQL;
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         return true;//卸载成功返回true，失败false
     }
-	
+	public static $weObj = null;
     //实现的wechat钩子方法
     public function wechat($param){
         $config=$this->getConfig();
@@ -148,12 +148,12 @@ SQL;
                     			'appid'=>$config['AppID'], //填写高级调用功能的app id
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
-                $weObj = new TpWechat($options);
-                $weObj->valid();		
+                self->$weObj = new TpWechat($options);
+                self->$weObj->valid();		
 					
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();
-                $type = $weObj->getRev()->getRevType();
+                $openid = self->$weObj->getRev()->getRevFrom();
+                $type = self->$weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
                     /* 收到用户主动回复消息处理 */
