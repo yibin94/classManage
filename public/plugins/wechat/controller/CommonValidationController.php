@@ -17,7 +17,7 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use think\Request;
 
 class CommonValidationController extends PluginBaseController{
-	public static $weObj;
+	public $weObj;
 	public function __CONSTRUCT(){
 		parent::__CONSTRUCT();
 		$config = $this->getPlugin()->getConfig();
@@ -27,7 +27,7 @@ class CommonValidationController extends PluginBaseController{
 							'appid'=>$config['AppID'], //填写高级调用功能的appid
 							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 					   );
-		self::$weObj = new TpWechat($options);
+		$this->weObj = new TpWechat($options);
 	}
     /* 公共验证控制器初始化验证是否已经登录. */
 	protected function _initialize()
@@ -46,7 +46,7 @@ class CommonValidationController extends PluginBaseController{
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 			//$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->controller().'/index.html';
 			$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
-			return $this->redirect(self::$weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
+			return $this->redirect($this->weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		}
 		
 		/*
