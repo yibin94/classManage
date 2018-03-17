@@ -11,7 +11,6 @@ class GameController extends CommonValidationController{
 	function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
-		//$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 		if($res){
@@ -31,8 +30,6 @@ class GameController extends CommonValidationController{
 		}
 			
 		return false;
-		return $this->fetch("/index/index");
-		return $this->fetch("/game/gameList");
 	}
 	
 	function chooseGame($name){

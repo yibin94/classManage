@@ -20,7 +20,6 @@ class IndexController extends CommonValidationController{
     function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
-		//$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 		if($res){
@@ -58,9 +57,8 @@ class IndexController extends CommonValidationController{
 			 // 上传失败获取错误信息
 			 echo $file->getError();
 		 }
-		*/$this->assign('openid',session('a'));
-		return $this->fetch("index/index");
-		//return false;
+		*/
+		
 	}
 		
 	/**
