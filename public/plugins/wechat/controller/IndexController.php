@@ -19,16 +19,9 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\WechatPlugin;
 
 class IndexController extends CommonValidationController{
-    function index(){/*
-		$config = $this->getPlugin()->getConfig();
-			$options = array(
-							'token'=>$config['Token'], //填写你设定的key
-							'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
-							'appid'=>$config['AppID'], //填写高级调用功能的appid
-							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-					   );
-			$weObj = new TpWechat($options);*/$obj = new CommonValidationController();
-			$weObj = $obj->getWeObj();
+    function index(){
+		$obj = new CommonValidationController();
+		$weObj = $obj->getWeObj();
 		//$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
