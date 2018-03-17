@@ -17,7 +17,7 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use think\Request;
 
 class CommonValidationController extends PluginBaseController{
-	public $obj = $this;
+	public $obj = new CommonValidationController();
 	protected static function getWeObj(){
 		$config = $obj->getPlugin()->getConfig();
 			$options = array(
