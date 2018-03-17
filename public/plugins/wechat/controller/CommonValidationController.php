@@ -18,7 +18,9 @@ use think\Request;
 
 class CommonValidationController extends PluginBaseController{
 	protected $weObj = null;
-	
+	protected function getWeObj(){
+		return $this->weObj;
+	}
     /* 公共验证控制器初始化验证是否已经登录. */
 	protected function _initialize()
     {
