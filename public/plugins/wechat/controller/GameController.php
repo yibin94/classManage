@@ -27,7 +27,7 @@ class GameController extends CommonValidationController{
 				  'headimgurl'=>$userInfo['headimgurl']
 			   )
 			);
-			return $this->fetch("/index/index");
+			return $this->fetch("/game/gameList");
 		}
 			
 		return false;
