@@ -17,7 +17,7 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use think\Request;
 
 class CommonValidationController extends PluginBaseController{
-	public static $weObj = null;
+	public static $weObj;
     /* 公共验证控制器初始化验证是否已经登录. */
 	protected function _initialize()
     {
