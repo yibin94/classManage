@@ -18,6 +18,7 @@ use think\Db;
 
 class IndexController extends CommonValidationController{
     function index(){
+		$weObj = $this->request->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 		if($res){
