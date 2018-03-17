@@ -18,7 +18,7 @@ use think\Request;
 
 class CommonValidationController extends PluginBaseController{
 	public static $weObj;
-	protected function __CONSTRUCT(){
+	public function __CONSTRUCT(){
 		parent::__CONSTRUCT();
 		$config = $this->getPlugin()->getConfig();
 			$options = array(
