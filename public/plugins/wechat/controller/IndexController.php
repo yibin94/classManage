@@ -15,28 +15,28 @@ use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
-use plugins\wechat\api\TpWechat\TpWechat;
+
 class IndexController extends PluginBaseController{
     function index(){
-		if(!isset($userInfo)){
-			$config = $this->getPlugin()->getConfig();
-				$options = array(
-										'token'=>$config['Token'], //填写你设定的key
-										'encodingaeskey'=>$config['EncodingAESKey'], //填写加密用的EncodingAESKey
-										'appid'=>$config['AppID'], //填写高级调用功能的app id
-										'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-									);
-                $weObj = new TpWechat($options);
-				$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
-				return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
-				$res = $weObj->getOauthAccessToken();
-				if(!$res){
-					$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-					var_dump($userInfo);
-				}
-		}else{
-			return $this->fetch("index/index");
+		//通过code换取网页授权access_token
+		$res = $weObj->getOauthAccessToken();
+		if($res){
+			//刷新access_token（如果需要）
+			$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
+			//拉取用户信息(需scope为 snsapi_userinfo)
+			$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+			$this->assign(
+			   array(
+			      'openid'=>$userInfo['openid'],
+				  'nickname'=>$userInfo['nickname'],
+				  'sex'=>$userInfo['sex'],
+				  'headimgurl'=>$userInfo['headimgurl']
+			   )
+			);
+			return $this->fetch("/index/index");
 		}
+			
+		return false;
 				
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
