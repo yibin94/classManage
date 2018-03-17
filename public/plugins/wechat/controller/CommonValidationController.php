@@ -20,18 +20,21 @@ class CommonValidationController extends PluginBaseController{
 	protected function _initialize()
     {
 		parent::_initialize();
+		$code = isset($_GET['code'])?$_GET['code']:'';
+		if (!$code){
+			$config = $this->getPlugin()->getConfig();
+			$options = array(
+							'token'=>$config['Token'], //填写你设定的key
+							'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
+							'appid'=>$config['AppID'], //填写高级调用功能的appid
+							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
+					   );
+			$weObj = new TpWechat($options);
+			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
+			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
+			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
+		}
 		
-		$config = $this->getPlugin()->getConfig();
-		$options = array(
-						'token'=>$config['Token'], //填写你设定的key
-						'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
-						'appid'=>$config['AppID'], //填写高级调用功能的appid
-						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-				   );
-		$weObj = new TpWechat($options);
-		//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
-		$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
-		$weObj->getOauthRedirect($callback,'','snsapi_userinfo');
 		/*
 		
 		
