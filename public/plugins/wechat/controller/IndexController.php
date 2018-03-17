@@ -27,7 +27,7 @@ class IndexController extends CommonValidationController{
 							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 					   );
 			$weObj = new TpWechat($options);
-		$weObj = request()->param('weObj');
+		//$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 		if($res){
