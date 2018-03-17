@@ -11,12 +11,12 @@
 // | Copyright: ShowMore
 // +----------------------------------------------------------------------
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
-use cmf\controller\PluginBaseController;
+use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 
-class IndexController extends PluginBaseController{
+class IndexController extends CommonValidationController{
     function index(){
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
