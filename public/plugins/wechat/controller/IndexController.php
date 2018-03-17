@@ -15,6 +15,7 @@ use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
+use \think\Request;
 
 class IndexController extends CommonValidationController{
     function index(){
