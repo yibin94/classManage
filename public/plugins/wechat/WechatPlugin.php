@@ -148,12 +148,12 @@ SQL;
                     			'appid'=>$config['AppID'], //填写高级调用功能的app id
                     			'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
                     		);
-                self->$weObj = new TpWechat($options);
-                self->$weObj->valid();		
+                self::$weObj = new TpWechat($options);
+                self::$weObj->valid();		
 					
                 //用户openid:
-                $openid = self->$weObj->getRev()->getRevFrom();
-                $type = self->$weObj->getRev()->getRevType();
+                $openid = self::$weObj->getRev()->getRevFrom();
+                $type = self::$weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
                     /* 收到用户主动回复消息处理 */
