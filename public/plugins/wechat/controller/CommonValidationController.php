@@ -14,6 +14,7 @@ namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件�
 use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use plugins\wechat\api\TpWechat\TpWechat;
+use think\Request;
 
 class CommonValidationController extends PluginBaseController{
     /* 公共验证控制器初始化验证是否已经登录. */
@@ -31,8 +32,8 @@ class CommonValidationController extends PluginBaseController{
 					   );
 			$weObj = new TpWechat($options);
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
-			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index.html';
-			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'),['weObj'=>$weObj]);
+			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.$request->controller().'/index.html';
+			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		}
 		
 		/*

@@ -15,10 +15,18 @@ use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
-use \think\Request;
+use plugins\wechat\api\TpWechat\TpWechat;
 
 class IndexController extends CommonValidationController{
     function index(){
+		$config = $this->getPlugin()->getConfig();
+			$options = array(
+							'token'=>$config['Token'], //填写你设定的key
+							'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
+							'appid'=>$config['AppID'], //填写高级调用功能的appid
+							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
+					   );
+			$weObj = new TpWechat($options);
 		$weObj = request()->param('weObj');
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
