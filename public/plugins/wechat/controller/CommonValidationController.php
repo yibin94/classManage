@@ -41,12 +41,12 @@ class CommonValidationController extends PluginBaseController{
 							'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
 							'appid'=>$config['AppID'], //填写高级调用功能的appid
 							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-					   );
+					   );$weObj = $this->weObj;
 			//$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 			//$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->controller().'/index.html';
 			$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
-			return $this->redirect($this->weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
+			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		}
 		
 		/*
