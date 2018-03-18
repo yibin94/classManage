@@ -56,7 +56,7 @@ class JSSDK {
       if ($ticket) {
         $data->expire_time = time() + 7000;
         $data->jsapi_ticket = $ticket;
-        $this->set_php_file("jsapi_ticket.php", json_encode($data));
+        $this->set_php_file("/webdata/classManage/public/plugins/wechat/api/Wechat/jsapi_ticket.php", json_encode($data));
       }
     } else {
       $ticket = $data->jsapi_ticket;
