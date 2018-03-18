@@ -67,7 +67,7 @@ class JSSDK {
 
   private function getAccessToken() {
     // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode($this->get_php_file("/classManage/public/plugins/wechat/api/Wechat/access_token.php"));
+    $data = json_decode($this->get_php_file("/webdata/classManage/public/plugins/wechat/api/Wechat/access_token.php"));
     if ($data->expire_time < time()) {
       // 如果是企业号用以下URL获取access_token
       // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
