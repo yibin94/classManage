@@ -1,6 +1,5 @@
 <html>
 <head>
-    <include file="/classManage/public/plugins/wechat/api/Wechat/jssdk.php" /> 
     <meta charset="UTF-8"/>
     <title>ThinkCMF {:lang('ADMIN_CENTER')}</title>
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
@@ -80,6 +79,7 @@
 </script>
 
 <?php
+require_once("/classManage/public/plugins/wechat/api/Wechat/jssdk.php");
 $jssdk = new JSSDK("wx01002da5942d4384", "64c926bb226cd1195303e9eba7d8a405");
 $signPackage = $jssdk->GetSignPackage();
 ?>
