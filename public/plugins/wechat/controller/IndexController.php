@@ -63,7 +63,7 @@ class IndexController extends CommonValidationController{
 	}
 		
 	public function upload(){
-		var_dump(request()->param());
+		var_dump(request()->param(true));
 		if ($_FILES["file"]["error"] > 0)
 {
     echo "错误：" . $_FILES["file"]["error"] . "<br>";
