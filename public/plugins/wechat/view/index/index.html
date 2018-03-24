@@ -121,13 +121,13 @@ $signPackage = $jssdk->GetSignPackage();
         // 在这里调用 API
 		function chooseImage(){
 			//拍照或从手机相册中选图接口
-			wx.chooseImage({
+			wx.chooseImage({alert(233);
 				count: 1, // 默认9
 				sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
 				sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-				success: function (res) {
+				success: function (res) {alert(666);
 				  var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-				  alert(localIds);
+				  //alert(localIds);
 				  //$("#uploadImg").attr("src",localIds);
 				}
 			});
