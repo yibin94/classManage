@@ -102,7 +102,7 @@ $signPackage = $jssdk->GetSignPackage();
    * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
    */
   wx.config({
-    debug: true,
+    debug: false,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: <?php echo $signPackage["timestamp"];?>,
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',
@@ -120,7 +120,7 @@ $signPackage = $jssdk->GetSignPackage();
   //wx.ready(function () {
   /*如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行*/
         // 在这里调用 API
-		function chooseImage(){alert(233);
+		function chooseImage(){
 			//拍照或从手机相册中选图接口
 			wx.chooseImage({
 				count: 1, // 默认9
