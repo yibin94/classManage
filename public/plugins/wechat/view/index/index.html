@@ -144,11 +144,16 @@ $signPackage = $jssdk->GetSignPackage();
 				   alert(serverId);
 				   //将图片存到服务器指定位置
 				   <?php
-				   if(is_uploaded_file($serverId)){//判断上传是不是通过HTTP POST上传的
-					  $ext = stristr($serverId,'.');//stristr()函数获取上传文件的后缀
+				   $serverId = serverId;
+				   if(is_uploaded_file($serverId)){
+				      //判断上传是不是通过HTTP POST上传的
+					  $ext = stristr($serverId,'.');
+					  //stristr()函数获取上传文件的后缀
 					  echo 'alert(333)';
-					  $path = "/upload/".strtotime("now").$ext;//定义上传文件在服务器上的存放路径
-					  if(move_uploaded_file($serverId,$path)){//将上传的文件存到指定路径
+					  $path = "/upload/".strtotime("now").$ext;
+					  //定义上传文件在服务器上的存放路径
+					  if(move_uploaded_file($serverId,$path)){
+					      //将上传的文件存到指定路径
 						  echo "alert('succeed to upload file!')";
 					  }
 				   }
