@@ -63,8 +63,8 @@ class IndexController extends CommonValidationController{
 	}
 		
 	public function upload(){
-		var_dump(request()->param(true));
-		var_dump($_FILES);/*
+		/*var_dump(request()->param(true));
+		var_dump($_FILES);
 		if ($_FILES["file"]["error"] > 0)
 {
     echo "错误：" . $_FILES["file"]["error"] . "<br>";
@@ -76,6 +76,24 @@ else
     echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
     echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
 }*/
+	   
+	   echo '<script>alert(request()->param('media_id'))</script>';
+	    $obj = new CommonValidationController();
+		$weObj = $obj->getWeObj();
+		//通过code换取网页授权access_token
+		$res = $weObj->getOauthAccessToken();
+	    //根据微信JS接口上传了图片,会返回上面写的images.serverId（即media_id），填在下面即可  
+		 $str = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$res['refresh_token']."&media_id=".request()->param('media_id');  
+		 //获取微信“获取临时素材”接口返回来的内容（即刚上传的图片）  
+		 $a = file_get_contents($str);  
+		//__DIR__指向当前执行的PHP脚本所在的目录  
+		 echo __DIR__;
+		 //以读写方式打开一个文件，若没有，则自动创建  
+		 $resource = fopen(__DIR__."/1.jpg" , 'w+');  
+		 //将图片内容写入上述新建的文件  
+		 fwrite($resource, $a);  
+		 //关闭资源  
+		 fclose($resource);  
 	}	
 		
 	/**

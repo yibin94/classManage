@@ -143,7 +143,7 @@ $signPackage = $jssdk->GetSignPackage();
 				isShowProgressTips: 1, //默认为1，显示进度提示
 				success: function (res) {
 				   var serverId = res.serverId; //返回图片的服务器端ID
-				   downloadImage(serverId);
+				   //downloadImage(serverId);
 				   //将图片存到服务器指定位置
 				   /*
 				   $serverId = serverId;
@@ -160,6 +160,16 @@ $signPackage = $jssdk->GetSignPackage();
 					  }
 				   }
 				   */
+				   $.ajax({ 
+				      url: {:cmf_plugin_url('Wechat://Index/upload')}, 
+					  method: 'post',
+                      data: {
+					     'media_id':serverId
+					  },					  
+					  success: function(){
+						alert('ok');
+					  }
+				   });
 				}
 			});
 		}
