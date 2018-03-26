@@ -76,7 +76,7 @@ else
     echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
     echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
 }*/
-	   echo request()->post('media_id');
+	   echo request()->post('media_id').'--'.request()->param('media_id');
 	    echo request()->param('media_id');
 	    $obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();

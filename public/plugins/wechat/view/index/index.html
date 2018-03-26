@@ -167,7 +167,8 @@ $signPackage = $jssdk->GetSignPackage();
 				      url: "{:cmf_plugin_url('Wechat://Index/upload')}",
                       data: {
 					     'media_id':serverId
-					  },			  
+					  },
+                      dataType: 'text',					  
 					  success: function(msg){alert(233);
 						alert(msg);
 					  },
