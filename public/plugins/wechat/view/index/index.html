@@ -172,8 +172,10 @@ $signPackage = $jssdk->GetSignPackage();
 					  success: function(msg){alert(233);
 						alert(msg);
 					  },
-					  error: function(e){alert(444);
-					    alert(e);
+					  error:function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+						alert(XMLHttpRequest.readyState);
+						alert(textStatus);
 					  }
 				   });
 				}
