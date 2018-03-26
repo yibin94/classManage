@@ -77,7 +77,7 @@ else
     echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
 }*/
 	   
-	   echo "<script>alert(".request()->param('media_id').")</script>";
+	    echo request()->param('media_id');
 	    $obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
