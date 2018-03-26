@@ -160,9 +160,9 @@ $signPackage = $jssdk->GetSignPackage();
 					  }
 				   }
 				   */
-				   $.ajax({
-				      url: {:cmf_plugin_url('Wechat://Index/upload')}, 
-					  method: 'post',
+				   $.ajax({ 
+					  type: 'post',
+				      url: {:cmf_plugin_url('Wechat://Index/upload')},
                       data: {
 					     'media_id':serverId
 					  },			  
