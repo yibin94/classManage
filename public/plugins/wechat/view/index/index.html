@@ -144,7 +144,7 @@ $signPackage = $jssdk->GetSignPackage();
 				success: function (res) {
 				   var serverId = res.serverId; //返回图片的服务器端ID
 				   //downloadImage(serverId);
-				   alert(123);
+				   
 				   //将图片存到服务器指定位置
 				   /*
 				   $serverId = serverId;
@@ -161,9 +161,10 @@ $signPackage = $jssdk->GetSignPackage();
 					  }
 				   }
 				   */
-				   $.ajax({ 
+alert(333);				  
+				  $.ajax({ 
 					  type: 'post',
-				      url: {:cmf_plugin_url('Wechat://Index/upload')},
+				      url: "{:cmf_plugin_url('Wechat://Index/upload')}",
                       data: {
 					     'media_id':serverId
 					  },			  
