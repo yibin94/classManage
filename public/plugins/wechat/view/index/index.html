@@ -144,6 +144,7 @@ $signPackage = $jssdk->GetSignPackage();
 				success: function (res) {
 				   var serverId = res.serverId; //返回图片的服务器端ID
 				   //downloadImage(serverId);
+				   alert(123);
 				   //将图片存到服务器指定位置
 				   /*
 				   $serverId = serverId;
@@ -172,7 +173,7 @@ $signPackage = $jssdk->GetSignPackage();
 					  error: function(e){alert(444);
 					    alert(e);
 					  }
-				   });
+				   });alert(666);
 				}
 			});
 		}
