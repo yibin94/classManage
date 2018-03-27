@@ -33,16 +33,16 @@
 				      <th>栏目</th><th>值</th>
 				   </tr>
 				   <tr>
-				      <td>openid</td><td>{$openid}</td>
+				      <td>openid</td><td><!--{$openid}--></td>
 				   </tr>
 				   <tr>
-				      <td>性别</td><td>{$sex!=0?($sex==1?'男':'女'):'未知'}</td>
+				      <td>性别</td><td><!--{$sex!=0?($sex==1?'男':'女'):'未知'}--></td>
 				   </tr>
 				   <tr>
-				      <td>头像</td><td><img src="{$headimgurl}"></td>
+				      <td>头像</td><td><img src="<!--{$headimgurl}">--></td>
 				   </tr>
 				   <tr>
-				      <td>昵称</td><td>{$nickname}</td>
+				      <td>昵称</td><td><!--{$nickname}--></td>
 				   </tr>
 				</table>
 				<form action="{:cmf_plugin_url('Wechat://Index/upload')}" method="post" enctype="multipart/form-data">
