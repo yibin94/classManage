@@ -19,8 +19,8 @@ use think\Db;
 use think\Request;
 
 class IndexController extends PluginBaseController{
-	/*
-    function index(){
+	
+    function index(){/*
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
@@ -61,8 +61,8 @@ class IndexController extends PluginBaseController{
 			 echo $file->getError();
 		 }
 		
-		
-	}*/
+		*/
+	}
 		
 	public function download(){
 		echo 2334;
