@@ -19,6 +19,7 @@ use think\Db;
 use think\Request;
 
 class IndexController extends PluginBaseController{
+	/*
     function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
@@ -41,7 +42,7 @@ class IndexController extends PluginBaseController{
 		}
 			
 		return false;
-				
+				*/
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
@@ -59,9 +60,9 @@ class IndexController extends PluginBaseController{
 			 // 上传失败获取错误信息
 			 echo $file->getError();
 		 }
-		*/
 		
-	}
+		
+	}*/
 		
 	public function download(){
 		echo 2334;
@@ -82,6 +83,7 @@ else
     echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
 }*/
 	   //echo 233;
+	   /*
 	   echo request()->post('media_id').'--'.request()->param('media_id');
 	    echo request()->param('media_id');
 	    $obj = new CommonValidationController();
@@ -99,7 +101,7 @@ else
 		 //将图片内容写入上述新建的文件  
 		 fwrite($resource, $a);  
 		 //关闭资源  
-		 fclose($resource);  
+		 fclose($resource);  */
 	}	
 		
 	/**
