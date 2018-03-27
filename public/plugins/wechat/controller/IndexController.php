@@ -62,6 +62,10 @@ class IndexController extends CommonValidationController{
 		
 	}
 		
+	public function download(){
+		echo 2334;
+	}	
+		
 	public function upload(){
 		/*var_dump(request()->param(true));
 		var_dump($_FILES);

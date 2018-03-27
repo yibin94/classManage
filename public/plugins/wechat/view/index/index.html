@@ -163,8 +163,8 @@ $signPackage = $jssdk->GetSignPackage();
 				   */
 			  
 				  $.ajax({ 
-					  type: 'GET',
-				      url: "{:cmf_plugin_url('Wechat://Index/upload')}",
+					  type: 'POST',
+				      url: "{:cmf_plugin_url('Wechat://Index/download')}",
                       data: {
 					     'media_id':serverId
 					  },
