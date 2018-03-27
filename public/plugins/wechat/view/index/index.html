@@ -117,7 +117,21 @@ $signPackage = $jssdk->GetSignPackage();
 	  'getLocalImgData'
     ]
   });
-  
+  $.ajax({ 
+	  type: 'POST',
+	  url: "{:cmf_plugin_url('Wechat://Index/download')}",
+	  data: {
+		 'media_id':1
+	  },					  
+	  success: function(msg){alert(233);
+		alert(msg);
+	  },
+	  error:function(XMLHttpRequest, textStatus, errorThrown) {
+		alert(XMLHttpRequest.status);
+		alert(XMLHttpRequest.readyState);
+		alert(textStatus);
+	  }
+   });
   //wx.ready(function () {
   /*如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行*/
         // 在这里调用 API
@@ -132,7 +146,7 @@ $signPackage = $jssdk->GetSignPackage();
 				  localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 				  //alert(localIds);
 				  $("#uploadImage").attr("src",localIds);
-				  uploadImage(localIds);
+				  //uploadImage(localIds);
 				}
 			});
 		}
