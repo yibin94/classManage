@@ -12,12 +12,13 @@
 // +----------------------------------------------------------------------
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use plugins\wechat\controller\CommonValidationController;
+use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 use think\Request;
 
-class IndexController extends CommonValidationController{
+class IndexController extends PluginBaseController{
     function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
