@@ -33,16 +33,16 @@
 				      <th>栏目</th><th>值</th>
 				   </tr>
 				   <tr>
-				      <td>openid</td><td></td>
+				      <td>openid</td><td>{$openid}</td>
 				   </tr>
 				   <tr>
-				      <td>性别</td><td></td>
+				      <td>性别</td><td>{$sex==0?'女':($sex==1?'男':'未知')}</td>
 				   </tr>
 				   <tr>
-				      <td>头像</td><td><img src=""></td>
+				      <td>头像</td><td><img src="{$headurl}"></td>
 				   </tr>
 				   <tr>
-				      <td>昵称</td><td></td>
+				      <td>昵称</td><td>{$nickname}</td>
 				   </tr>
 				</table>
 				<form action="{:cmf_plugin_url('Wechat://Index/upload')}" method="post" enctype="multipart/form-data">
@@ -117,21 +117,7 @@ $signPackage = $jssdk->GetSignPackage();
 	  'getLocalImgData'
     ]
   });
-  $.ajax({ 
-	  type: 'POST',
-	  url: "{:cmf_plugin_url('Wechat://Index/download')}",
-	  data: {
-		 'media_id':1
-	  },					  
-	  success: function(msg){alert(233);
-		alert(msg);
-	  },
-	  error:function(XMLHttpRequest, textStatus, errorThrown) {
-		alert(XMLHttpRequest.status);
-		alert(XMLHttpRequest.readyState);
-		alert(textStatus);
-	  }
-   });
+  
   //wx.ready(function () {
   /*如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行*/
         // 在这里调用 API

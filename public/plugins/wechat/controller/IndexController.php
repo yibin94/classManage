@@ -12,15 +12,14 @@
 // +----------------------------------------------------------------------
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use plugins\wechat\controller\CommonValidationController;
-use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 use think\Request;
 
-class IndexController extends PluginBaseController{
+class IndexController extends CommonValidationController{
 	
-    function index(){/*
+    function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
@@ -42,7 +41,7 @@ class IndexController extends PluginBaseController{
 		}
 			
 		return false;
-				*/
+				
 		/*
 		 // 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
@@ -62,12 +61,9 @@ class IndexController extends PluginBaseController{
 		 }
 		
 		*/
-		return $this->fetch("/index/index");
-	}
 		
-	public function download(){
-		echo 2334;
-	}	
+	}
+	
 		
 	public function upload(){
 		/*var_dump(request()->param(true));
