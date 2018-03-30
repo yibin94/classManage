@@ -8,7 +8,7 @@ use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
     function index(){
-		echo request()->post('media_id').'--'.request()->param('media_id');
+		echo request()->post('media_id').'--'.request()->param('media_id');/*
 	    $media_id = request()->param('media_id');
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
@@ -26,7 +26,7 @@ class UploadCoursewareController extends PluginBaseController{
 		 fwrite($resource, $data);  
 		 //关闭资源  
 		 fclose($resource);
-		
+		*/
 		return ;
 	}
 }	
