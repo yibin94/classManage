@@ -21,7 +21,7 @@ class UploadCoursewareController extends PluginBaseController{
 		 //__DIR__指向当前执行的PHP脚本所在的目录  
 		 echo __DIR__;
 		 //以读写方式打开一个文件，若没有，则自动创建  
-		 $resource = fopen(__DIR__."/1.jpg" , 'w+');  
+		 $resource = fopen(__DIR__."/".time().".jpg" , 'w+');  
 		 //将图片内容写入上述新建的文件  
 		 fwrite($resource, $data);  
 		 //关闭资源  
