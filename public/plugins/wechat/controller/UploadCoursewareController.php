@@ -2,7 +2,6 @@
 
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use cmf\controller\PluginBaseController;
-use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
@@ -11,7 +10,14 @@ class UploadCoursewareController extends PluginBaseController{
     function index(){
 		//echo request()->post('media_id').'--'.request()->param('media_id');
 	    $media_id = request()->param('media_id');
-		$obj = new CommonValidationController();
+		$config = $this->getPlugin()->getConfig();
+		$options = array(
+						'token'=>$config['Token'], //填写你设定的key
+						'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
+						'appid'=>$config['AppID'], //填写高级调用功能的appid
+						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
+				   );
+		$obj = new TpWechat($options);
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
