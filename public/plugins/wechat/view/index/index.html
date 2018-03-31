@@ -72,6 +72,9 @@
 <script src="__STATIC__/js/wind.js"></script>
 <script src="__STATIC__/js/admin.js"></script>
 <script src="__STATIC__/js/frontend.js"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/js/Huploadify.css"/>
+<script type="text/javascript" src="__STATIC__/js/uploadify/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/uploadify/jquery.Huploadify.js"></script>
 <script>
     (function () {
         document.getElementById('input_username').focus();
@@ -91,6 +94,32 @@ $signPackage = $jssdk->GetSignPackage();
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
+$(function(){
+	$('#upload').Huploadify({
+		auto:true,
+		fileTypeExts:'*.jpg;*.png;*.exe',
+		multi:true,
+		formData:{key:123456,key2:'vvvv'},
+		fileSizeLimit:9999,
+		showUploadedPercent:true,//是否实时显示上传的百分比，如20%
+		showUploadedSize:true,
+		removeTimeout:9999999,
+		uploader:"{:cmf_plugin_url('Wechat://UploadCourseware/index')}",
+		onUploadStart:function(){
+			//alert('开始上传');
+			},
+		onInit:function(){
+			//alert('初始化');
+			},
+		onUploadComplete:function(){
+			//alert('上传完成');
+			},
+		onDelete:function(file){
+			console.log('删除的文件：'+file);
+			console.log(file);
+		}
+		});
+	});
   /*
    * 注意：
    * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
@@ -132,7 +161,7 @@ $signPackage = $jssdk->GetSignPackage();
 				  localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 				  //alert(localIds);
 				  $("#uploadImage").attr("src",localIds);
-				  uploadImage(localIds);
+				  //uploadImage(localIds);
 				}
 			});
 		}
@@ -225,6 +254,6 @@ $signPackage = $jssdk->GetSignPackage();
 
   //});
 </script>
-
+<div id="upload"></div>
 </body>
 </html>
