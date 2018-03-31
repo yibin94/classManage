@@ -35,7 +35,7 @@ class UploadCoursewareController extends PluginBaseController{
 		 //关闭资源  
 		 fclose($resource);
 		*/
-		
+		/*
 		$ch = curl_init($getDataUrl);
         $ranfilename=time().rand().".jpg";
 		$path = __DIR__;
@@ -49,7 +49,11 @@ class UploadCoursewareController extends PluginBaseController{
         curl_exec($ch);
         curl_close($ch);
         fclose($fp);
-		
+		*/
+		$data = file_get_contents($getDataUrl);
+		$path = __DIR__;
+        $filename=$path.'/'.date('Y_m_d').'/'.$ranfilename;
+		file_put_contents($filename,$data);
 		return ;
 	}
 }	
