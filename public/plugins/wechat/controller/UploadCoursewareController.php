@@ -8,7 +8,9 @@ use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
-    function index(){var_dump($_FILES);die;
+    function index(){
+		echo "<script>alert(233);</script>";
+		var_dump($_FILES);die;
 		$filename = $_FILES['file']['name'];
 $key = $_POST['key'];
 $key2 = $_POST['key2'];
