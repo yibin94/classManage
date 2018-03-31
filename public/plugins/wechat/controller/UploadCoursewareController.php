@@ -23,7 +23,7 @@ class UploadCoursewareController extends PluginBaseController{
 		$res = $weObj->getOauthAccessToken();
 	    //根据微信JS接口上传了图片,会返回上面写的images.serverId（即media_id），填在下面即可  
 		 $getDataUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$res['refresh_token']."&media_id=$media_id";  
-		 
+		$ranfilename=time().rand().".jpg";
 		$data = file_get_contents($getDataUrl);
 		$path = __DIR__;
         $filename=$path.'/'.date('Y_m_d').'/'.$ranfilename;
