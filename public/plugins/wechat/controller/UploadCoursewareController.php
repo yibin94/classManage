@@ -41,7 +41,7 @@ class UploadCoursewareController extends PluginBaseController{
 		$path = __DIR__;
         $filename=$path.'/'.date('Y_m_d').'/'.$ranfilename;
         //$tarfilename=$tardir."/".$ranfilename;
-        $fp = fopen($filename, "w");
+        $fp = fopen($filename, "w+");
          
         curl_setopt($ch, CURLOPT_FILE, $fp);
         curl_setopt($ch, CURLOPT_HEADER, 0);
