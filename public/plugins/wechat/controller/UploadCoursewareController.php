@@ -2,13 +2,14 @@
 
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use cmf\controller\PluginBaseController;
+use plugins\wechat\controller\CommonValidationController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
     function index(){
-		echo request()->post('media_id').'--'.request()->param('media_id');/*
+		//echo request()->post('media_id').'--'.request()->param('media_id');
 	    $media_id = request()->param('media_id');
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
@@ -26,7 +27,7 @@ class UploadCoursewareController extends PluginBaseController{
 		 fwrite($resource, $data);  
 		 //关闭资源  
 		 fclose($resource);
-		*/
+		
 		return ;
 	}
 }	
