@@ -18,8 +18,7 @@ class UploadCoursewareController extends PluginBaseController{
 						'appid'=>$config['AppID'], //填写高级调用功能的appid
 						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 				   );
-		$obj = new TpWechat($options);
-		$weObj = $obj->getWeObj();
+		$weObj = new TpWechat($options);
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 	    //根据微信JS接口上传了图片,会返回上面写的images.serverId（即media_id），填在下面即可  
