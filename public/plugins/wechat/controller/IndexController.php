@@ -66,6 +66,8 @@ class IndexController extends CommonValidationController{
 	
 		
 	public function upload(){
+		var_dump(request()->param(true));
+		var_dump($_FILES);
 		/*var_dump(request()->param(true));
 		var_dump($_FILES);
 		if ($_FILES["file"]["error"] > 0)
