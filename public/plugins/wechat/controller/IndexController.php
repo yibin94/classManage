@@ -39,7 +39,7 @@ class IndexController extends PluginBaseController{
 			   )
 			);*/
 			return $this->fetch("/index/index");
-		}
+		//}
 			
 		return false;
 				
