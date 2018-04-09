@@ -20,7 +20,7 @@ use think\Request;
 
 class IndexController extends PluginBaseController{
 	
-    function index(){
+    function index(){/*
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
@@ -37,7 +37,7 @@ class IndexController extends PluginBaseController{
 				  'sex'=>$userInfo['sex'],
 				  'headimgurl'=>$userInfo['headimgurl']
 			   )
-			);
+			);*/
 			return $this->fetch("/index/index");
 		}
 			
