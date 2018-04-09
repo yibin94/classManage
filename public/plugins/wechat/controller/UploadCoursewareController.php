@@ -16,7 +16,7 @@ $key = $_POST['key'];
 $key2 = $_POST['key2'];
 if ($filename) {
     move_uploaded_file($_FILES["file"]["tmp_name"],
-      "/webdata/classManage/public/upload/" . $filename);
+      "/webdata/classManage/public/upload_" . $filename);
 }
 echo $key;
 echo $key2;
