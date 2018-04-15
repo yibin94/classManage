@@ -28,7 +28,8 @@ class IndexController extends CommonValidationController{
 			//刷新access_token（如果需要）
 			$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
 			//拉取用户信息(需scope为 snsapi_userinfo)
-			$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+			//$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+			$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
 			$this->assign(
 			   array(
 			      'openid'=>$userInfo['openid'],
@@ -36,7 +37,7 @@ class IndexController extends CommonValidationController{
 				  'sex'=>$userInfo['sex'],
 				  'headimgurl'=>$userInfo['headimgurl']
 			   )
-			);//$_REQUEST['state']='STATE';
+			);
 			return $this->fetch("/index/index");
 		}
 			

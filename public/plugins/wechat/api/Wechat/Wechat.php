@@ -2265,8 +2265,8 @@ class Wechat
 	 * @param string $callback 回调URI
 	 * @return string
 	 */
-	public function getOauthRedirect($callback,$state='STATE',$scope='snsapi_userinfo'){
-		return self::OAUTH_PREFIX.self::OAUTH_AUTHORIZE_URL.'appid='.$this->appid.'&redirect_uri='.urlencode($callback).'&response_type=code&scope='.$scope.'&state='.'STATE'.'#wechat_redirect';
+	public function getOauthRedirect($callback,$state='',$scope='snsapi_userinfo'){
+		return self::OAUTH_PREFIX.self::OAUTH_AUTHORIZE_URL.'appid='.$this->appid.'&redirect_uri='.urlencode($callback).'&response_type=code&scope='.$scope.'&state='.$state.'#wechat_redirect';
 	}
 
 	/**
