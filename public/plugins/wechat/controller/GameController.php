@@ -2,14 +2,13 @@
 
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use plugins\wechat\controller\CommonValidationController;
-use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
 use think\Validate;
 use think\Db;
 
-class GameController extends PluginBaseController{
+class GameController extends CommonValidationController{
     /*游戏列表*/
-	function index(){return $this->fetch("/game/gameList");/*
+	function index(){
 		$obj = new CommonValidationController();
 		$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
@@ -30,7 +29,7 @@ class GameController extends PluginBaseController{
 			return $this->fetch("/game/gameList");
 		}
 			
-		return false;*/
+		return false;
 	}
 	
 	function chooseGame($name){
