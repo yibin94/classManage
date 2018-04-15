@@ -36,7 +36,7 @@ class IndexController extends CommonValidationController{
 				  'sex'=>$userInfo['sex'],
 				  'headimgurl'=>$userInfo['headimgurl']
 			   )
-			);$_GET['state']='STATE';var_dump($_REQUEST);die;
+			);$_REQUEST['state']='STATE';
 			return $this->fetch("/index/index");
 		}
 			
