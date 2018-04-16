@@ -41,7 +41,9 @@ class CommonValidationController extends PluginBaseController{
 			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
 			
 			//echo $weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo');die;
-			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
+			//return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'
+			header("Location: $callback");
+			));
 		}
 		
 		/*
