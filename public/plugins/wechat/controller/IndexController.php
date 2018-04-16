@@ -37,8 +37,8 @@ class IndexController extends CommonValidationController{
 				  'sex'=>$userInfo['sex'],
 				  'headimgurl'=>$userInfo['headimgurl']
 			   )
-			);
-			return $this->fetch("/index/index");
+			);var_dump($userInfo);
+			//return $this->fetch("/index/index");
 		}
 			
 		return false;
