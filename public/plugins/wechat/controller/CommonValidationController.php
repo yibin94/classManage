@@ -36,9 +36,9 @@ class CommonValidationController extends PluginBaseController{
 		if (!$code){
 			$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
-			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->param('_controller').'/'.request()->param('_method');
+			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->param('_controller').'/'.request()->param('_action');
 			//$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
-			echo $callback;var_dump(request());die;
+			//echo $callback;var_dump(request());die;
 			return $this->redirect($weObj->getOauthRedirect($callback,'','snsapi_userinfo'));
 		}
 		
