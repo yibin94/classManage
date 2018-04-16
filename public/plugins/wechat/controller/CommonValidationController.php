@@ -40,7 +40,7 @@ class CommonValidationController extends PluginBaseController{
 			//$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
 			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
 			
-			echo $weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo');die;
+			//echo $weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo');die;
 			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
 		}
 		
