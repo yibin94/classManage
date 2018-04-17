@@ -21,12 +21,12 @@ class IndexController extends CommonValidationController{
 	
     function index(){
 		$obj = new CommonValidationController();
-		$weObj = $obj->getWeObj();
+		$weObj = $obj->getWeObj();$_REQUEST['yyue']='';
 		//通过code换取网页授权access_token
-		$res = $weObj->getOauthAccessToken();
+		$res = $weObj->getOauthAccessToken();$_REQUEST['yyue']='';
 		if($res){
 			//刷新access_token（如果需要）
-			$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
+			$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);$_REQUEST['yyue']='';
 			//拉取用户信息(需scope为 snsapi_userinfo)
 			//$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
 			$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
