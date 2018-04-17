@@ -10,15 +10,13 @@ class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
 		$obj = new CommonValidationController();
-		
+		$weObj = $obj->getWeObj();
 		$code = isset($_GET['code'])?$_GET['code']:'';//code不为空则表明允许授权登录。
 		if (!$code){
-			//$weObj = $this->getWeObj();
-			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
-			header("Location: $callback");
+			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
 		}
 		
-		$weObj = $obj->getWeObj();
+		//$weObj = $obj->getWeObj();
 		//通过code换取网页授权access_token
 		$res = $weObj->getOauthAccessToken();
 		if($res){
