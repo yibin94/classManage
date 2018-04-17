@@ -32,18 +32,14 @@ class CommonValidationController extends PluginBaseController{
 	protected function _initialize()
     {
 		parent::_initialize();
-		//$code = isset($_GET['code'])?$_GET['code']:'';//code不为空则表明允许授权登录。
-		//if (!$code){
-		//	$weObj = $this->getWeObj();
+		$code = isset($_GET['code'])?$_GET['code']:'';//code不为空则表明允许授权登录。
+		if (!$code){
+			$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
-			//$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/'.request()->param('_controller').'/'.request()->param('_action');
-			//$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
-			$callback = 'http://www.shibin.tech/classManage/public/plugin/wechat/Index/index';
-			
-			//echo $weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo');die;
-			//return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
-		//	header("Location: $callback");
-		//}
+			$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
+			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
+			//header("Location: $callback");
+		}
 		
 		/*
 		
