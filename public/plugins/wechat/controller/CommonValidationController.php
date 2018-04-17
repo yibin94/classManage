@@ -40,16 +40,6 @@ class CommonValidationController extends PluginBaseController{
 			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
 			//header("Location: $callback");
 		}
-		
-		/*
-		
-		
-		return true;
-		//获取sesion中的用户id，可判断是否登录.
-        $userId = session('PLUGIN_WECHAT_USER_ID');
-        if (!$userId) {//无用户id则跳回登录界面.
-            return $this->redirect(cmf_plugin_url("Wechat://Index/login"));
-        }*/
     }
 
 }
