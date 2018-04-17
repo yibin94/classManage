@@ -30,7 +30,7 @@ class IndexController extends CommonValidationController{
 			//拉取用户信息(需scope为 snsapi_userinfo)
 			//$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
 			$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-			var_dump($userInfo);die;
+			$_REQUEST['yyue']='';var_dump($userInfo);die;
 			$this->assign(
 			   array(
 			      'openid'=>$userInfo['openid'],
