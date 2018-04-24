@@ -8,7 +8,7 @@ use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
-    function index(){var_dump(request());die;
+    function index(){var_dump($_REQUEST);die;
 		// 获取表单上传文件 例如上传了001.jpg    
 		 $file = request()->file('file');    
 		 // 移动到框架应用根目录/public/upload/ 目录下    
