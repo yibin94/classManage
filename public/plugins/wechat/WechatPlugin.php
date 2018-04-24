@@ -78,8 +78,8 @@ INSERT;
 CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL COMMENT '用户名称',
-  `password` varchar(64) NOT NULL COMMENT '用户密码',
-  `mobile` varchar(20) NOT NULL COMMENT '用户手机号码用于找回密码',
+  `password` varchar(20) NOT NULL COMMENT '用户密码',
+  //`mobile` varchar(20) NOT NULL COMMENT '用户手机号码用于找回密码',
   `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号用户表';
@@ -90,16 +90,16 @@ CREATE TABLE `{$db_prefix}plugin_wechat_games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL COMMENT '游戏名称',
   `url` varchar(30) NOT NULL COMMENT '游戏地址',
-  `clicks` varchar(20) NOT NULL DEFAULT 0 COMMENT '游戏被点击（被玩）次数',
+  `clicks` int(11) NOT NULL DEFAULT 0 COMMENT '游戏被点击（被玩）次数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号游戏表';
 SQL;
      $sql6=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_user_games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` varchar(11) NOT NULL COMMENT '玩家id',
-  `gameId` varchar(11) NOT NULL COMMENT '游戏id',
-  `score` varchar(20) NOT NULL DEFAULT 0 COMMENT '分数',
+  `userId` int(11) NOT NULL COMMENT '玩家id',
+  `gameId` int(11) NOT NULL COMMENT '游戏id',
+  `score` int(11) NOT NULL DEFAULT 0 COMMENT '分数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号玩家和游戏表';
 SQL;
@@ -107,7 +107,9 @@ SQL;
 CREATE TABLE `{$db_prefix}plugin_wechat_courseware` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL COMMENT '课件名字',
-  `url` varchar(30) NOT NULL COMMENT '课件地址',
+  `url` varchar(120) NOT NULL COMMENT '课件地址',
+  `views` int(11) NOT NULL COMMENT '浏览量',
+  `downloads` int(11) NOT NULL COMMENT '下载量'
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号课件表';
 SQL;

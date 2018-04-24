@@ -9,39 +9,40 @@ use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
     function index(){
-		echo "<script>alert(233);</script>";
-		var_dump($_FILES);//die;
-		$filename = $_FILES['file']['name'];
-$key = $_POST['key'];
-$key2 = $_POST['key2'];
-if ($filename) {
-    move_uploaded_file($_FILES["file"]["tmp_name"],
-      "/webdata/classManage/public/upload_" . $filename);
-}
-echo $key;
-echo $key2;
-die;
-
-
-		//echo request()->post('media_id').'--'.request()->param('media_id');
-	    $media_id = request()->param('media_id');
-		$config = $this->getPlugin()->getConfig();
-		$options = array(
-						'token'=>$config['Token'], //填写你设定的key
-						'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
-						'appid'=>$config['AppID'], //填写高级调用功能的appid
-						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-				   );
-		$weObj = new TpWechat($options);
-		//通过code换取网页授权access_token
-		$res = $weObj->getOauthAccessToken();
-	    //根据微信JS接口上传了图片,会返回上面写的images.serverId（即media_id），填在下面即可  
-		 $getDataUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$res['refresh_token']."&media_id=$media_id";  
-		$ranfilename=time().rand().".jpg";
-		$data = file_get_contents($getDataUrl);
-		$path = __DIR__;
-        $filename=$path.'/'.date('Y_m_d').'/'.$ranfilename;
-		file_put_contents($filename,$data);
-		return ;
+		// 获取表单上传文件 例如上传了001.jpg    
+		 $file = request()->file('file');    var_dump($file);die;
+		 // 移动到框架应用根目录/public/upload/ 目录下    
+		 $info = $file->move(ROOT_PATH . 'public/upload');
+		 if($info){
+			 // 成功上传后 获取上传信息
+			 // 输出 jpg       
+			 echo $info->getExtension();
+			 // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+			 echo $info->getSaveName();
+			 // 输出 42a79759f284b767dfcb2a0197904287.jpg
+			 echo $info->getFilename(); 
+		 }else{
+			 // 上传失败获取错误信息
+			 echo $file->getError();
+		 }
 	}
+
+	public function upload(){
+		$this->fetch("/uploadCourseware/upload");
+	}
+	
+    public function download(){
+		$filename = "resume.pdf";
+		$url = "/webdata/classManage/public/resume.pdf";
+		$file=fopen($url,"r");//打开文件
+		//输入文件标签
+		header("Content-Type: application/octet-stream");
+		header("Accept-Ranges: bytes");
+		header("Accept-Length: ".filesize($url));
+		header("Content-Disposition: attachment; filename=$filename");
+		//输出文件内容
+		echo fread($file,filesize($url));
+		fclose($file);
+
+	}	
 }	
