@@ -28,7 +28,7 @@ class UploadCoursewareController extends PluginBaseController{
 	}
 
 	public function upload(){
-		$this->fetch("/uploadCourseware/upload");
+		return $this->fetch("/uploadCourseware/upload");
 	}
 	
     public function download(){
