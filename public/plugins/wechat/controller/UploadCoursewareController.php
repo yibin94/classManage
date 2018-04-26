@@ -8,7 +8,7 @@ use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
-    function index(){var_dump(request()->param(true));
+    function index(){var_dump(request()->param(false));var_dump(request());
 		 $fileName = request()->param('file.name');echo $fileName;
 		 $fileData = request()->param('file.tmp_name');echo $fileData;die;
          $saveUrl = "/webdata/classManage/public/upload";
