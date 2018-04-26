@@ -9,8 +9,8 @@ use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
     function index(){
-		 $fileName = $_FILES['file']['name'];echo $fileName;
-		 $fileData = $_FILES['file']['tmp_name'];echo $fileData;die;
+		 $fileName = $_FILES['file']['name'];
+		 $fileData = $_FILES['file']['tmp_name'];
          $saveUrl = "/webdata/classManage/public/upload";
 		 file_put_contents($saveUrl.'/'.$fileName, $fileData);
 	}
