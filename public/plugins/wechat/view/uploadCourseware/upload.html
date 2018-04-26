@@ -34,15 +34,10 @@
 					  <td><a href="/classManage/public/resume.pdf">resume</a></td>
 				   </tr>
 				</table>
-				<form action="{:cmf_plugin_url('Wechat://Index/upload')}" method="post" enctype="multipart/form-data">
-					<label for="file">文件名：</label>
-					<input type="file" name="file" id="file"><br>
-					<input type="submit" name="submit" value="提交">
-				</form>
                 <input id="file-1" type="hidden" name="file_url" >
 				<input  id="file-1-name" type="text" name="file_name" title="图片名称">
 				<a id="file-1-preview" target="_blank">下载</a>
-				<a href="javascript:uploadOne('图片上传','#file-1','file');">上传</a> 
+				<a href="javascript:uploadOne('图片上传','#file-1','file');">上传</a>
             </div>
         </div>
 
