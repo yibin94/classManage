@@ -8,23 +8,11 @@ use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
-    function index(){var_dump($_REQUEST);var_dump($_FILES);die;
-		 // 获取表单上传文件 例如上传了001.jpg    
-		 $file = request()->file('file');    
-		 // 移动到框架应用根目录/public/upload/ 目录下    
-		 $info = $file->move(ROOT_PATH . 'public/upload');
-		 if($info){
-			 // 成功上传后 获取上传信息
-			 // 输出 jpg       
-			 echo $info->getExtension();
-			 // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-			 echo $info->getSaveName();
-			 // 输出 42a79759f284b767dfcb2a0197904287.jpg
-			 echo $info->getFilename(); 
-		 }else{
-			 // 上传失败获取错误信息
-			 echo $file->getError();
-		 }
+    function index(){
+		 $fileName = request()->('file')['name'];
+		 $fileData = request()->('file')['tmp_name'];
+         $saveUrl = "/webdata/classManage/public/upload";
+		 file_put_contents($saveUrl.'/'.$fileName, $fileData);
 	}
 
 	public function upload(){
