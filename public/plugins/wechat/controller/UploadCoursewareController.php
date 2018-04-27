@@ -14,6 +14,7 @@ class UploadCoursewareController extends PluginBaseController{
 		 if($fileName){
 			 move_uploaded_file($_FILES["file"]["tmp_name"],
       $saveUrl.'/'.$fileName);
+	         $this->error($_FILES["file"]["error"]);
 		 }else{
 			 $this->error("fail to upload file!");
 		 }
