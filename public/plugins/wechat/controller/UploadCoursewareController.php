@@ -10,9 +10,15 @@ use think\Db;
 class UploadCoursewareController extends PluginBaseController{
     function index(){
 		 $fileName = $_FILES['file']['name'];
-		 $fileData = $_FILES['file']['tmp_name'];
          $saveUrl = "/webdata/classManage/public/upload";
-		 file_put_contents($saveUrl.'/'.$fileName, $fileData);
+		 if($fileName){
+			 move_uploaded_file($_FILES["file"]["tmp_name"],
+      $saveUrl.'/'.$filename);
+		 }else{
+			 $this->error("fail to upload file!");
+		 }
+		 //$fileData = $_FILES['file']['tmp_name'];
+		 //file_put_contents($saveUrl.'/'.$fileName, $fileData);
 	}
 
 	public function upload(){
