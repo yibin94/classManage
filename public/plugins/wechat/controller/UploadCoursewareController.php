@@ -13,7 +13,7 @@ class UploadCoursewareController extends PluginBaseController{
          $saveUrl = "/webdata/classManage/public/upload";
 		 if($fileName){
 			 move_uploaded_file($_FILES["file"]["tmp_name"],
-      $saveUrl.'/'.$filename);
+      $saveUrl.'/'.$fileName);
 		 }else{
 			 $this->error("fail to upload file!");
 		 }
