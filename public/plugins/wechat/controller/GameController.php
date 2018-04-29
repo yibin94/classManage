@@ -26,7 +26,7 @@ class GameController extends CommonValidationController{
             var_dump($userInfo);session('userInfo',$userInfo);
             //return $this->fetch("/index/index");
         }
-die;
+//die;
 		return $this->fetch("/game/gameList");
 	}
 	
