@@ -10,9 +10,10 @@ use think\Db;
 class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
-        /*$obj = new CommonValidationController();
-        $weObj = $obj->getWeObj();*/
-        $weObj = CommonValidationController::getWeObj();
+        if(!(isset($weObj))){
+            $weObj = new CommonValidationController()->getWeObj();
+        }
+        
         //通过code换取网页授权access_token
         $res = $weObj->getOauthAccessToken();
         if($res){
