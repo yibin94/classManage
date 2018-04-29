@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | IndexController.class.php
-// +----------------------------------------------------------------------
-// | Author: polo <gao.bo168@gmail.com>
-// +----------------------------------------------------------------------
-// | Data: 2015-3-4下午5:05:32
-// +----------------------------------------------------------------------
-// | Version: 2015-3-4下午5:05:32
-// +----------------------------------------------------------------------
-// | Copyright: ShowMore
-// +----------------------------------------------------------------------
+
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use plugins\wechat\controller\CommonValidationController;
 use cmf\controller\PluginBaseController;
@@ -28,82 +18,14 @@ class IndexController extends CommonValidationController{
 			//刷新access_token（如果需要）
 			$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
 			//拉取用户信息(需scope为 snsapi_userinfo)
-			//$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
-			$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-			var_dump($userInfo);die;
-			$this->assign(
-			   array(
-			      'openid'=>$userInfo['openid'],
-				  'nickname'=>$userInfo['nickname'],
-				  'sex'=>$userInfo['sex'],
-				  'headimgurl'=>$userInfo['headimgurl']
-			   )
-			);var_dump($userInfo);
+			$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+			//$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
+			var_dump($userInfo);
 			//return $this->fetch("/index/index");
 		}
 			
 		return false;
-				
-		/*
-		 // 获取表单上传文件 例如上传了001.jpg    
-		 $file = request()->file('file');    
-		 // 移动到框架应用根目录/public/upload/ 目录下    
-		 $info = $file->move(ROOT_PATH . 'public/upload');
-		 if($info){
-			 // 成功上传后 获取上传信息
-			 // 输出 jpg       
-			 echo $info->getExtension();
-			 // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-			 echo $info->getSaveName();
-			 // 输出 42a79759f284b767dfcb2a0197904287.jpg
-			 echo $info->getFilename(); 
-		 }else{
-			 // 上传失败获取错误信息
-			 echo $file->getError();
-		 }
-		
-		*/
-		
 	}
-	
-		
-	public function upload(){
-		var_dump(request()->param(true));
-		var_dump($_FILES);
-		/*var_dump(request()->param(true));
-		var_dump($_FILES);
-		if ($_FILES["file"]["error"] > 0)
-{
-    echo "错误：" . $_FILES["file"]["error"] . "<br>";
-}
-else
-{
-    echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
-    echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
-    echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-    echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
-}*/
-	   //echo 233;
-	   /*
-	   echo request()->post('media_id').'--'.request()->param('media_id');
-	    echo request()->param('media_id');
-	    $obj = new CommonValidationController();
-		$weObj = $obj->getWeObj();
-		//通过code换取网页授权access_token
-		$res = $weObj->getOauthAccessToken();
-	    //根据微信JS接口上传了图片,会返回上面写的images.serverId（即media_id），填在下面即可  
-		 $str = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$res['refresh_token']."&media_id=".request()->param('media_id');  
-		 //获取微信“获取临时素材”接口返回来的内容（即刚上传的图片）  
-		 $a = file_get_contents($str);  
-		//__DIR__指向当前执行的PHP脚本所在的目录  
-		 echo __DIR__;
-		 //以读写方式打开一个文件，若没有，则自动创建  
-		 $resource = fopen(__DIR__."/1.jpg" , 'w+');  
-		 //将图片内容写入上述新建的文件  
-		 fwrite($resource, $a);  
-		 //关闭资源  
-		 fclose($resource);  */
-	}	
 		
 	/**
      * 微信插件用户注册页面

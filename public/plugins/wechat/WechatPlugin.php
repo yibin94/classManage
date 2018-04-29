@@ -1,19 +1,8 @@
 <?php
-// +----------------------------------------------------------------------
-// | WechatPlugin.class.php
-// +----------------------------------------------------------------------
-// | Author: polo <gao.bo168@gmail.com>
-// +----------------------------------------------------------------------
-// | Data: 2015-3-3下午2:33:43
-// +----------------------------------------------------------------------
-// | Version: 2015-3-3下午2:33:43
-// +----------------------------------------------------------------------
-// | Copyright: ShowMore
-// +----------------------------------------------------------------------
+
 namespace plugins\wechat;
 use cmf\lib\Plugin;
 use think\Db;
-//use app\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\api\TpWechat\TpWechat;
 use plugins\wechat\model\PluginWechatModel;
 class WechatPlugin extends Plugin{

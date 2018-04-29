@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | IndexController.class.php
-// +----------------------------------------------------------------------
-// | Author: polo <gao.bo168@gmail.com>
-// +----------------------------------------------------------------------
-// | Data: 2018-3-15下午5:05:32
-// +----------------------------------------------------------------------
-// | Version: 2015-3-4下午5:05:32
-// +----------------------------------------------------------------------
-// | Copyright: ShowMore
-// +----------------------------------------------------------------------
+
 namespace plugins\wechat\controller; //Demo插件英文名，改成你的插件英文就行了
 use cmf\controller\PluginBaseController;
 use plugins\wechat\model\PluginWechatModel;
@@ -21,8 +11,10 @@ class CommonValidationController extends PluginBaseController{
 	protected function getWeObj(){
 		$config = $this->getPlugin()->getConfig();
 		$options = array(
-						'token'=>$config['Token'], //填写你设定的key
-						'encodingaeskey'=>$config['EncodingAESKey'],//填写加密用的EncodingAESKey
+		                //填写你设定的key
+						'token'=>$config['Token'],
+						//填写加密用的EncodingAESKey
+						'encodingaeskey'=>$config['EncodingAESKey'],
 						'appid'=>$config['AppID'], //填写高级调用功能的appid
 						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
 				   );
@@ -36,7 +28,7 @@ class CommonValidationController extends PluginBaseController{
 		if (!$code){
 			$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
-			$callback = request()->url(true);// 获取当前请求的包含域名的完整URL地址
+			$callback = request()->url(true);//获取当前请求(包含域名)的完整URL地址
 			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
 			//header("Location: $callback");
 		}
