@@ -7,18 +7,20 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use think\Request;
 
 class CommonValidationController extends PluginBaseController{
-	
-	protected function getWeObj(){
-		$config = $this->getPlugin()->getConfig();
-		$options = array(
-		                //填写你设定的key
-						'token'=>$config['Token'],
-						//填写加密用的EncodingAESKey
-						'encodingaeskey'=>$config['EncodingAESKey'],
-						'appid'=>$config['AppID'], //填写高级调用功能的appid
-						'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
-				   );
-		return new TpWechat($options);
+	protected static function getWeObj(){
+		if(!isset($weObj)){
+			$config = $this->getPlugin()->getConfig();
+			$options = array(
+			                //填写你设定的key
+							'token'=>$config['Token'],
+							//填写加密用的EncodingAESKey
+							'encodingaeskey'=>$config['EncodingAESKey'],
+							'appid'=>$config['AppID'], //填写高级调用功能的appid
+							'appsecret'=>$config['AppSecret'] //填写高级调用功能的密钥
+					   );
+			$weObj = new TpWechat($options);
+		}
+		return $weObj;
 	}
     /* 公共验证控制器初始化验证是否已经登录. */
 	protected function _initialize()
