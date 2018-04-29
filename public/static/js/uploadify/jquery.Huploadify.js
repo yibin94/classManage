@@ -221,7 +221,9 @@ $.fn.Huploadify = function(opts){
 							  option.onUploadSuccess&&option.onUploadSuccess(file, xhr.responseText);
 							  //在指定的间隔时间后删掉进度条
 							  setTimeout(function(){
-							  	_this.find('#fileupload_'+instanceNumber+'_'+file.index).fadeOut();
+							  	//_this.find('#fileupload_'+instanceNumber+'_'+file.index).fadeOut();
+								_this.find('.uploadify-progress').fadeOut();
+								_this.find('.delfilebtn').fadeOut();
 							  },option.removeTimeout);
 						  } else {
 							  option.onUploadError&&option.onUploadError(file, xhr.responseText);		
