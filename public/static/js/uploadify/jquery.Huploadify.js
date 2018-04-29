@@ -9,7 +9,7 @@ $.fn.Huploadify = function(opts){
 		multi:true,//是否允许选择多个文件
 		formData:null,//发送给服务端的参数，格式：{key1:value1,key2:value2}
 		fileObjName:'file',//在后端接受文件的参数名称，如PHP中的$_FILES['file']
-		fileSizeLimit:1024*60/*2048*/,//允许上传的文件大小，单位KB
+		fileSizeLimit:2048,//允许上传的文件大小，单位KB
 		showUploadedPercent:true,//是否实时显示上传的百分比，如20%
 		showUploadedSize:false,//是否实时显示已上传的文件大小，如1M/2M
 		buttonText:'选择文件',//上传按钮上的文字
