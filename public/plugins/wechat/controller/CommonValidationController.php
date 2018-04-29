@@ -8,7 +8,7 @@ use think\Request;
 
 class CommonValidationController extends PluginBaseController{
 
-	const CONFIG = $this->getPlugin()->getConfig();
+	const CONFIG = new CommonValidationController()->getPlugin()->getConfig();
 	protected static function getWeObj(){
 		if(!isset($weObj)){
 			$options = array(
