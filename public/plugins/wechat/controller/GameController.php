@@ -10,11 +10,11 @@ use think\Db;
 class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
-        if(!(isset($weObj))){
+        if(!isset($weObj)){
             $obj = new CommonValidationController();
             $weObj = $obj->getWeObj();
         }
-        
+        $obj->authLogin();//授权验证登录
         //通过code换取网页授权access_token
         $res = $weObj->getOauthAccessToken();
         if($res){
@@ -22,11 +22,8 @@ class GameController extends CommonValidationController{
             $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
             //拉取用户信息(需scope为 snsapi_userinfo)
             $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
-            //$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-            var_dump($userInfo);session('userInfo',$userInfo);
-            //return $this->fetch("/index/index");
+            session('userInfo',$userInfo);
         }
-//die;
 		return $this->fetch("/game/gameList");
 	}
 	

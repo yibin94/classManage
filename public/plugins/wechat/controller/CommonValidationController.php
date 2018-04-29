@@ -23,16 +23,14 @@ class CommonValidationController extends PluginBaseController{
 		return $weObj;
 	}
     /* 公共验证控制器初始化验证是否已经登录. */
-	protected function _initialize()
+	protected function authLogin()
     {
-		parent::_initialize();
 		$code = isset($_GET['code'])?$_GET['code']:'';//code不为空则表明允许授权登录。
 		if (!$code){
 			$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 			$callback = request()->url(true);//获取当前请求(包含域名)的完整URL地址
 			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
-			//header("Location: $callback");
 		}
     }
 
