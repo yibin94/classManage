@@ -11,7 +11,8 @@ class GameController extends CommonValidationController{
     /*游戏列表*/
 	function index(){
         if(!(isset($weObj))){
-            $weObj = new CommonValidationController()->getWeObj();
+            $obj = new CommonValidationController();
+            $weObj = $obj->getWeObj();
         }
         
         //通过code换取网页授权access_token
@@ -22,7 +23,7 @@ class GameController extends CommonValidationController{
             //拉取用户信息(需scope为 snsapi_userinfo)
             $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
             //$userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-            var_dump($userInfo);
+            var_dump($userInfo);session('userInfo',$userInfo);
             //return $this->fetch("/index/index");
         }
 die;
@@ -30,6 +31,7 @@ die;
 	}
 	
 	function chooseGame($name){
+        var_export(session('userInfo'));die;
 		return $this->fetch("/game/$name/index");
 	}
 }	

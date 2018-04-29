@@ -37,5 +37,8 @@ define('THINKCMF_VERSION', '5.0.170927');
 // 加载框架基础文件
 require CMF_ROOT . 'simplewind/thinkphp/base.php';
 
+//开启 session
+session_start();
+
 // 执行应用
 \think\App::run()->send();
