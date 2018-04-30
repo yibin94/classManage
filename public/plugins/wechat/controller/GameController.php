@@ -11,7 +11,7 @@ class GameController extends PluginBaseController{
 	function index(){
         if(!isset($weObj)){
             $loginObj = new LoginValidationController();
-            $weObj = $obj->getWeObj();
+            $weObj = $loginObj->getWeObj();
         }
         $loginObj->authLogin();//授权验证登录获取code
         //通过code换取网页授权access_token
