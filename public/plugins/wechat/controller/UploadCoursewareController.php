@@ -8,6 +8,7 @@ use think\Validate;
 use think\Db;
 
 class UploadCoursewareController extends PluginBaseController{
+    /* 上传文件处理 */
     function index(){
 		 $fileName = $_FILES['file']['name'];
          $saveUrl = "/webdata/classManage/public/upload";
@@ -22,10 +23,12 @@ class UploadCoursewareController extends PluginBaseController{
 		 //file_put_contents($saveUrl.'/'.$fileName, $fileData);
 	}
 
-	public function upload(){
+    /* 上传文件页面 */
+	public function upload(){        var_export(session('userInfo'));die;
 		return $this->fetch("/uploadCourseware/upload");
 	}
 	
+    /* 查看或下载文件处理 */
     public function download(){
 		$filename = "resume.pdf";
 		$url = "/webdata/classManage/public/resume.pdf";
