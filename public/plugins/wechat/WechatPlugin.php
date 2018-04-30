@@ -189,7 +189,7 @@ SQL;
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
            		            }else{
                               $res = Db::name('PluginWechatUser')->insert($user_data);
-           		                $weObj->text($res)->reply();die;
+           		                $weObj->text($res)->reply();
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
