@@ -7,7 +7,7 @@ use plugins\wechat\api\TpWechat\TpWechat;
 use think\Request;
 
 class LoginValidationController extends PluginBaseController{
-	protected function getWeObj(){
+	public function getWeObj(){
 		if(!isset($weObj)){
 			$config = $this->getPlugin()->getConfig();
 			$options = array(
@@ -23,7 +23,7 @@ class LoginValidationController extends PluginBaseController{
 		return $weObj;
 	}
     /* 登录验证控制器初始化验证是否已经登录. */
-	protected function authLogin()
+	public function authLogin()
     {
 		$code = isset($_GET['code'])?$_GET['code']:'';//code不为空则表明允许授权登录。
 		if (!$code){
