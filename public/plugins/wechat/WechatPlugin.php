@@ -77,8 +77,8 @@ CREATE TABLE `{$db_prefix}plugin_wechat_courseware` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(120) NOT NULL COMMENT '课件名字',
   `url` varchar(255) NOT NULL COMMENT '课件地址目录',
-  `views` int(11) NOT NULL COMMENT '浏览量',
-  `downloads` int(11) NOT NULL COMMENT '下载量'
+  `views` int(11) NOT NULL DEFAULT 0 COMMENT '浏览量',
+  `downloads` int(11) NOT NULL DEFAULT 0 COMMENT '下载量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号课件表';
 SQL;
