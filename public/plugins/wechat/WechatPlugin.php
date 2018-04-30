@@ -171,19 +171,18 @@ SQL;
            		            /* 如果公众号没有认证,则不能拉取用户信息 */
            		            if($config['IsAuth'] == 0){
                               //创建基本用户数据
-           		                $user_data = array(
-           		                    'subscribe' => 1,
-           		                    'openid' => $openid,
-           		                    'subscribe_time' => time()
-           		                );
+           		                $user_data['openid'] = $openid;
            		            }else if($config['IsAuth'] == 1){
                               //直接根据 openid 获取用户信息
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
+                          $user_data['subscribe'] = 1;
+                          $user_data['subscribe_time'] = time();
+
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
-							
+							$weObj->text(json_encode($judge));die;
            		            if($judge){
-           		                Db::name('PluginWechatUser')->where('id',$judge['id'])->save($user_data);
+           		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
            		            }else{
            		                Db::name('PluginWechatUser')->insert($user_data);
            		            }
@@ -191,9 +190,9 @@ SQL;
            		            $weObj->text($config['Welcome'])->reply();
            		            break;
        		            case TpWechat::EVENT_UNSUBSCRIBE:
-       		                $judge = model('PluginWechatUser')->where(array('openid'=>$openid))->find();
+       		                $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
        		                if($judge){
-       		                    Db::name('PluginWechatUser')->where(array('id' => $judge['id']))->setField(array('subscribe'=>0));
+       		                    Db::name('PluginWechatUser')->where(array('id' => $judge['id']))->setField('subscribe',0);
        		                }
        		                break;
        		            default:
