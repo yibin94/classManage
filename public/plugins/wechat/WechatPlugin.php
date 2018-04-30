@@ -180,12 +180,13 @@ SQL;
                           $user_data['subscribe_time'] = time();
 
            		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
-							$weObj->text(json_encode($user_data))->reply();die;
+							//$weObj->text(json_encode($user_data))->reply();die;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
            		            }else{
-           		                Db::name('PluginWechatUser')->insert($user_data);
-           		            }
+                              $res = Db::name('PluginWechatUser')->insert($user_data);
+           		                $weObj->text($res)->reply();die;
+           		            }$weObj->text(2333333)->reply();
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
            		            break;
