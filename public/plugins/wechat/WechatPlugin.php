@@ -187,9 +187,8 @@ SQL;
            		            $judge = Db::name('pluginWechatUser')->where('openid',$openid)->find();
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
-           		            }else{
+           		            }else{//当插入数据多于表字段时为了避免出错可将database.php中'fields_strict' => false。
                               $res = Db::name('PluginWechatUser')->insert($user_data);
-           		                $weObj->text($res)->reply();
            		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
