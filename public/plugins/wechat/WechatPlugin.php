@@ -171,7 +171,12 @@ SQL;
            		            /* 如果公众号没有认证,则不能拉取用户信息 */
            		            if($config['IsAuth'] == 0){
                               //创建基本用户数据
-           		                $user_data['openid'] = $openid;
+           		                $user_data = [
+                                  'openid' => $openid,
+                                  'sex' => 0,
+                                  'headimgurl' => '',
+                                  'nickname' => '匿名' 
+                              ];
            		            }else if($config['IsAuth'] == 1){
                               //直接根据 openid 获取用户信息
            		                $user_data = $weObj->getUserInfo($openid);
@@ -179,12 +184,12 @@ SQL;
                           $user_data['subscribe'] = 1;
                           $user_data['subscribe_time'] = time();
 
-           		            $judge = Db::name('PluginWechatUser')->where('openid',$openid)->find();
+           		            $judge = Db::table('cmf_plugin_wechat_user')->where('openid',$openid)->find();
 							//$weObj->text(json_encode($user_data))->reply();die;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
            		            }else{
-                              $res = Db::name('PluginWechatUser')->insert($user_data);
+                              $res = Db::table('cmf_plugin_wechat_user')->insert($user_data);
            		                $weObj->text($res)->reply();die;
            		            }$weObj->text(2333333)->reply();
            		            /* 下推关注欢迎语 */
