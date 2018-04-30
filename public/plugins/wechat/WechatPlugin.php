@@ -23,7 +23,7 @@ class WechatPlugin extends Plugin{
         $sql1=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
-  `subscribe` tinyint(2) NOT NULL DEFAULT 0 COMMENT '用户是否订阅该公众号标识，1是0否',
+  `subscribe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '用户是否订阅该公众号标识，1是0否',
   `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
   `nickname` varchar(255) NOT NULL COMMENT '用户的昵称',
   `sex` tinyint(2) NOT NULL COMMENT '用户的性别，值为1时是男性，值为2时是女性，值为0时是未知',
