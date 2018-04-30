@@ -24,7 +24,9 @@ class UploadCoursewareController extends PluginBaseController{
 	}
 
     /* 上传文件页面 */
-	public function upload(){        var_export(session('userInfo'));die;
+	public function upload(){       
+        echo UPLOADFILE_SAVE_PATH;
+        var_export(session('userInfo'));die;
 		return $this->fetch("/uploadCourseware/upload");
 	}
 	
