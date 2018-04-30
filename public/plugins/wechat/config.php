@@ -44,12 +44,6 @@ return array (
             'value' => '0',
             'tip' => '此公众号是否通过认证'
         ),
-        'BaiduAk' => array(
-            'title' => '百度地图api秘钥:', // 表单的label标题
-            'type' => 'text',// 表单的类型：text,password,textarea,checkbox,radio,select等
-            'value' => 'xxxxxxxxxxxxxx',// 表单的默认值
-            'tip' => '申请地址:http://lbsyun.baidu.com/apiconsole/key'
-        ),
         'Welcome' => array(
             'title' => '用户关注欢迎语:', // 表单的label标题
             'type' => 'textarea',// 表单的类型：text,password,textarea,checkbox,radio,select等
