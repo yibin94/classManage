@@ -184,15 +184,13 @@ SQL;
                           $user_data['subscribe'] = 1;
                           $user_data['subscribe_time'] = time();
 
-           		            $judge = Db::table('cmf_plugin_wechat_user')->where('openid',$openid)->find();
-							//$weObj->text(json_encode($user_data))->reply();die;
+           		            $judge = Db::name('pluginWechatUser')->where('openid',$openid)->find();
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
-           		            }else{$weObj->text(2355533333)->reply();
-
-                              $res = Db::table('cmf_plugin_wechat_user')->insert($user_data);
+           		            }else{
+                              $res = Db::name('PluginWechatUser')->insert($user_data);
            		                $weObj->text($res)->reply();die;
-           		            }$weObj->text(2333333)->reply();
+           		            }
            		            /* 下推关注欢迎语 */
            		            $weObj->text($config['Welcome'])->reply();
            		            break;
