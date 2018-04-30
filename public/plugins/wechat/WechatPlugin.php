@@ -188,7 +188,8 @@ SQL;
 							//$weObj->text(json_encode($user_data))->reply();die;
            		            if($judge){
            		                Db::name('PluginWechatUser')->where('id',$judge['id'])->update($user_data);
-           		            }else{
+           		            }else{$weObj->text(2355533333)->reply();
+
                               $res = Db::table('cmf_plugin_wechat_user')->insert($user_data);
            		                $weObj->text($res)->reply();die;
            		            }$weObj->text(2333333)->reply();
