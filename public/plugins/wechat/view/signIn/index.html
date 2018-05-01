@@ -15,7 +15,7 @@
             echo '请正确填写绑定学号';
     </php>
     </div>
-    <div class="weui-cells weui-cells_form">
+    <div class="weui-cells weui-cells_form" action="{cmf_plugin_url('wechat://SignIn/index')}">
         <div class="weui-cell">
             <div class="weui-cell__hd">
                <label class="weui-label">学号</label>
@@ -36,7 +36,7 @@
                <label class="weui-label">学号</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入学号(不填或留空则不修改！)"/>
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="(不填或留空则不修改！)"/>
             </div>
         </div>
     </div>
@@ -47,8 +47,10 @@
     </div>
     <php>            
         }
-    </php>  
-    
+    </php>
+    <div class="weui-btn-area">  
+       <a href="javascript:;" class="weui-btn weui-btn_primary">提交</a>
+    </div>
     <div class="weui-footer">
         <p class="weui-footer__text">Copyright &copy; 2017-2018 zsb</p>
     </div>

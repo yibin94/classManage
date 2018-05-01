@@ -9,20 +9,21 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-		$action = request()->param('act');
-        if(strcmp($action, "add") == 0){
-            //echo '绑定学号操作';
-            $this->assign('act', 'add');
-            return $this->fetch('signIn/index');
+        if(request()->isPost()){
+            var_dump(request()->post());
+        }else{
+    		$action = request()->param('act');
+            if(strcmp($action, "add") == 0){
+                //echo '绑定学号操作';
+                $this->assign('act', 'add');
+                return $this->fetch('signIn/index');
+            }
+            if(strcmp($action, "modify") == 0){
+                //echo '更换学号操作';
+                $this->assign('act', 'modify');
+                return $this->fetch('signIn/index');
+            }
         }
-        if(strcmp($action, "modify") == 0){
-            //echo '更换学号操作';
-            $this->assign('act', 'modify');
-            return $this->fetch('signIn/index');
-        }
-        //$data = Db::name('PluginWechatUser')->where('openid',$openid);
-        //$this->fetch();	
-		//return false;
 	}
 		
          
