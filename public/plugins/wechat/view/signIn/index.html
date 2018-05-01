@@ -8,7 +8,7 @@
     <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
 </head>
 <body>
-<form id='form' action="{cmf_plugin_url('wechat://SignIn/index')}" method="post">
+<form action="{cmf_plugin_url('wechat://SignIn/index')}" method="post">
   <div class="page">
     <div class="weui-cells__title">
     <php>
@@ -50,7 +50,7 @@
         }
     </php>
     <div class="weui-btn-area">  
-       <a href="document.getElementById('form').submit()" class="weui-btn weui-btn_primary">提交</a>
+       <input type="submit" class="weui-btn weui-btn_primary" value="提交"/>
     </div>
   </form>
     <div class="weui-footer">
