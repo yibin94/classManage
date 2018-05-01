@@ -12,7 +12,7 @@ class SignInController extends PluginBaseController{
 		$action = request()->param('act');
         if(strcmp($action, "add") == 0){
             //echo '绑定学号操作';
-            $this->fetch('signIn/index?act=add');
+            $this->fetch('signIn/index',['act' => 'add']);
         }
         if(strcmp($action, "modify") == 0){
             //echo '更换学号操作';
