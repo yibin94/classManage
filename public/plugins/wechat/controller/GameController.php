@@ -8,7 +8,7 @@ use think\Db;
 
 class GameController extends PluginBaseController{
     /*游戏列表*/
-	function index(){
+	public function index(){
         if(!isset($weObj)){
             $loginObj = new LoginValidationController();
             $weObj = $loginObj->getWeObj();
@@ -26,8 +26,13 @@ class GameController extends PluginBaseController{
 		return $this->fetch("/game/gameList");
 	}
 	/*选择并进入游戏*/
-	function chooseGame($name){
+	public function chooseGame($name){
         var_export(session('userInfo'));die;
 		return $this->fetch("/game/$name/index");
 	}
+
+    /* 游戏排行表 */
+    public function ranking(){
+        echo "游戏排行榜";
+    } 
 }	

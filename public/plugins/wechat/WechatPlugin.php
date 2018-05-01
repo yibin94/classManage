@@ -153,29 +153,23 @@ SQL;
              array(
                 "name" => "签到",
                 "sub_button" => array(
-                   array ('type'=>'view','name'=>'绑定学号','url'=>'http://shibin.tech/classM
-    anage/public/index.php/plugin/wechat/SignIn/index.html?act=0'),
-                   array ('type'=>'view','name'=>'换绑学号','url'=>'http://shibin.tech/classM
-    anage/public/index.php/plugin/wechat/SignIn/index.html?act=1'),
+                   array ('type'=>'view','name'=>'绑定学号','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act="add"'),
+                   array ('type'=>'view','name'=>'换绑学号','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act="modify"'),
                    array ('type'=>'click','name'=>'签到','key'=>'MENU_KEY_SIGNIN')
                  )
              ),
              array(
                 "name" => "课间娱乐",
                 "sub_button" => array(
-                     array ('type'=>'view','name'=>'小游戏','url'=>'http://shibin.tech/classM
-      anage/public/index.php/plugin/wechat/Game/index.html'),
-                     array ('type'=>'view','name'=>'游戏排行榜','url'=>'http://shibin.tech/classM
-      anage/public/index.php/plugin/wechat/Game/record.html')
+                     array ('type'=>'view','name'=>'小游戏','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/Game/index.html'),
+                     array ('type'=>'view','name'=>'游戏排行榜','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/Game/ranking.html')
                  )
              ),
              array(
                 "name" => "学习资料",
                 "sub_button" => array(
-                     array ('type'=>'view','name'=>'上传课件','url'=>'http://shibin.tech/classM
-      anage/public/index.php/plugin/wechat/UploadCourseware/upload.html'),
-                     array ('type'=>'view','name'=>'查看或下载课件','url'=>'http://shibin.tech/classM
-      anage/public/index.php/plugin/wechat/UploadCourseware/viewOrDownload.html')
+                     array ('type'=>'view','name'=>'上传课件','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/UploadCourseware/upload.html'),
+                     array ('type'=>'view','name'=>'查看或下载课件','url'=>'http://shibin.tech/classManage/public/index.php/plugin/wechat/UploadCourseware/viewOrDownload.html')
                  )
              )
           )

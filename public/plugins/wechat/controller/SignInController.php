@@ -8,11 +8,18 @@ use think\Request;
 
 class SignInController extends PluginBaseController{
 	
-    function index(){
-		$data = Db::name('PluginWechatUser')->where('openid',$openid);
-        $this->fetch();	
+    public function index(){
+		$action = request()->param('act');
+        if($action == "add"){
+            echo '绑定学号操作';
+        }elseif($action == "modify"){
+            echo '更换学号操作';
+        }
+        //$data = Db::name('PluginWechatUser')->where('openid',$openid);
+        //$this->fetch();	
 		return false;
 	}
 		
+         
 	
 }
