@@ -9,9 +9,9 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-        if(request()->isPost()){
-            var_dump(request()->post());
-            echo request()->post('studentId');
+        if(request()->isPost()){echo session('openid');
+            //var_dump(request()->post());
+            $studentId = request()->post('studentId');
         }else{
     		$action = request()->param('act');
             if(strcmp($action, "add") == 0){

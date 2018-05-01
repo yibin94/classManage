@@ -177,7 +177,7 @@ SQL;
        $result = $weObj->createMenu($newmenu);
   */         
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();
+                $openid = $weObj->getRev()->getRevFrom();session('openid',$openid);
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
