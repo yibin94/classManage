@@ -153,8 +153,8 @@ SQL;
              array(
                 "name" => "签到",
                 "sub_button" => array(
-                   array ('type'=>'view','name'=>'绑定学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act="add"'),
-                   array ('type'=>'view','name'=>'换绑学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act="modify"'),
+                   array ('type'=>'view','name'=>'绑定学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act=add'),
+                   array ('type'=>'view','name'=>'换绑学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act=modify'),
                    array ('type'=>'click','name'=>'签到','key'=>'MENU_KEY_SIGNIN')
                  )
              ),
