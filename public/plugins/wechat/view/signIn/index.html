@@ -10,9 +10,9 @@
 <body>
   <div class="page">
     <div class="weui-cells__title">
-       <?php if({$Request.get.act}=='add'){ 
+       <?php if($Request.get.act == 'add'){ 
                  echo '请正确填写绑定学号'; 
-             }elseif({$Request.get.act}=='modify'){
+             }elseif($Request.get.act == 'modify'){
                  echo '请谨慎操作：换绑学号一旦确定，之前此账号对应的签到记录将作废！';
              }else{
                 echo '未知操作！';
