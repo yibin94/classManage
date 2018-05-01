@@ -146,7 +146,7 @@ SQL;
                 $weObj = new TpWechat(self::$options);
                 $weObj->valid();		
 					
-    
+/*    
        //设置菜单     
        $newmenu = array(
           "button" => array(
@@ -175,9 +175,9 @@ SQL;
           )
       );     
        $result = $weObj->createMenu($newmenu);
-           
+  */         
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom(); session('userInfo',$openid);
+                $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
