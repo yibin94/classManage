@@ -9,7 +9,7 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-		$action = request()->param('act');
+		$action = request()->param('act');echo $action;die;
         if($action == "add"){
             echo '绑定学号操作';
         }elseif($action == "modify"){

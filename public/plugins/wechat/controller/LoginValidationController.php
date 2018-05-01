@@ -30,7 +30,8 @@ class LoginValidationController extends PluginBaseController{
 			$weObj = $this->getWeObj();
 			//用户同意授权后跳转的回调地址，snsapi_userinfo获取用户信息
 			$callback = request()->url(true);//获取当前请求(包含域名)的完整URL地址
-			return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
+			echo $callback;die;
+			//return $this->redirect($weObj->getOauthRedirect($callback,'STATE','snsapi_userinfo'));
 		}
     }
 
