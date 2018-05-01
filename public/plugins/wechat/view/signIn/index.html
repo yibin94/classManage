@@ -10,15 +10,10 @@
 <body>
   <div class="page">
     <div class="weui-cells__title">
-       <php> 
-             if($act == 'add'){ 
-                 echo '请正确填写绑定学号'; 
-             }elseif($act == 'modify'){
-                 echo '请谨慎操作：换绑学号一旦确定，之前此账号对应的签到记录将作废！';
-             }else{
-                echo '未知操作！';
-             }
-       </php>
+    <php>
+        if($act == 'add'){
+            echo '请正确填写绑定学号';
+    </php>
     </div>
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
@@ -30,18 +25,30 @@
             </div>
         </div>
     </div>
-    <div class="weui-cells__title">表单报错</div>
+    <php>       
+        }elseif($act == 'modify'){
+            echo '请谨慎操作：换绑学号一旦确定，之前此账号对应的签到记录将作废！';
+    </php>
+    </div>
     <div class="weui-cells weui-cells_form">
-        <div class="weui-cell weui-cell_warn">
-            <div class="weui-cell__hd"><label for="" class="weui-label">卡号</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入卡号"/>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+               <label class="weui-label">学号</label>
             </div>
-            <div class="weui-cell__ft">
-                <i class="weui-icon-warn"></i>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入学号(不填或留空则不修改！)"/>
             </div>
         </div>
     </div>
+    <php>    
+        }else{
+            echo '未知操作！';
+    </php>
+    </div>
+    <php>            
+        }
+    </php>  
+    
     <div class="weui-footer">
         <p class="weui-footer__text">Copyright &copy; 2017-2018 zsb</p>
     </div>
