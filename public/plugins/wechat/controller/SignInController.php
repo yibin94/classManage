@@ -12,13 +12,11 @@ class SignInController extends PluginBaseController{
 		$action = request()->param('act');
         if(strcmp($action, "add") == 0){
             //echo '绑定学号操作';
-            $this->assign('act', 'add');
-            return $this->fetch('signIn/index');
+            return $this->fetch('signIn/index', ['act' => 'add']);
         }
         if(strcmp($action, "modify") == 0){
             //echo '更换学号操作';
-            $this->assign('act', 'modify');
-            return $this->fetch('signIn/index');
+            return $this->fetch('signIn/index', ['act' => 'modify']);
         }
         //$data = Db::name('PluginWechatUser')->where('openid',$openid);
         //$this->fetch();	
