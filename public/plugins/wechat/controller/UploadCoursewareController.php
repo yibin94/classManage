@@ -31,6 +31,10 @@ class UploadCoursewareController extends PluginBaseController{
 		return $this->fetch("/uploadCourseware/upload");
 	}
 	
+    public function viewOrDownload(){
+        echo '查看或下载文件处理';
+    }
+
     /* 查看或下载文件处理 */
     public function download(){
 		$filename = "resume.pdf";

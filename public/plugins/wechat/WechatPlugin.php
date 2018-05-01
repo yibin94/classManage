@@ -146,17 +146,41 @@ SQL;
                 $weObj = new TpWechat(self::$options);
                 $weObj->valid();		
 					
-    //获取菜单操作:
-    //$menu = $weObj->getMenu();
-    //设置菜单
-    $newmenu =  array(
-       "button"=>
-         array(
-           array('type'=>'click','name'=>'最新消息','key'=>'MENU_KEY_NEWS'),
-           array('type'=>'view','name'=>'我要搜索','url'=>'http://www.baidu.com'),
-         )
-    );
-    $result = $weObj->createMenu($newmenu);$weObj->text($result)->reply();
+    
+       //设置菜单     
+       $newmenu = array(
+          "button" => array(
+             array(
+                "name" => "签到",
+                "sub_button" => array(
+                   array ('type'=>'view','name'=>'绑定学号','url'=>'http://shibin.tech/classM
+    anage/public/index.php/plugin/wechat/SignIn/index.html?act=0'),
+                   array ('type'=>'view','name'=>'换绑学号','url'=>'http://shibin.tech/classM
+    anage/public/index.php/plugin/wechat/SignIn/index.html?act=1'),
+                   array ('type'=>'click','name'=>'签到','key'=>'MENU_KEY_SIGNIN')
+                 )
+             ),
+             array(
+                "name" => "课间娱乐",
+                "sub_button" => array(
+                     array ('type'=>'view','name'=>'小游戏','url'=>'http://shibin.tech/classM
+      anage/public/index.php/plugin/wechat/Game/index.html'),
+                     array ('type'=>'view','name'=>'游戏排行榜','url'=>'http://shibin.tech/classM
+      anage/public/index.php/plugin/wechat/Game/record.html')
+                 )
+             ),
+             array(
+                "name" => "学习资料",
+                "sub_button" => array(
+                     array ('type'=>'view','name'=>'上传课件','url'=>'http://shibin.tech/classM
+      anage/public/index.php/plugin/wechat/UploadCourseware/upload.html'),
+                     array ('type'=>'view','name'=>'查看或下载课件','url'=>'http://shibin.tech/classM
+      anage/public/index.php/plugin/wechat/UploadCourseware/viewOrDownload.html')
+                 )
+             )
+          )
+      );     
+       $result = $weObj->createMenu($newmenu);
 
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
