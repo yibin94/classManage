@@ -30,7 +30,7 @@ class GameController extends PluginBaseController{
                 $res = $weObj->getOauthAccessToken();
             }
         }
-        
+        var_dump($res);die;
         if(!empty($res)){
             //刷新access_token（如果需要）
             //$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
