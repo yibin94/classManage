@@ -240,13 +240,14 @@ SQL;
                                   'openid' => $openid,
                                   'sex' => 0,
                                   'headimgurl' => '',
-                                  'nickname' => '匿名' 
+                                  'nickname' => '匿名'
                               ];
            		            }else if($config['IsAuth'] == 1){
                               //直接根据 openid 获取用户信息
            		                $user_data = $weObj->getUserInfo($openid);
            		            }
                           $user_data['subscribe'] = 1;
+                          $user_data['studentId'] = '';
                           $user_data['subscribe_time'] = time();
 
            		            $judge = Db::name('pluginWechatUser')->where('openid',$openid)->find();
