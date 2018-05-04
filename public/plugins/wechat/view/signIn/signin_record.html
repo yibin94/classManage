@@ -15,14 +15,14 @@
             <th>昵称</th>
             <th>签到时间</th>
         </tr>
-        {volist name="signin_record" id="data"}
+        <volist name="signin_record" id="data">
         <tr>
             <td>{$data.id}</td>
             <td>{$data.studentId}</td>
             <td></td>
             <td>{:date('Y-m-d',$data.signInTime)}</td>
         </tr> 
-        {/volist}
+        </volist>
     </table>
 
     <script src="__PLUGIN_TMPL__/signIn/public/js/weui.min.js"></script>
