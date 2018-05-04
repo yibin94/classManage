@@ -43,7 +43,7 @@ CREATE TABLE `{$db_prefix}plugin_wechat_autoreply` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 SQL;*/
-        $sql3=<<<INSERT
+        /*$sql3=<<<INSERT
 INSERT INTO `{$db_prefix}plugin_wechat_autoreply` VALUES
 ('1', '使用帮助说明', '/^(帮助|bz|help)$/i', 'replyHelp', '1'),
 ('2', '天气预报', '/^(.+)天气$/i', 'replyWeather', '1'),
@@ -53,7 +53,7 @@ INSERT INTO `{$db_prefix}plugin_wechat_autoreply` VALUES
 ('6', '找周边', '/^找(.+)$/i', 'replyFind', '1'),
 ('7', '热门文章', '/^(热门|remen|rm)$/i', 'replyHot', '1'),
 ('8', '热门分类列表', '/^rm(.+)$/i', 'replyHotList', '1');
-INSERT;
+INSERT;*/
       
 	  $sql4=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_games` (
@@ -117,14 +117,16 @@ SQL;
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_courseware;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user_courseware;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_signin;");
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_access_token;");
         Db::execute($sql1);
-        Db::execute($sql2);
-        Db::execute($sql3);
+        //Db::execute($sql2);
+        //Db::execute($sql3);
         Db::execute($sql4);
         Db::execute($sql5);
         Db::execute($sql6);
         Db::execute($sql7);
         Db::execute($sql8);
+        Db::execute($sql9);
         return true;//安装成功返回true，失败false
     }
 
@@ -138,6 +140,7 @@ SQL;
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_courseware;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user_courseware;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_signin;");
+        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_access_token;");
         return true;//卸载成功返回true，失败false
     }
   
