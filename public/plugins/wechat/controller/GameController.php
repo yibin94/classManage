@@ -15,6 +15,8 @@ class GameController extends PluginBaseController{
         }
         $loginObj->authLogin();//授权验证登录获取code
         $openid = session('openid');
+$res = $weObj->getOauthAccessToken();
+        var_dump($res);die;
         if(empty($openid)){
             //通过code换取网页授权access_token
             $res = $weObj->getOauthAccessToken();
@@ -26,7 +28,7 @@ class GameController extends PluginBaseController{
                 'access_token' => $data['access_token'],
                 'openid' => $openid
               ];
-            }else{//access_token过期了就重新获取
+            }else{//access_token过期了或者原来没有就重新获取
                 $res = $weObj->getOauthAccessToken();echo 5555555555;var_dump($res);die;
             }
         }
