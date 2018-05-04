@@ -47,7 +47,7 @@ class GameController extends PluginBaseController{
                    'openid' => $userInfo['openid'],
                    'access_token' => $res['access_token'],
                    'expire_time' => time()+7000
-                ];
+                ];var_dump($data);die;
                 Db::name('pluginWechatAccessToken')->insert($data);
             }
         }
