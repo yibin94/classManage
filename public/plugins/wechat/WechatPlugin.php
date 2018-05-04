@@ -25,6 +25,7 @@ CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `subscribe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '用户是否订阅该公众号标识，1是0否',
   `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
+  `studentId` varchar(20) NOT NULL COMMENT '学号',
   `nickname` varchar(255) NOT NULL COMMENT '用户的昵称',
   `sex` tinyint(2) NOT NULL COMMENT '用户的性别，值为1时是男性，值为2时是女性，值为0时是未知',
   `headimgurl` varchar(255) NOT NULL COMMENT '用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。',
@@ -32,7 +33,7 @@ CREATE TABLE `{$db_prefix}plugin_wechat_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SQL;
-        $sql2=<<<SQL
+        /*$sql2=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_autoreply` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '关键字回复功能名称',
@@ -41,7 +42,7 @@ CREATE TABLE `{$db_prefix}plugin_wechat_autoreply` (
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '功能是否启用,0为不启用,1为启用,默认为1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-SQL;
+SQL;*/
         $sql3=<<<INSERT
 INSERT INTO `{$db_prefix}plugin_wechat_autoreply` VALUES
 ('1', '使用帮助说明', '/^(帮助|bz|help)$/i', 'replyHelp', '1'),
@@ -94,13 +95,23 @@ SQL;
 CREATE TABLE `{$db_prefix}plugin_wechat_signin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
+  `studentId` varchar(20) NOT NULL COMMENT '学号',
   `signInTime` int(10) NOT NULL DEFAULT 0 COMMENT '签到时间戳',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号签到表';
 SQL;
+     $sql9=<<<SQL
+CREATE TABLE `{$db_prefix}plugin_wechat_access_token` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
+  `access_token` varchar(20) NOT NULL COMMENT 'access_token',
+  `expire_time` int(10) NOT NULL DEFAULT 0 COMMENT 'access_token过期时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号access_token缓存表';
+SQL;
      
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
-        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
+        //Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_games;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user_games;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_courseware;");
@@ -121,7 +132,7 @@ SQL;
     public function uninstall(){//卸载方法必须实现
         $db_prefix = config('database.prefix');
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user;");
-        Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
+        //Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_autoreply;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_games;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_user_games;");
         Db::execute("DROP TABLE IF EXISTS {$db_prefix}plugin_wechat_courseware;");
@@ -177,7 +188,7 @@ SQL;
        $result = $weObj->createMenu($newmenu);
   */         
                 //用户openid:
-                $openid = $weObj->getRev()->getRevFrom();session('openid',$openid);
+                $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
                 switch($type) {
                 case TpWechat::MSGTYPE_TEXT:
@@ -195,7 +206,28 @@ SQL;
            		    switch ($rev_event['event']){
            		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
-                          $weObj->text('点我干嘛！')->reply();
+                          switch ($rev_event['EventKey']) {//获取设置的key值。
+                            case 'MENU_KEY_SIGNIN'://签到操作
+                              $record = Db::name('PluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
+                              $studentId = '';
+                              if(!empty($record)){
+                                $studentId = $record['studentId'];
+                              }
+                              $data = [
+                                 'openid' => $openid,
+                                 'studentId' => $studentId,
+                                 'signInTime' => time()
+                              ];
+                              $res = Db::name('PluginWechatSignin')->insertOne($data);
+                              if($res){
+                                 $revCont = '签到成功！';
+                              }
+                              break;
+                            default:
+                              $revCont = '点我干嘛！';
+                              break;
+                          }
+                          $weObj->text($revCont)->reply();
            		            break;
            		        case TpWechat::EVENT_SUBSCRIBE:
            		            /* 如果公众号没有认证,则不能拉取用户信息 */

@@ -12,15 +12,6 @@
     <link href="__ADMIN_TMPL__/public/assets/themes/{:cmf_get_admin_style()}/bootstrap.min.css" rel="stylesheet">
     <link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="__ADMIN_TMPL__/public/assets/themes/{:cmf_get_admin_style()}/login.css" rel="stylesheet">
-    <script>
-        if (window.parent !== window.self) {
-            document.write              = '';
-            window.parent.location.href = window.self.location.href;
-            setTimeout(function () {
-                document.body.innerHTML = '';
-            }, 0);
-        }
-    </script>
 </head>
 <body>
 <div class="wrap">
@@ -31,7 +22,7 @@
 				<table col='2' row='4'>
 				   <tr>
 				      <th>栏目</th><th>值</th>
-					  <td><a href="/classManage/public/resume.pdf">resume</a></td>
+					  <td><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',array('filename'=>''))}">resume</a></td>
 				   </tr>
 				</table>
                 <input id="file-1" type="hidden" name="file_url" >

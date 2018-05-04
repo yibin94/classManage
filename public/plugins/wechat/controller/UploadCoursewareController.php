@@ -32,12 +32,15 @@ class UploadCoursewareController extends PluginBaseController{
 	}
 	
     public function viewOrDownload(){
-        echo '查看或下载文件处理';
+        $courseware = Db::name('PluginWechatCourseware')->select();
+        $this->assign('courseware',$courseware);
+        $this->display();
+        //echo '查看或下载文件处理';
     }
 
     /* 查看或下载文件处理 */
-    public function download(){
-		$filename = "resume.pdf";
+    public function download($filename){
+		//$filename = "resume.pdf";
 		$url = "/webdata/classManage/public/";
         if(!file_exists($url.$filename)){
             $this->error('文件不存在！');

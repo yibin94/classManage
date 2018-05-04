@@ -14,20 +14,48 @@ class GameController extends PluginBaseController{
             $weObj = $loginObj->getWeObj();
         }
         $loginObj->authLogin();//授权验证登录获取code
-        //通过code换取网页授权access_token
-        $res = $weObj->getOauthAccessToken();
-        if($res){
+        $openid = session('openid');
+        if(empty($openid)){
+            //通过code换取网页授权access_token
+            $res = $weObj->getOauthAccessToken();
+        }else{
+            $data = Db::name('PluginWechatAccessToken')->where('openid' => $openid)->find();
+            $res = [];
+            if(!empty($data) && time() < $data['expire_time']){//未过期
+              $res = [
+                'access_token' => $data['access_token'],
+                'openid' => $openid
+              ];
+            }else{//access_token过期了就重新获取
+                $res = $weObj->getOauthAccessToken();
+            }
+        }
+        
+        if(!empty($res)){
             //刷新access_token（如果需要）
-            $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
+            //$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
             //拉取用户信息(需scope为 snsapi_userinfo)
-            $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+            //$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+            $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
             session('userInfo',$userInfo);
+            session('openid',$userInfo['openid']);
+            $data = Db::name('PluginWechatAccessToken')->where('openid' => $userInfo['openid'])->find();
+            if(!empty($data)&&time()>=$data['expire_time']){
+                Db::name('PluginWechatAccessToken')->where('openid' => $userInfo['openid'])->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
+            }else{
+                $data = [
+                   'openid' => $userInfo['openid']
+                   'access_token' => $res['access_token'],
+                   'expire_time' => time()+7000
+                ];
+                Db::name('PluginWechatAccessToken')->insertOne($data);
+            }
         }
 		return $this->fetch("/game/gameList");
 	}
 	/*选择并进入游戏*/
 	public function chooseGame($name){
-        var_export(session('userInfo'));die;
+        
 		return $this->fetch("/game/$name/index");
 	}
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/weui.min.css"/>
+    <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
+</head>
+<body>
+<script type="text/html" id="tpl_list">
+<div class="page">
+    <div class="page__hd">
+        <h1 class="page__title">List</h1>
+        <p class="page__desc">列表</p>
+    </div>
+    <div class="page__bd">
+        <div class="weui-cells__title">带说明的列表项</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>标题文字</p>
+                </div>
+                <div class="weui-cell__ft">说明文字</div>
+            </div>
+            {volist name="courseware" id="data"}
+            <div class="weui-cell weui-cell_swiped">
+                <div class="weui-cell__bd" style="transform: translateX(-68px)">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <p><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',array('filename'=>{$data.name}))}">标题文字</p>
+                        </div>
+                        <div class="weui-cell__ft">说明文字</div>
+                    </div>
+                </div>
+                <div class="weui-cell__ft">
+                    <a class="weui-swiped-btn weui-swiped-btn_warn" href="javascript:">删除</a>
+                </div>
+            </div>
+            {/volist}
+        </div>
+
+        <div class="weui-cells__title">带图标、说明的列表项</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>标题文字</p>
+                </div>
+                <div class="weui-cell__ft">说明文字</div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>标题文字</p>
+                </div>
+                <div class="weui-cell__ft">说明文字</div>
+            </div>
+        </div>
+</div>
+</script>
+</body>
+</html>
+
+
+

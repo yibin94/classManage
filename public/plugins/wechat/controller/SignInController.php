@@ -9,9 +9,50 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-        if(request()->isPost()){echo session('openid');
+        if(empty(session('userInfo'))){
+            if(!isset($weObj)){
+                $loginObj = new LoginValidationController();
+                $weObj = $loginObj->getWeObj();
+            }
+            $loginObj->authLogin();//授权验证登录获取code
+            //通过code换取网页授权access_token
+            $res = $weObj->getOauthAccessToken();
+            if($res){
+                //刷新access_token（如果需要）
+                $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
+                //拉取用户信息(需scope为 snsapi_userinfo)
+                $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
+                session('userInfo',$userInfo);
+            }
+        }else{
+            $userInfo = session('userInfo');
+        }
+        /* 绑定学号或者更换已绑定学号提交表单操作 */
+        if(request()->isPost()){
+            $openid = $userInfo['openid'];
             //var_dump(request()->post());
-            $studentId = request()->post('studentId');
+            $saveStudentId = request()->post('saveStudentId');
+            $modifyStudentId = request()->post('modifyStudentId');
+            if($saveStudentId!=null){
+                Db::name('PluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
+            }elseif($modifyStudentId!=null){
+                if(trim($modifyStudentId)!=''){
+                   $originStudentId = Db::name('PluginWechatUser')->where('openid', $openid)->column('studentId');
+                   if($originStudentId != trim($modifyStudentId)){
+                       $res = Db::name('PluginWechatUser')->where('openid', $openid)->update(['studentId' => $modifyStudentId]);
+                       if($res){
+                          //修改学号后得将该账号下的所有签到记录清空
+                          Db::name('PluginWechatSignin')->where('openid',$openid)->delete();
+                          $this->success('学号修改成功！');
+                       }else{
+                          $this->error('学号修改失败！');
+                       }
+                   }
+                   $this->success('学号跟之前绑定的学号一致，操作成功！');
+                }
+            }else{
+                $this->error('无效操作！');
+            }
         }else{
     		$action = request()->param('act');
             if(strcmp($action, "add") == 0){
