@@ -13,8 +13,8 @@ class GameController extends PluginBaseController{
             $loginObj = new LoginValidationController();
             $weObj = $loginObj->getWeObj();
         }
-        $loginObj->authLogin();//授权验证登录获取code
-        $openid = session('openid');/*
+        /*$loginObj->authLogin();//授权验证登录获取code
+        $openid = session('openid');
 $res = $weObj->getOauthAccessToken();
         var_dump($res);die;
         if(empty($openid)){
