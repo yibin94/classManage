@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/weui.min.css"/>
+    <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
+</head>
+<body>
+    <table col='4' border='1'>
+        <tr>
+            <th>id</th>
+            <th>学号</th>
+            <th>昵称</th>
+            <th>签到时间</th>
+        </tr>
+        {volist name="signin_record" id="data"}
+        <tr>
+            <td>{$data.id}</td>
+            <td>{$data.studentId}</td>
+            <td></td>
+            <td>{:date('Y-m-d',$data.signInTime)}</td>
+        </tr> 
+        {/volist}
+    </table>
+
+</body>
+</html>
+
+
+

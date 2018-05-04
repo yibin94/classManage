@@ -160,7 +160,7 @@ SQL;
                 $weObj = new TpWechat(self::$options);
                 $weObj->valid();		
 					
-/*    
+  
        //设置菜单     
        $newmenu = array(
           "button" => array(
@@ -169,7 +169,9 @@ SQL;
                 "sub_button" => array(
                    array ('type'=>'view','name'=>'绑定学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act=add'),
                    array ('type'=>'view','name'=>'换绑学号','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/index.html?act=modify'),
-                   array ('type'=>'click','name'=>'签到','key'=>'MENU_KEY_SIGNIN')
+                   array ('type'=>'click','name'=>'签到','key'=>'MENU_KEY_SIGNIN'),
+                   array ('type'=>'view','name'=>'我的记录','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/signin_record.html?record=me'),
+                   array ('type'=>'view','name'=>'所有记录','url'=>'http://www.shibin.tech/classManage/public/index.php/plugin/wechat/SignIn/signin_record.html?record=all')
                  )
              ),
              array(
@@ -189,7 +191,7 @@ SQL;
           )
       );     
        $result = $weObj->createMenu($newmenu);
-  */         
+
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();

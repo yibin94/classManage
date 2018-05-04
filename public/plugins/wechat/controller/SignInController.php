@@ -68,7 +68,31 @@ class SignInController extends PluginBaseController{
             }
         }
 	}
-		
-         
 	
+    //查看签到记录  
+    public function signin_record(){
+        $user = request()->param('user');
+        $where = [];
+        if($user=='me'){
+           $where = ['openid' => $openid];
+        }
+        $my_signin_record = Db::name('PluginWechatSignin')->where($where)->select();
+        $this->assign('signin_record', $signin_record);
+        return $this->display();
+    }
+/*
+    //查看我的签到记录	
+    public function my_signin_record(){
+        $my_signin_record = Db::name('PluginWechatSignin')->where('openid',$openid)->select();
+        $this->assign('signin_record', $my_signin_record);
+        return $this->display('signin_record');
+    }     
+	
+    //查看所有人的签到记录  
+    public function all_signin_record(){
+        $all_signin_record = Db::name('PluginWechatSignin')->select();
+        $this->assign('signin_record', $my_signin_record);
+        return $this->display('signin_record');
+    }  
+    */
 }
