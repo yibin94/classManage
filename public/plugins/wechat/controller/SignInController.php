@@ -44,15 +44,15 @@ class SignInController extends PluginBaseController{
                        if($res){
                           //修改学号后得将该账号下的所有签到记录清空
                           Db::name('PluginWechatSignin')->where('openid',$openid)->delete();
-                          $this->success('学号修改成功！');
+                          $this->success('学号修改成功！','http://www.shibin.tech/classManage/public/index.php/wechat/wechat/index');
                        }else{
                           $this->error('学号修改失败！');
                        }
                    }
-                   $this->success('学号跟之前绑定的学号一致，操作成功！');
+                   $this->success('学号跟之前绑定的学号一致，操作成功！','http://www.shibin.tech/classManage/public/index.php/wechat/wechat/index');
                 }
             }else{
-                $this->error('无效操作！');
+                $this->error('无效操作！','http://www.shibin.tech/classManage/public/index.php/wechat/wechat/index');
             }
         }else{
     		$action = request()->param('act');
