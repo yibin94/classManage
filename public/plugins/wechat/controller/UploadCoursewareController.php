@@ -39,7 +39,7 @@ class UploadCoursewareController extends PluginBaseController{
     public function viewOrDownload(){
         $courseware = Db::name('pluginWechatCourseware')->select();
         $this->assign('courseware',$courseware);
-        $this->fetch('/uploadCourseware/viewOrDownload');
+        return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';
     }
 
