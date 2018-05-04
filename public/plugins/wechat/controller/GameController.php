@@ -19,7 +19,7 @@ class GameController extends PluginBaseController{
             //通过code换取网页授权access_token
             $res = $weObj->getOauthAccessToken();
         }else{
-            $data = Db::name('PluginWechatAccessToken')->where('openid' => $openid)->find();
+            $data = Db::name('pluginWechatAccessToken')->where('openid', $openid)->find();
             $res = [];
             if(!empty($data) && time() < $data['expire_time']){//未过期
               $res = [
@@ -39,16 +39,16 @@ class GameController extends PluginBaseController{
             $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
             session('userInfo',$userInfo);
             session('openid',$userInfo['openid']);
-            $data = Db::name('PluginWechatAccessToken')->where('openid' => $userInfo['openid'])->find();
-            if(!empty($data)&&time()>=$data['expire_time']){
-                Db::name('PluginWechatAccessToken')->where('openid' => $userInfo['openid'])->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
-            }else{
+            $data = Db::name('pluginWechatAccessToken')->where('openid', $userInfo['openid'])->find();
+            if(!empty($data)&&time()>=$data['expire_time']){//原来有但过期就更新。
+                Db::name('pluginWechatAccessToken')->where('openid', $userInfo['openid'])->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
+            }elseif(empty($data)){//原来没有就新增。
                 $data = [
                    'openid' => $userInfo['openid']
                    'access_token' => $res['access_token'],
                    'expire_time' => time()+7000
                 ];
-                Db::name('PluginWechatAccessToken')->insertOne($data);
+                Db::name('pluginWechatAccessToken')->insert($data);
             }
         }
 		return $this->fetch("/game/gameList");
