@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/weui.min.css"/>
     <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
 </head>
-<body>
+<body>22222222222222222222
     <table border='1' cellpadding='10'>
         <tr>
             <th>id</th>
@@ -15,14 +15,7 @@
             <th>昵称</th>
             <th>签到时间</th>
         </tr>
-        {volist name="signin_record" id="data"}
-        <tr>
-            <td>{$data.id}</td>
-            <td>{$data.studentId}</td>
-            <td></td>
-            <td>{:date('Y-m-d',$data.signInTime)}</td>
-        </tr> 
-        {/volist}
+        
     </table>
 
 </body>
