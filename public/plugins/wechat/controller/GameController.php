@@ -44,7 +44,7 @@ class GameController extends PluginBaseController{
                 Db::name('pluginWechatAccessToken')->where('openid', $userInfo['openid'])->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
             }elseif(empty($data)){//原来没有就新增。
                 $data = [
-                   'openid' => $userInfo['openid']
+                   'openid' => $userInfo['openid'],
                    'access_token' => $res['access_token'],
                    'expire_time' => time()+7000
                 ];
