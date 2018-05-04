@@ -211,6 +211,7 @@ SQL;
            		            //TODO:CLICK事件
                           switch ($rev_event['EventKey']) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
+                              $weObj->text(2323)->reply();
                               $record = Db::name('PluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
                               $studentId = '';$weObj->text(2323)->reply();
                               if(!empty($record)){
