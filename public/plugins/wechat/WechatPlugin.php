@@ -212,9 +212,8 @@ SQL;
                           $receiveData = $weObj->getRevData();
                           switch ($receiveData['EventKey']) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
-                              $weObj->text($revCont)->reply(13555);die;
-                              $record = Db::name('pluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->select();
-                              $studentId = '';$weObj->text($revCont)->reply(13);die;
+                              $record = Db::name('pluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
+                              $studentId = '';$weObj->text(json_encode($record))->reply();die;
                               if(!empty($record)){
                                 $studentId = $record['studentId'];
                               }
