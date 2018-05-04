@@ -209,6 +209,7 @@ SQL;
            		    switch ($rev_event['event']){
            		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
+                          $weObj->text($rev_event['EventKey'])->reply();
                           switch ($rev_event['EventKey']) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
                               $weObj->text(2323)->reply();
