@@ -35,10 +35,10 @@ class SignInController extends PluginBaseController{
             $modifyStudentId = request()->post('modifyStudentId');
             if($saveStudentId!=null){
                 Db::name('PluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
-                $this->success('学号绑定成功！',url('wechat/wechat/index'),['type'=>'connect']);
+                $this->success('学号绑定成功！',url('wechat/wechat/index'));
             }elseif($modifyStudentId!=null){
                 if(trim($modifyStudentId)!=''){
-                   $originStudentId = Db::name('PluginWechatUser')->where('openid', $openid)->column('studentId');
+                   $originStudentId = Db::name('PluginWechatUser')->where('openid', $openid)->value('studentId');
                    if($originStudentId != trim($modifyStudentId)){
                        $res = Db::name('PluginWechatUser')->where('openid', $openid)->update(['studentId' => $modifyStudentId]);
                        if($res){
