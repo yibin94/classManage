@@ -78,7 +78,7 @@ class SignInController extends PluginBaseController{
         }
         $signin_record = Db::name('pluginWechatSignin')->where($where)->select();
         $this->assign('signin_record', $signin_record);
-        return $this->fetch();
+        return $this->fetch('/signIn/signin_record');
     }
 /*
     //查看我的签到记录	
