@@ -213,7 +213,7 @@ SQL;
                           switch ($receiveData['EventKey']) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
                               //先查看用户是否已绑定学号，若无则不能签到。
-                              $studentId = Db::name('pluginWechatUser')->where('openid',$openid)->column('studentId');
+                              $studentId = Db::name('pluginWechatUser')->where('openid',$openid)->value('studentId');//取某个字段值
                               if(empty($studentId)){
                                  $revCont = '请先绑定学号后再签到！';
                                  break;
