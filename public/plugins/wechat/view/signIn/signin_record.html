@@ -19,8 +19,8 @@
         <tr>
             <td>{$data.id}</td>
             <td>{$data.studentId}</td>
-            <td></td>
-            <td>{:date('Y-m-d',$data.signInTime)}</td>
+            <td>{$data.nickname}</td>
+            <td>{:date('Y-m-d H:i:s',$data.signInTime)}</td>
         </tr> 
         </volist>
     </table>

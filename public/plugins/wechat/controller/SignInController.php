@@ -76,7 +76,14 @@ class SignInController extends PluginBaseController{
         if($user=='me'){
            $where = ['openid' => $openid];
         }
-        $signin_record = Db::name('pluginWechatSignin')->where($where)->select();
+        //$signin_record = Db::name('pluginWechatSignin')->where($where)->select();
+        //foreach ($signin_record as $key => $value) {
+            //查询对应 openid 的nickname
+        $signin_record = $Db::view('PluginWechatSignin','id,studentId,signInTime')
+                ->view('PluginWechatUser','nickname','PluginWechatSignin.openid=PluginWechatUser.openid','LEFT')
+                ->where($where)
+                ->select();
+        //}
         $this->assign('signin_record', $signin_record);
         return $this->fetch('/signIn/signin_record');
     }
