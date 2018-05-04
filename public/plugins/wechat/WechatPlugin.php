@@ -215,7 +215,7 @@ SQL;
                               //先查看用户是否已绑定学号，若无则不能签到。
                               $studentId = Db::name('pluginWechatUser')->where('openid',$openid)->column('studentId');
                               if(empty($studentId)){
-                                 $weObj->text('请先绑定学号后再签到！')->reply();
+                                 $revCont = '请先绑定学号后再签到！';
                                  break;
                               }/*
                               $record = Db::name('pluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
