@@ -8,7 +8,7 @@
     <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
 </head>
 <body>
-    <table border='1' cellpadding='10'>
+    <table border='1' cellpadding='30' align = 'center'>
         <tr>
             <th>id</th>
             <th>学号</th>
@@ -20,6 +20,7 @@
             <td>{$data.id}</td>
             <td>{$data.studentId}</td>
             <td>{$data.nickname}</td>
+            <td>{$data.sex?($data.sex==1?'男':'女'):'匿名'}</td>
             <td>{:date('Y-m-d H:i:s',$data.signInTime)}</td>
         </tr> 
         </volist>
