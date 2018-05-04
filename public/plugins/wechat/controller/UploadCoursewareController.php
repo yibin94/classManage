@@ -18,9 +18,16 @@ class UploadCoursewareController extends PluginBaseController{
 		 if($fileName){
 			 move_uploaded_file($_FILES["file"]["tmp_name"],
       $saveUrl.'/'.$fileName);
-	         $this->error($_FILES["file"]["error"]);
+             $fileInfo = [
+                 'name' => $fileName,
+                 'url' => $saveUrl,
+                 'views' => 0,
+                 'downloads' => 0,
+             ];
+	         Db::name('pluginWechatCourseware')->insert($fileInfo);
 		 }else{
-			 $this->error("fail to upload file!");
+            $this->error($_FILES["file"]["error"]);
+			 //$this->error("fail to upload file!");
 		 }
 	}
 
