@@ -14,7 +14,7 @@ class GameController extends PluginBaseController{
             $weObj = $loginObj->getWeObj();
         }
         $loginObj->authLogin();//授权验证登录获取code
-        $openid = session('openid');
+        $openid = session('openid');/*
 $res = $weObj->getOauthAccessToken();
         var_dump($res);die;
         if(empty($openid)){
@@ -53,7 +53,7 @@ $res = $weObj->getOauthAccessToken();
                 ];var_dump($data);die;
                 Db::name('pluginWechatAccessToken')->insert($data);
             }
-        }
+        }*/
 		return $this->fetch("/game/gameList");
 	}
 	/*选择并进入游戏*/

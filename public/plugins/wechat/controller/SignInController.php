@@ -16,7 +16,7 @@ class SignInController extends PluginBaseController{
             }
             $loginObj->authLogin();//授权验证登录获取code
             //通过code换取网页授权access_token
-            $res = $weObj->getOauthAccessToken();var_dump($res);die;
+            $res = $weObj->getOauthAccessToken();
             if($res){
                 //刷新access_token（如果需要）
                 $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
