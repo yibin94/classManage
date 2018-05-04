@@ -25,9 +25,7 @@ class UploadCoursewareController extends PluginBaseController{
 	}
 
     /* 上传文件页面 */
-	public function upload(){       
-        echo UPLOADFILE_SAVE_PATH;
-        var_export(session('userInfo'));die;
+	public function upload(){
 		return $this->fetch("/uploadCourseware/upload");
 	}
 	
@@ -41,7 +39,7 @@ class UploadCoursewareController extends PluginBaseController{
     /* 查看或下载文件处理 */
     public function download($filename){
 		//$filename = "resume.pdf";
-		$url = "/webdata/classManage/public/";
+		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
         if(!file_exists($url.$filename)){
             $this->error('文件不存在！');
             exit();

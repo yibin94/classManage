@@ -14,9 +14,7 @@ class GameController extends PluginBaseController{
             $weObj = $loginObj->getWeObj();
         }
         $loginObj->authLogin();//授权验证登录获取code
-        $openid = session('openid');echo $_GET['code'];die;
-$res = $weObj->getOauthAccessToken();
-        var_dump($res);die;
+        $openid = session('openid');
         if(empty($openid)){
             //通过code换取网页授权access_token
             $res = $weObj->getOauthAccessToken();
