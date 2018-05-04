@@ -209,7 +209,8 @@ SQL;
            		    switch ($rev_event['event']){
            		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
-                          $weObj->text($weObj->EventKey)->reply();die;
+                          $rec = $weObj->getRevData();
+                          $weObj->text($rec['EventKey'])->reply();die;
                           switch ($weObj->EventKey) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
                               $record = Db::name('PluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
