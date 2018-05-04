@@ -76,7 +76,7 @@ class SignInController extends PluginBaseController{
         if($user=='me'){
            $where = ['openid' => $openid];
         }
-        $signin_record = Db::name('PluginWechatSignin')->where($where)->select();
+        $signin_record = Db::name('pluginWechatSignin')->where($where)->select();
         $this->assign('signin_record', $signin_record);
         return $this->display();
     }
