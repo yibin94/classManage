@@ -212,11 +212,16 @@ SQL;
                           $receiveData = $weObj->getRevData();
                           switch ($receiveData['EventKey']) {//获取设置的key值。
                             case 'MENU_KEY_SIGNIN'://签到操作
+                              //先查看用户是否已绑定学号，若无则不能签到。
+                              $studentId = Db::name('pluginWechatUser')->where('openid',$openid)->column('studentId');
+                              if(empty($studentId)){
+                                 $weObj->text('请先绑定学号后再签到！');
+                                 break;
+                              }/*
                               $record = Db::name('pluginWechatSignin')->where('openid',$openid)->order('id DESC')->limit(1)->find();
-                              $studentId = '';
                               if(!empty($record)){
                                 $studentId = $record['studentId'];
-                              }
+                              }*/
                               $data = [
                                  'openid' => $openid,
                                  'studentId' => $studentId,
