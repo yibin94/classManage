@@ -73,7 +73,7 @@ class UploadCoursewareController extends PluginBaseController{
     public function download($filename){
 		//$filename = "resume.pdf";
 		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
-        if(!file_exists($url.'/'.$filename)){
+        if(!file_exists($url.'/'.urldecode($filename))){
             $this->error('文件不存在！');
             exit();
         }
