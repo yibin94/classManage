@@ -40,7 +40,7 @@ require CMF_ROOT . 'simplewind/thinkphp/base.php';
 //开启 session
 session_start();
 //定义上传文件保存目录
-define('UPLOADFILE_SAVE_PATH', '/webdata/classManage/public/upload');
+define('UPLOADFILE_SAVE_PATH', '/webdata/classManage/public/upload/');
 
 // 执行应用
 \think\App::run()->send();
