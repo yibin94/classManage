@@ -9,7 +9,7 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-        if(empty(session('userInfo'))){
+        if(empty(session('openid'))){
             if(!isset($weObj)){
                 $loginObj = new LoginValidationController();
                 $weObj = $loginObj->getWeObj();
@@ -22,14 +22,14 @@ class SignInController extends PluginBaseController{
                 $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
                 //拉取用户信息(需scope为 snsapi_userinfo)
                 $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
-                session('userInfo',$userInfo);
+                $openid = $userInfo['openid'];
+                session('openid',$openid);
             }
         }else{
-            $userInfo = session('userInfo');
+            $openid = session('openid');
         }
         /* 绑定学号或者更换已绑定学号提交表单操作 */
         if(request()->isPost()){
-            $openid = $userInfo['openid'];
             //var_dump(request()->post());
             $saveStudentId = request()->post('saveStudentId');
             $modifyStudentId = request()->post('modifyStudentId');
