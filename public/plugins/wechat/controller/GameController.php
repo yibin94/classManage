@@ -37,7 +37,6 @@ class GameController extends PluginBaseController{
             //拉取用户信息(需scope为 snsapi_userinfo)
             //$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
             $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-            session('userInfo',$userInfo);
             session('openid',$userInfo['openid']);
             $data = Db::name('pluginWechatAccessToken')->where('openid', $userInfo['openid'])->find();
             
