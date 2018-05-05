@@ -37,7 +37,12 @@ class UploadCoursewareController extends PluginBaseController{
 	}
 	
     public function viewOrDownload(){
-        $courseware = Db::name('pluginWechatCourseware')->select();
+        //使用左连接查询对应 openid 的nickname
+        $courseware =  = Db::view('PluginWechatCourseware','id,name,url,views,downloads')
+                ->view('PluginWechatUserCourseware','userId','PluginWechatCourseware.id=PluginWechatUserCourseware.coursewareId','LEFT')
+                ->view('PluginWechatUser','headimgurl,nickname,studentId','PluginWechatUserCourseware.userId=PluginWechatUser.id')
+                ->select();var_dump($courseware);die;
+        //$courseware = Db::name('pluginWechatCourseware')->select();
         $this->assign('courseware',$courseware);
         return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';

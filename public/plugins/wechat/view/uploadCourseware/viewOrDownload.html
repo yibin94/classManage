@@ -3,66 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
-    <title>WeUI</title>
-    <link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/weui.min.css"/>
+    <title>课件列表</title>
     <!--link rel="stylesheet" href="__PLUGIN_TMPL__/signIn/public/css/example.css"/-->
 </head>
+<style type="text/css">  
+    table{ border-collapse:collapse; border:solid 2px Black; float:center;}  
+    table td{ border:solid 1px Black; padding:10px; }  
+</style>  
 <body>
-<script type="text/html" id="tpl_list">
-<div class="page">
-    <div class="page__hd">
-        <h1 class="page__title">List</h1>
-        <p class="page__desc">列表</p>
-    </div>
-    <div class="page__bd">
-        <div class="weui-cells__title">带说明的列表项</div>
-        <div class="weui-cells">
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <p>标题文字</p>
-                </div>
-                <div class="weui-cell__ft">说明文字</div>
-            </div>
-            <volist name="courseware" id="data">
-            <div class="weui-cell weui-cell_swiped">
-                <div class="weui-cell__bd" style="transform: translateX(-68px)">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <p><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',['filename'=>$data.name])}">标题文字</a></p>
-                        </div>
-                        <div class="weui-cell__ft">说明文字</div>
-                    </div>
-                </div>
-                <div class="weui-cell__ft">
-                    <a class="weui-swiped-btn weui-swiped-btn_warn" href="javascript:">删除</a>
-                </div>
-            </div>
-            </volist>
-        </div>
-
-        <div class="weui-cells__title">带图标、说明的列表项</div>
-        <div class="weui-cells">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui-cell__bd">
-                    <p>标题文字</p>
-                </div>
-                <div class="weui-cell__ft">说明文字</div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui-cell__bd">
-                    <p>标题文字</p>
-                </div>
-                <div class="weui-cell__ft">说明文字</div>
-            </div>
-        </div>
-    </div>
+<div style="text-align:center">
+    <table border='1' style="margin:auto">
+        <tr>
+            <th>id</th>
+            <th>名字</th>
+            <th>阅读量</th>
+            <th>下载量</th>
+            <th>上传者昵称</th>
+            <th>上传者学号</th>
+            <th>操作</th>
+        </tr>
+        <volist name="signin_record" id="data">
+        <tr>
+            <td>{$data.id}</td>
+            <td>{$data.name}</td>
+            <td>{$data.views}</td>
+            <td>{$data.downloads}</td>
+            <td><img src="{$data.headimgurl}" style="width:40px;height:40px;"/></td>
+            <td>{$data.nickname}</td>
+            <td>{$data.studentId}</td>
+            <td><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',['filename'=>$data.name])}">[下载]</a></td>
+        </tr> 
+        </volist>
+    </table>
 </div>
-</script>
-<script src="__PLUGIN_TMPL__/signIn/public/js/weui.min.js"></script>
 </body>
 </html>
-
-
-
