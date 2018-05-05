@@ -48,7 +48,7 @@ class GameController extends PluginBaseController{
                    'access_token' => $res['access_token'],
                    'expire_time' => time()+7000
                 ];
-                Db::name('pluginWechatAccessToken')->insert($data);
+                //Db::name('pluginWechatAccessToken')->insert($data);
             }
         }
 		return $this->fetch("/game/gameList");
