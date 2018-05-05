@@ -73,11 +73,11 @@ class UploadCoursewareController extends PluginBaseController{
     public function download($filename){
 		//$filename = "resume.pdf";
 		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
-        if(!file_exists($url.$filename)){
+        if(!file_exists($url.'/'.$filename)){
             $this->error('文件不存在！');
             exit();
         }
-		$file=fopen($url.$filename,"r");//打开文件
+		$file=fopen($url.'/'.$filename,"r");//打开文件
 		//输入文件标签
 		header("Content-Type: application/octet-stream");
 		header("Accept-Ranges: bytes");
