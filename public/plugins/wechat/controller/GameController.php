@@ -27,10 +27,10 @@ class GameController extends PluginBaseController{
                 'openid' => $openid
               ];
             }else{//access_token过期了或者原来没有就重新获取
-                $res = $weObj->getOauthAccessToken();echo 5555555555;var_dump($res);die;
+                $res = $weObj->getOauthAccessToken();
             }
         }
-        var_dump($res);die;
+        
         if(!empty($res)){
             //刷新access_token（如果需要）
             //$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
