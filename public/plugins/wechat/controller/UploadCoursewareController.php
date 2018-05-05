@@ -62,7 +62,7 @@ class UploadCoursewareController extends PluginBaseController{
         $courseware = Db::view('PluginWechatCourseware','id,name,url,views,downloads')
                 ->view('PluginWechatUserCourseware','userId','PluginWechatCourseware.id=PluginWechatUserCourseware.coursewareId','LEFT')
                 ->view('PluginWechatUser','headimgurl,nickname,studentId','PluginWechatUserCourseware.userId=PluginWechatUser.id')
-                ->select();var_dump($courseware);die;
+                ->select();
         //$courseware = Db::name('pluginWechatCourseware')->select();
         $this->assign('courseware',$courseware);
         return $this->fetch('/uploadCourseware/viewOrDownload');
