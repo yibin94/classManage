@@ -24,7 +24,9 @@ class UploadCoursewareController extends PluginBaseController{
                  'views' => 0,
                  'downloads' => 0,
              ];
-	         Db::name('pluginWechatCourseware')->insert($fileInfo);
+             $userId = Db::name('pluginWechatUser')->where('openid',session('openid'))->value('id');
+	         $coursewareId = Db::name('pluginWechatCourseware')->insertGetId($fileInfo);
+             Db::name('pluginWechatUserCourseware')->insert(['userId'=>$userId,'coursewareId'=>$coursewareId]);
 		 }else{
             $this->error($_FILES["file"]["error"]);
 			 //$this->error("fail to upload file!");
