@@ -74,7 +74,7 @@ class SignInController extends PluginBaseController{
         $user = request()->param('record');
         $where = [];
         if($user=='me'){
-           $where = ['openid' => session('openid')];
+           $where = ['PluginWechatSignin.openid' => session('openid')];
         }
         //$signin_record = Db::name('pluginWechatSignin')->where($where)->select();
         //foreach ($signin_record as $key => $value) {
