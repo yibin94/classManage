@@ -103,8 +103,7 @@ SQL;
      $sql9=<<<SQL
 CREATE TABLE `{$db_prefix}plugin_wechat_access_token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `openid` varchar(40) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
-  `access_token` varchar(20) NOT NULL COMMENT 'access_token',
+  `access_token` varchar(512) NOT NULL COMMENT 'access_token',
   `expire_time` int(10) NOT NULL DEFAULT 0 COMMENT 'access_token过期时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '微信公众号access_token缓存表';
