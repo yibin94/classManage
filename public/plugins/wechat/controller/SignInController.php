@@ -71,11 +71,11 @@ class SignInController extends PluginBaseController{
 	
     //查看签到记录  
     public function signin_record(){
-        $user = request()->param('user');
+        $user = request()->param('record');
         $where = [];
         if($user=='me'){
            $where = ['openid' => session('openid')];
-        }var_dump(session('openid'));die;
+        }
         //$signin_record = Db::name('pluginWechatSignin')->where($where)->select();
         //foreach ($signin_record as $key => $value) {
         //使用左连接查询对应 openid 的nickname
