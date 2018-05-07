@@ -32,7 +32,7 @@
             <td><img src="{$data.headimgurl}" style="width:40px;height:40px;"/></td>
             <td>{$data.nickname}</td>
             <td>{$data.studentId}</td>
-            <td><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',['filename'=>'/webdata/'.$data.name])}">[下载]</a></td>
+            <td><a href="{:cmf_plugin_url('Wechat://UploadCourseware/download',['filename'=>$data.name])}">[下载]</a></td>
         </tr> 
         </volist>
     </table>
