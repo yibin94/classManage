@@ -54,7 +54,7 @@ class SignInController extends PluginBaseController{
             $modifyStudentId = request()->post('modifyStudentId');
             if($saveStudentId!=null){
                 Db::name('PluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
-                $this->success('学号绑定成功！',url('wechat/wechat/index'));
+                $this->success('学号绑定成功！');
             }elseif($modifyStudentId!=null){
                 if(trim($modifyStudentId)!=''){
                    $originStudentId = Db::name('PluginWechatUser')->where('openid', $openid)->value('studentId');
@@ -71,7 +71,7 @@ class SignInController extends PluginBaseController{
                    $this->success('学号跟之前绑定的学号一致，操作成功！');
                 }
             }else{
-                $this->error('无效操作！',url('wechat/wechat/index'));
+                $this->error('无效操作！');
             }
         }else{
     		$action = request()->param('act');
