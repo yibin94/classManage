@@ -102,7 +102,7 @@ class UploadCoursewareController extends PluginBaseController{
                 ->view('PluginWechatUser','headimgurl,nickname,studentId','PluginWechatUserCourseware.userId=PluginWechatUser.id')
                 ->select();
         //$courseware = Db::name('pluginWechatCourseware')->select();
-        $this->assign(['courseware'=>$courseware, 'url'=>"www.shibin.tech/classManage/public/upload"]);
+        $this->assign(['courseware'=>$courseware, 'url'=>UPLOADFILE_SAVE_PATH]);
         return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';
     }
@@ -110,7 +110,7 @@ class UploadCoursewareController extends PluginBaseController{
     /* 查看或下载文件处理 */
     public function download($filename){
         $filename = urldecode($filename);//避免找不到文件.
-		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
+		$url = UPLOADFILE_SAVE_PATH;//"/classManage/public/";
         if(file_get_contents($url.'/'.$filename)==false){
             $this->error('文件不存在！');
             exit();
