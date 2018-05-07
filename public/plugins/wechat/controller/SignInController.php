@@ -9,25 +9,44 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-        if(empty(session('openid'))){
-            if(!isset($weObj)){
-                $loginObj = new LoginValidationController();
-                $weObj = $loginObj->getWeObj();
-            }
-            $loginObj->authLogin();//授权验证登录获取code
+        if(!isset($weObj)){
+            $loginObj = new LoginValidationController();
+            $weObj = $loginObj->getWeObj();
+        }
+        $loginObj->authLogin();//授权验证登录获取code
+        $openid = session('openid');
+        if(empty($openid)){
             //通过code换取网页授权access_token
             $res = $weObj->getOauthAccessToken();
-            if($res){
-                //刷新access_token（如果需要）
-                $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
-                //拉取用户信息(需scope为 snsapi_userinfo)
-                $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
-                $openid = $userInfo['openid'];
-                session('openid',$openid);
-            }
         }else{
-            $openid = session('openid');
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            $res = [];
+            if(!empty($data) && time() < $data['expire_time']){//未过期
+              $res = [
+                'access_token' => $data['access_token'],
+                'openid' => $openid
+              ];
+            }else{//access_token过期了或者原来没有就重新获取
+                $res = $weObj->getOauthAccessToken();
+            }
         }
+        
+        if(!empty($res)){
+            $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
+            session('openid',$userInfo['openid']);
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            
+            if(!empty($data)&&time()>=$data['expire_time']){//原来有但过期就更新。
+                Db::name('pluginWechatAccessToken')->where('id', 1)->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
+            }elseif(empty($data)){//原来没有就新增。
+                $data = [
+                   'access_token' => $res['access_token'],
+                   'expire_time' => time()+7000
+                ];
+                Db::name('pluginWechatAccessToken')->insert($data);
+            }
+        }
+
         /* 绑定学号或者更换已绑定学号提交表单操作 */
         if(request()->isPost()){
             //var_dump(request()->post());
@@ -44,12 +63,12 @@ class SignInController extends PluginBaseController{
                        if($res){
                           //修改学号后得将该账号下的所有签到记录清空
                           Db::name('PluginWechatSignin')->where('openid',$openid)->delete();
-                          $this->success('学号修改成功！','http://www.shibin.tech/classManage/public/index.php/wechat/wechat/index');
+                          $this->success('学号修改成功！');
                        }else{
                           $this->error('学号修改失败！');
                        }
                    }
-                   $this->success('学号跟之前绑定的学号一致，操作成功！','http://www.shibin.tech/classManage/public/index.php/wechat/wechat/index');
+                   $this->success('学号跟之前绑定的学号一致，操作成功！');
                 }
             }else{
                 $this->error('无效操作！',url('wechat/wechat/index'));
@@ -57,6 +76,10 @@ class SignInController extends PluginBaseController{
         }else{
     		$action = request()->param('act');
             if(strcmp($action, "add") == 0){
+                $originalStudentId = Db::name('PluginWechatUser')->where('openid',$openid)->value('studentId');
+                if($originalStudentId != ''){
+                    $this->error('你已经绑定过学号！不能重复绑定！');
+                }
                 //echo '绑定学号操作';
                 $this->assign('act', 'add');
                 return $this->fetch('signIn/index');
@@ -80,26 +103,11 @@ class SignInController extends PluginBaseController{
         //foreach ($signin_record as $key => $value) {
         //使用左连接查询对应 openid 的nickname
         $signin_record = Db::view('PluginWechatSignin','id,studentId,signInTime')
-                ->view('PluginWechatUser','nickname,sex','PluginWechatSignin.openid=PluginWechatUser.openid','LEFT')
+                ->view('PluginWechatUser','headimgurl,nickname,sex','PluginWechatSignin.openid=PluginWechatUser.openid','LEFT')
                 ->where($where)
                 ->select();
         //}
         $this->assign('signin_record', $signin_record);
         return $this->fetch('/signIn/signin_record');
     }
-/*
-    //查看我的签到记录	
-    public function my_signin_record(){
-        $my_signin_record = Db::name('PluginWechatSignin')->where('openid',$openid)->select();
-        $this->assign('signin_record', $my_signin_record);
-        return $this->display('signin_record');
-    }     
-	
-    //查看所有人的签到记录  
-    public function all_signin_record(){
-        $all_signin_record = Db::name('PluginWechatSignin')->select();
-        $this->assign('signin_record', $all_signin_record);
-        return $this->display('signin_record');
-    }  
-    */
 }

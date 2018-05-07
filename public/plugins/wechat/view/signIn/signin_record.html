@@ -18,6 +18,7 @@
             <th>id</th>
             <th>学号</th>
             <th>昵称</th>
+            <th>头像</th>
             <th>性别</th>
             <th>签到时间</th>
         </tr>
@@ -26,6 +27,7 @@
             <td>{$data.id}</td>
             <td>{$data.studentId}</td>
             <td>{$data.nickname}</td>
+            <td><img src="{$data.headimgurl}" style="width:40px;height:40px;"/></td>
             <td>{$data.sex?($data.sex==1?'男':'女'):'匿名'}</td>
             <td>{:date('Y-m-d H:i:s',$data.signInTime)}</td>
         </tr> 

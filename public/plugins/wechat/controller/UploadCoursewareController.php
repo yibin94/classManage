@@ -10,6 +10,44 @@ use think\Db;
 class UploadCoursewareController extends PluginBaseController{
     /* 上传文件处理 */
     function index(){
+        if(!isset($weObj)){
+            $loginObj = new LoginValidationController();
+            $weObj = $loginObj->getWeObj();
+        }
+        $loginObj->authLogin();//授权验证登录获取code
+        $openid = session('openid');
+        if(empty($openid)){
+            //通过code换取网页授权access_token
+            $res = $weObj->getOauthAccessToken();
+        }else{
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            $res = [];
+            if(!empty($data) && time() < $data['expire_time']){//未过期
+              $res = [
+                'access_token' => $data['access_token'],
+                'openid' => $openid
+              ];
+            }else{//access_token过期了或者原来没有就重新获取
+                $res = $weObj->getOauthAccessToken();
+            }
+        }
+        
+        if(!empty($res)){
+            $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
+            session('openid',$userInfo['openid']);
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            
+            if(!empty($data)&&time()>=$data['expire_time']){//原来有但过期就更新。
+                Db::name('pluginWechatAccessToken')->where('id', 1)->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
+            }elseif(empty($data)){//原来没有就新增。
+                $data = [
+                   'access_token' => $res['access_token'],
+                   'expire_time' => time()+7000
+                ];
+                Db::name('pluginWechatAccessToken')->insert($data);
+            }
+        }
+
 		 $fileName = $_FILES['file']['name'];
          $saveUrl = UPLOADFILE_SAVE_PATH;
          if($saveUrl && !file_exists($saveUrl)){
@@ -65,6 +103,13 @@ class UploadCoursewareController extends PluginBaseController{
                 ->select();
         //$courseware = Db::name('pluginWechatCourseware')->select();
         $this->assign('courseware',$courseware);
+        //获取文件后缀名
+        $suffix = substr(strrchr($file, '.'), 1);
+        $isPic = 0;
+        if(in_array($suffix, ['jpg','jpeg','png'])){
+           $isPic = 1;
+        }
+        $this->assign('isPic',$isPic);
         return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';
     }
@@ -73,11 +118,11 @@ class UploadCoursewareController extends PluginBaseController{
     public function download($filename){
         $filename = urldecode($filename);//避免找不到文件.
 		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
-        if(!file_exists($url.'/'.$filename)){
+        if(file_get_contents($url.'/'.$filename)==false){
             $this->error('文件不存在！');
             exit();
         }
-		$file=fopen($url.'/'.$filename,"r");//打开文件
+		$file = fopen($url.'/'.$filename,"r");//打开文件
 		//输入文件标签
 		header("Content-Type: application/octet-stream");
 		header("Accept-Ranges: bytes");
