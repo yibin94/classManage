@@ -103,13 +103,6 @@ class UploadCoursewareController extends PluginBaseController{
                 ->select();
         //$courseware = Db::name('pluginWechatCourseware')->select();
         $this->assign('courseware',$courseware);
-        //获取文件后缀名
-        $suffix = substr(strrchr($file, '.'), 1);
-        $isPic = 0;
-        if(in_array($suffix, ['jpg','jpeg','png'])){
-           $isPic = 1;
-        }
-        $this->assign('isPic',$isPic);
         return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';
     }

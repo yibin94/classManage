@@ -105,6 +105,7 @@ class SignInController extends PluginBaseController{
         $signin_record = Db::view('PluginWechatSignin','id,studentId,signInTime')
                 ->view('PluginWechatUser','headimgurl,nickname,sex','PluginWechatSignin.openid=PluginWechatUser.openid','LEFT')
                 ->where($where)
+                ->order('id DESC')
                 ->select();
         //}
         $this->assign('signin_record', $signin_record);
