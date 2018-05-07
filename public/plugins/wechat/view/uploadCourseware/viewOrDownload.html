@@ -26,7 +26,7 @@
         <volist name="courseware" id="data">
         <tr>
             <td>{$data.id}</td>
-            <td><php>if(in_array(substr(strrchr($data['name'], '.'), 1),['jpg','jpeg','png'])){echo '<img src="$data.name" style="width:65px;height:65px;"/>';}else{echo $data['name'];}</php></td>
+            <td><php>if(in_array(substr(strrchr($data['name'], '.'), 1),['jpg','jpeg','png'])){echo '<img src="$url.'/'.$data.name" style="width:65px;height:65px;"/>';}else{echo $data['name'];}</php></td>
             <td>{$data.views}</td>
             <td>{$data.downloads}</td>
             <td><img src="{$data.headimgurl}" style="width:40px;height:40px;"/></td>
