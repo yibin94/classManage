@@ -111,7 +111,8 @@ class UploadCoursewareController extends PluginBaseController{
     public function download($filename){
         $filename = urldecode($filename);//避免找不到文件.
 		$url = UPLOADFILE_SAVE_PATH;//"/webdata/classManage/public/";
-        if(file_get_contents($url.'/'.$filename)==false){
+        $con = file_get_contents($url.'/'.$filename);
+        if($con==false){
             $this->error('文件不存在！');
             exit();
         }
