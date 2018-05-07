@@ -102,7 +102,7 @@ class UploadCoursewareController extends PluginBaseController{
                 ->view('PluginWechatUser','headimgurl,nickname,studentId','PluginWechatUserCourseware.userId=PluginWechatUser.id')
                 ->select();
         //$courseware = Db::name('pluginWechatCourseware')->select();
-        $this->assign(['courseware'=>$courseware, 'url'=>UPLOADFILE_SAVE_PATH]);
+        $this->assign(['courseware'=>$courseware, 'url'=>"www.shibin.tech/classManage/public/upload"]);
         return $this->fetch('/uploadCourseware/viewOrDownload');
         //echo '查看或下载文件处理';
     }
