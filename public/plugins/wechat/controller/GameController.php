@@ -10,6 +10,21 @@ use think\Db;
 class GameController extends PluginBaseController{
     /*游戏列表*/
 	public function index(){
+        $this->verifyLogin();
+		return $this->fetch("/game/gameList");
+	}
+	/*选择并进入游戏*/
+	public function chooseGame($name){
+        
+		return $this->fetch("/game/$name/index");
+	}
+
+    /* 游戏排行表 */
+    public function ranking(){
+        echo "游戏排行榜";
+    }
+
+    public function verifyLogin(){
         if(!isset($weObj)){
             $loginObj = new LoginValidationController();
             $weObj = $loginObj->getWeObj();
@@ -33,10 +48,6 @@ class GameController extends PluginBaseController{
         }
         
         if(!empty($res)){
-            //刷新access_token（如果需要）
-            //$refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
-            //拉取用户信息(需scope为 snsapi_userinfo)
-            //$userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
             $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
             session('openid',$userInfo['openid']);
             $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
@@ -51,16 +62,5 @@ class GameController extends PluginBaseController{
                 Db::name('pluginWechatAccessToken')->insert($data);
             }
         }
-		return $this->fetch("/game/gameList");
-	}
-	/*选择并进入游戏*/
-	public function chooseGame($name){
-        
-		return $this->fetch("/game/$name/index");
-	}
-
-    /* 游戏排行表 */
-    public function ranking(){
-        echo "游戏排行榜";
-    } 
+    }
 }	
