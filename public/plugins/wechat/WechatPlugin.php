@@ -159,7 +159,7 @@ SQL;
                 $weObj = new TpWechat(self::$options);
                 $weObj->valid();		
 					
-  
+/*  
        //设置菜单     
        $newmenu = array(
           "button" => array(
@@ -190,7 +190,7 @@ SQL;
           )
       );     
        $result = $weObj->createMenu($newmenu);
-
+*/
                 //用户openid:
                 $openid = $weObj->getRev()->getRevFrom();
                 $type = $weObj->getRev()->getRevType();
@@ -208,7 +208,7 @@ SQL;
            		    $rev_event = $weObj->getRevEvent();
            		    /* 检测事件类型 */
            		    switch ($rev_event['event']){
-           		        case TpWechat::EVENT_MENU_CLICK:
+           		        case TpWechat::EVENT_MENU_CLICK:$weObj->text($openid)->reply();die;
            		            //TODO:CLICK事件
                           $receiveData = $weObj->getRevData();
                           switch ($receiveData['EventKey']) {//获取设置的key值。
