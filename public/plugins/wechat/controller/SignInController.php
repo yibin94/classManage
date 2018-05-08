@@ -2,6 +2,7 @@
 
 namespace plugins\wechat\controller; //插件英文名，改成你的插件英文就行了
 use cmf\controller\PluginBaseController;
+use plugins\wechat\controller\LoginValidationController;
 use think\Validate;
 use think\Db;
 use think\Request;
