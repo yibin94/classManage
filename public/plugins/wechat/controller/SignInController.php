@@ -10,9 +10,9 @@ use think\Request;
 class SignInController extends PluginBaseController{
 	
     public function index(){
-        $this->verifyLogin();
         /* 绑定学号或者更换已绑定学号提交表单操作 */
         if(request()->isPost()){
+            $openid = session('openid');
             //var_dump(request()->post());
             $saveStudentId = request()->post('saveStudentId');
             $modifyStudentId = request()->post('modifyStudentId');
@@ -51,7 +51,7 @@ class SignInController extends PluginBaseController{
                 //echo '更换学号操作';
                 $this->assign('act', 'modify');
             }
-            
+            $this->verifyLogin();
             return $this->fetch('signIn/index');
         }
 	}
