@@ -21,7 +21,7 @@ class UploadCoursewareController extends PluginBaseController{
          }
          if($saveUrl && !file_exists($saveUrl)){
             mkdir($saveUrl,0777,true);
-         }
+         }echo $fileName;die;
 		 if($fileName){
 			 move_uploaded_file($_FILES["file"]["tmp_name"],
       $saveUrl.'/'.$fileName);
