@@ -39,6 +39,7 @@ class SignInController extends PluginBaseController{
             }
         }else{
     		$action = request()->param('act');
+            $this->verifyLogin();
             if(strcmp($action, "add") == 0){
                 $originalStudentId = Db::name('PluginWechatUser')->where('openid',$openid)->value('studentId');
                 if($originalStudentId != ''){
@@ -51,7 +52,7 @@ class SignInController extends PluginBaseController{
                 //echo '更换学号操作';
                 $this->assign('act', 'modify');
             }
-            $this->verifyLogin();
+            
             return $this->fetch('signIn/index');
         }
 	}
