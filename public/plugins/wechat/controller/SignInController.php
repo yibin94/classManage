@@ -48,7 +48,7 @@ class SignInController extends PluginBaseController{
         }
 
         /* 绑定学号或者更换已绑定学号提交表单操作 */
-        if(request()->isPost()){
+        if(request()->isPost()){echo $openid.'/'.request()->post('saveStudentId');die;
             //var_dump(request()->post());
             $saveStudentId = request()->post('saveStudentId');
             $modifyStudentId = request()->post('modifyStudentId');
