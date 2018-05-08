@@ -11,7 +11,7 @@ use think\Db;
 class UploadCoursewareController extends PluginBaseController{
     /* 上传文件处理 */
     function index(){
-         $this->verifyLogin();
+         //$this->verifyLogin();
 
 		 $fileName = $_FILES['file']['name'];
          $saveUrl = UPLOADFILE_SAVE_PATH;
