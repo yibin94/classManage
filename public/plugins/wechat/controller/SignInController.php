@@ -8,7 +8,46 @@ use think\Db;
 use think\Request;
 
 class SignInController extends PluginBaseController{
-	
+	public function verifyLogin(){
+        if(!isset($weObj)){
+            $loginObj = new LoginValidationController();
+            $weObj = $loginObj->getWeObj();
+        }
+        $loginObj->authLogin();//授权验证登录获取code
+        $openid = session('openid');
+        if(empty($openid)){
+            //通过code换取网页授权access_token
+            $res = $weObj->getOauthAccessToken();
+        }else{
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            $res = [];
+            if(!empty($data) && time() < $data['expire_time']){//未过期
+              $res = [
+                'access_token' => $data['access_token'],
+                'openid' => $openid
+              ];
+            }else{//access_token过期了或者原来没有就重新获取
+                $res = $weObj->getOauthAccessToken();
+            }
+        }
+        
+        if(!empty($res)){
+            $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
+            session('openid',$userInfo['openid']);
+            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
+            
+            if(!empty($data)&&time()>=$data['expire_time']){//原来有但过期就更新。
+                Db::name('pluginWechatAccessToken')->where('id', 1)->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
+            }elseif(empty($data)){//原来没有就新增。
+                $data = [
+                   'access_token' => $res['access_token'],
+                   'expire_time' => time()+7000
+                ];
+                Db::name('pluginWechatAccessToken')->insert($data);
+            }
+        }
+    }
+
     public function index(){
         /* 绑定学号或者更换已绑定学号提交表单操作 */
         if(request()->isPost()){
@@ -77,43 +116,4 @@ class SignInController extends PluginBaseController{
         return $this->fetch('/signIn/signin_record');
     }
 
-    public function verifyLogin(){
-        if(!isset($weObj)){
-            $loginObj = new LoginValidationController();
-            $weObj = $loginObj->getWeObj();
-        }
-        $loginObj->authLogin();//授权验证登录获取code
-        $openid = session('openid');
-        if(empty($openid)){
-            //通过code换取网页授权access_token
-            $res = $weObj->getOauthAccessToken();
-        }else{
-            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
-            $res = [];
-            if(!empty($data) && time() < $data['expire_time']){//未过期
-              $res = [
-                'access_token' => $data['access_token'],
-                'openid' => $openid
-              ];
-            }else{//access_token过期了或者原来没有就重新获取
-                $res = $weObj->getOauthAccessToken();
-            }
-        }
-        
-        if(!empty($res)){
-            $userInfo = $weObj->getOauthUserinfo($res['access_token'],$res['openid']);
-            session('openid',$userInfo['openid']);
-            $data = Db::name('pluginWechatAccessToken')->where('id',1)->find();
-            
-            if(!empty($data)&&time()>=$data['expire_time']){//原来有但过期就更新。
-                Db::name('pluginWechatAccessToken')->where('id', 1)->update(['access_token'=>$res['access_token'],'expire_time'=>time()+7000]);
-            }elseif(empty($data)){//原来没有就新增。
-                $data = [
-                   'access_token' => $res['access_token'],
-                   'expire_time' => time()+7000
-                ];
-                Db::name('pluginWechatAccessToken')->insert($data);
-            }
-        }
-    }
 }
