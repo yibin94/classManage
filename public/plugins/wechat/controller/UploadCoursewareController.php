@@ -70,11 +70,11 @@ class UploadCoursewareController extends PluginBaseController{
 		//输入文件标签
 		header("Content-Type: application/octet-stream");
 		header("Accept-Ranges: bytes");
-		header("Accept-Length: ".filesize($url));
+		header("Accept-Length: ".filesize($url.'/'.$filename));
 		header("Content-Disposition: attachment; filename=$filename");
 		//输出文件内容
         //读取文件内容并直接输出到浏览器
-		echo fread($file,filesize($url));
+		echo fread($file,filesize($url.'/'.$filename));
 		fclose($file);
 	}	
 
