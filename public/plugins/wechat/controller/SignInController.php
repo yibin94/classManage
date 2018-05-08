@@ -16,17 +16,17 @@ class SignInController extends PluginBaseController{
             //var_dump(request()->post());
             $saveStudentId = request()->post('saveStudentId');
             $modifyStudentId = request()->post('modifyStudentId');
-            if($saveStudentId!=null){echo $openid;die;
-                Db::name('PluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
+            if($saveStudentId!=null){
+                Db::name('pluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
                 $this->success('学号绑定成功！');
             }elseif($modifyStudentId!=null){
                 if(trim($modifyStudentId)!=''){
-                   $originStudentId = Db::name('PluginWechatUser')->where('openid', $openid)->value('studentId');
+                   $originStudentId = Db::name('pluginWechatUser')->where('openid', $openid)->value('studentId');
                    if($originStudentId != trim($modifyStudentId)){
-                       $res = Db::name('PluginWechatUser')->where('openid', $openid)->update(['studentId' => $modifyStudentId]);
+                       $res = Db::name('pluginWechatUser')->where('openid', $openid)->update(['studentId' => $modifyStudentId]);
                        if($res){
                           //修改学号后得将该账号下的所有签到记录清空
-                          Db::name('PluginWechatSignin')->where('openid',$openid)->delete();
+                          Db::name('pluginWechatSignin')->where('openid',$openid)->delete();
                           $this->success('学号修改成功！');
                        }else{
                           $this->error('学号修改失败！');
@@ -40,7 +40,7 @@ class SignInController extends PluginBaseController{
         }else{
     		$action = request()->param('act');
             if(strcmp($action, "add") == 0){
-                $originalStudentId = Db::name('PluginWechatUser')->where('openid',$openid)->value('studentId');
+                $originalStudentId = Db::name('pluginWechatUser')->where('openid',$openid)->value('studentId');
                 if($originalStudentId != ''){
                     $this->error('你已经绑定过学号！不能重复绑定！');
                 }
