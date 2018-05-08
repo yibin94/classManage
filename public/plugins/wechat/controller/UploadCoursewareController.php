@@ -50,6 +50,10 @@ class UploadCoursewareController extends PluginBaseController{
 
 		 $fileName = $_FILES['file']['name'];
          $saveUrl = UPLOADFILE_SAVE_PATH;
+         if(!in_array(substr(strrchr($fileName, '.'), 1),['jpg','jpeg','png','pdf','word','doc'])){
+            @unlink($saveUrl.'/'.$fileName);//删除已上传的该文件
+            $this->error('不允许上传此类型文件！');
+         }
          if($saveUrl && !file_exists($saveUrl)){
             mkdir($saveUrl,0777,true);
          }
