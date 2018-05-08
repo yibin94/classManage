@@ -208,7 +208,7 @@ SQL;
            		    $rev_event = $weObj->getRevEvent();
            		    /* 检测事件类型 */
            		    switch ($rev_event['event']){
-           		        case TpWechat::EVENT_MENU_CLICK:$weObj->text($openid)->reply();die;
+           		        case TpWechat::EVENT_MENU_CLICK:
            		            //TODO:CLICK事件
                           $receiveData = $weObj->getRevData();
                           switch ($receiveData['EventKey']) {//获取设置的key值。
