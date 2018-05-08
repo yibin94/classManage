@@ -16,7 +16,7 @@ class SignInController extends PluginBaseController{
             //var_dump(request()->post());
             $saveStudentId = request()->post('saveStudentId');
             $modifyStudentId = request()->post('modifyStudentId');
-            if($saveStudentId!=null){
+            if($saveStudentId!=null){echo $openid;die;
                 Db::name('PluginWechatUser')->where('openid', $openid)->setField('studentId',$saveStudentId);
                 $this->success('学号绑定成功！');
             }elseif($modifyStudentId!=null){
