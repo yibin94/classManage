@@ -11,8 +11,6 @@ use think\Db;
 class UploadCoursewareController extends PluginBaseController{
     /* 上传文件处理 */
     function index(){
-         //$this->verifyLogin();
-
 		 $fileName = $_FILES['file']['name'];
          $saveUrl = UPLOADFILE_SAVE_PATH;
          if(!in_array(substr(strrchr($fileName, '.'), 1),['jpg','jpeg','png','pdf','word','doc'])){
@@ -21,7 +19,7 @@ class UploadCoursewareController extends PluginBaseController{
          }
          if($saveUrl && !file_exists($saveUrl)){
             mkdir($saveUrl,0777,true);
-         }echo $fileName;die;
+         }
 		 if($fileName){
 			 move_uploaded_file($_FILES["file"]["tmp_name"],
       $saveUrl.'/'.$fileName);
@@ -42,25 +40,6 @@ class UploadCoursewareController extends PluginBaseController{
 
     /* 上传文件页面 */
 	public function upload(){
-        /*if(empty(session('openid'))){
-            if(!isset($weObj)){
-                $loginObj = new LoginValidationController();
-                $weObj = $loginObj->getWeObj();
-            }
-            $loginObj->authLogin();//授权验证登录获取code
-            //通过code换取网页授权access_token
-            $res = $weObj->getOauthAccessToken();
-            if($res){
-                //刷新access_token（如果需要）
-                $refreshRes = $weObj->getOauthRefreshToken($res['refresh_token']);
-                //拉取用户信息(需scope为 snsapi_userinfo)
-                $userInfo = $weObj->getOauthUserinfo($refreshRes['access_token'],$refreshRes['openid']);
-                $openid = $userInfo['openid'];
-                session('openid',$openid);
-            }
-        }else{
-            $openid = session('openid');
-        }*/
         $this->verifyLogin();
 		return $this->fetch("/uploadCourseware/upload");
 	}
